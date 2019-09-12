@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Budget Cat</title>
+ <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+<body>
+	<div  align="center">
+		<h1>Supplier</h1>
+		<a th:href="@{/addsupplier}">Create  New Supplier</a>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>Supplier ID</th>
+					<th>Name Supplier</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="supplier: ${listsupplier}">
+					<td th:text="${supplier.idsupplier}">Supplier Id</td>
+					<td th:text="${supplier.nameSupplier}">Name</td>
+<!-- 					<td><a th:href="@{'/editcustomer/' + ${customer.idCustomer}}">Edit</a> -->
+<!-- 					  &nbsp;&nbsp;&nbsp; -->
+<!-- 					    <a th:href="@{'/deletecustomer/' + ${customer.idCustomer}}">Delete</a> -->
+<!-- 					</td> -->
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+</body>
+</html>

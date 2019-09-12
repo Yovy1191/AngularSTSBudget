@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Create new Customer</title>
+</head>
+<body>
+	<div align="center">
+		<h1>Create New Item</h1>
+		<br />
+		<form  th:objet="${itemw}" action="/additem/saveaction" method="post">
+	
+			<table border="0" cellpadding="10">
+			
+				<tr>
+					<td>Item Id</td>
+					<td><input type="text" th:field="*{itemw.InvoiceId}"></td>
+				</tr>
+				<tr>
+					<td>Invoice Id</td>
+					<td><input type="text" th:field="*{itemw.ItemId}"></td>
+				</tr>
+				<tr>
+					<td>Description</td>
+					<td><input type="text" th:field="*{itemw.description}"></td>
+				</tr>
+				<tr>
+					<td>Qte</td>
+					<td><input type="text" th:field="*{itemw.qte}"></td>
+				</tr>
+				<tr>
+					<td>Price</td>
+					<td><input type="text" th:field="*{itemw.price}"></td>
+				</tr>
+				<tr>
+					<td>Subtotal</td>
+					<td><input type="text" th:field="*{itemw.subtotal}"></td>
+				</tr>
+				 <tr>
+				 <td>Select Service:</td>
+						<td><select name="idService">
+								<option value=""> -- </option>
+								<option th:each="s : ${listservices}" th:value="${s.idService}"
+									th:utext="${s.nameService}"
+									th:selected="${idService == 's.idService'}" />
+						</select></td>
+				</tr>
+				
+				 <tr>
+				 <td>Select Supplier:</td>
+						<td><select name="idSupplier">
+								<option value=""> -- </option>
+								<option th:each="s : ${listsuppliers}" th:value="${s.idsupplier}"
+									th:utext="${s.nameSupplier}"
+									th:selected="${idSupplier == 's.idsupplier'}" />
+						</select></td>
+				</tr>
+				<tr>
+					<td colspan="2"><button type="submit">Save</button></td>
+				</tr>
+
+			</table>
+		</form>
+	</div>
+</body>
+</html>

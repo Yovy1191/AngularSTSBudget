@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Budget Cat</title>
+ <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+<body>
+	<div  align="center">
+		<h1>Bill</h1>
+		<a th:href="@{/addbill2}">Create  New Bill</a>
+		<table border="1">
+			<thead>
+				<tr>
+	-				<th>invoice Id</th>
+					<th>Date</th>
+					<th>Sub-total</th>
+					<th>Total</th>
+					<th>TPS</th>
+					<th>TVQ</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="bill: ${listbill}">
+					<td th:text="${bill.invoiceId}">Bill Id</td>
+					<td th:text="${bill.date}">Date</td>
+					<td th:text="${bill.sub_total}">Subtotal</td>
+					<td th:text="${bill.tvq}">TVQ</td>
+					<td th:text="${bill.tps}">TPS</td>
+						<td th:text="${bill.total}">Total</td>
+<!-- 					<td><a th:href="@{'/editcustomer/' + ${customer.idCustomer}}">Edit</a> -->
+<!-- 					  &nbsp;&nbsp;&nbsp; -->
+<!-- 					    <a th:href="@{'/deletecustomer/' + ${customer.idCustomer}}">Delete</a> -->
+<!-- 					</td> -->
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+</body>
+</html>

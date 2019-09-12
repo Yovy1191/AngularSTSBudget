@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <title>Budget</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag">
+    <h1 >Family budget</h1>
+    <p>This is an unsecured page, but you can access the secured pages after authenticating.</p>
+    <ul>
+        <li>Go to the <a href="/user" th:href="@{/user}">secured pages</a></li>
+    </ul>
+</div>
+</body>
+</html>
+
+
+
+<!-- <!DOCTYPE html> -->
+<!-- <html xmlns:th="http://www.thymeleaf.org"> -->
+<!-- <head> -->
+<!--  <th:block th:replace="fragments/header :: header-css"></th:block> -->
+<!-- <meta charset="ISO-8859-1"> -->
+<!-- <title>Buget Cat</title> -->
+<!-- </head> -->
+<!-- <body> -->
+<!-- <th:block th:replace="fragments/header :: header"></th:block> -->
+<!-- <h1>======================</h1> -->
+<!-- <h2>This is Home Page</h2> -->
+<!-- <h1>======================</h1> -->
+<!-- <a th:href="@{/customer}" >Customer>> </a> -->
+<!-- <br/> -->
+<!-- <a th:href="@{/bill}" >Bill>> </a> -->
+<!-- <br/> -->
+<!-- <a th:href="@{/income}" >Income>> </a> -->
+<!-- <br/> -->
+<!-- <a th:href="@{/supplier}" >Supplier>> </a> -->
+<!-- <br/> -->
+<!-- <a th:href="@{/servicesoffered}" >Services>> </a> -->
+<!-- <br/> -->
+<!-- <a th:href="@{/item}" >Item>> </a> -->
+<!-- <th:block th:replace="fragments/footer :: footer"></th:block> -->
+<!-- </body> -->
+<!-- </html> -->

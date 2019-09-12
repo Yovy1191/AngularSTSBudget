@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Create new Invoice</title>
+<link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"
+	media="screen" />
+
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script> -->
+<!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
+
+
+
+
+<script th:src="@{/jquery/jquery.min.js}"></script>
+<script th:src="@{/popper/popper.min.js}"></script>
+<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+<link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
+<style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}</style>
+
+<!-- Include Date Range Picker -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+<script src="/js/bill.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div align="center">
+			<h1>Invoce</h1>
+			<br />
+			<form   action="#" th:action="@{/addbill2}" method="post">
+	<div  th:objet="${itemw}" >
+				<input type="hidden" th:field="*{bill.customer}" /> 
+				<input type="hidden" th:field="*{bill.items}" />
+				<input type="hidden" th:field="*{items}" />
+<!-- 				<input type="hidden" th:field="*{bill.invoiceId}"> -->
+
+				<table class="table table-striped w-auto">
+					<tr>
+						<td>
+							<div class="row clearfix" style="margin-top: 20px">
+								<div class="pull-left col-md-4">
+									<table class="table table-bordered table-hover"
+										id="tab_logic_head">
+										<tbody>
+											<tr>	<div class="bootstrap-iso">
+														<div class="container-fluid">
+															<div class="row">
+																<div class="col-md-6 col-sm-6 col-xs-12">
+																	<th>
+																		<div class="form-group">
+																		<label class="control-label col-sm-2 requiredField" for="date"> Date
+																		 <span class="asteriskField">
+																		* </span>
+																		</label>
+																		</div>
+																		</th>
+																		<td>
+																		<div class="col-sm-10">
+																			<div class="input-group">
+																				<div class="input-group-addon">
+																					<i class="fa fa-calendar"> </i>
+																				</div>
+																				<input class="form-control"   th:field="*{bill.date}"
+																				 id="date" name="date"
+																					placeholder="MM/DD/YYYY" type="text" />
+																			</div>
+																		</div>
+																	</td>
+																</div>
+
+															</div>
+														</div>
+													</div>
+											
+											</tr>
+											<tr>
+												<th>Select Customer:</th>
+												<td><select name="idCustomer"  class="form-control" >
+														<option value=""> -- </option>
+														<option th:each="c : ${listcustomer}"
+															th:value="${c.idCustomer}" th:utext="${c.firstName}"
+															th:selected="${idCustomer == 'c.idCustomer'}" />
+												</select></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="container">
+								<div class="row clearfix">
+									<div class="col-md-12">
+										<table class="table table-striped w-auto" id="tab_logic" >
+											<thead>
+												<tr>
+													<th class="text-center">Item Id</th>
+													<th class="text-center">Description</th>
+													<th class="text-center">Qty</th>
+													<th class="text-center">Price</th>
+													<th class="text-center">Subtotal</th>
+													<th class="text-center">Service</th>
+													<th class="text-center">Supplier</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr id='addr0'>
+												 	<td><input  id="ItemId" type="text" name="ItemId[]" value="1"  th:field="*{itemw.ItemId}"  class="form-control ItemId" readonly /></td>
+												 	<td><input  type="text" name='description[]'  placeholder='Enter Item Description'   class="form-control"  th:field="*{itemw.description}"></td>
+													<td><input  type="number" name='qte[]'    placeholder='Enter Qty' class="form-control qte" th:field="*{itemw.qte}"></td>
+													<td><input  type="number"  name='price[]'  placeholder='Enter price'  class="form-control price"  th:field="*{itemw.price}" step="0.00" min="0" ></td>
+													<td><input  type="number"  name='total[]'  id="total" placeholder='0.00'   class="form-control total" th:field="*{itemw.total}" readonly></td>
+													<td><select name="idService"  class="form-control" >
+															<option value=""> -- </option>
+															<option th:each="s : ${listserv}"
+																th:value="${s.idService}" th:utext="${s.nameService}"
+																th:selected="${idService == 's.idService'}" />
+													</select></td>
+													<td><select name="idSupplier"  class="form-control" >
+															<option value=""> -- </option>
+															<option th:each="s : ${listsupplier}"
+																th:value="${s.idsupplier}" th:utext="${s.nameSupplier}"
+																th:selected="${idSupplier == 's.idsupplier'}" />
+																
+													</select></td>
+												</tr>
+												  <tr id='addr1'></tr>
+											</tbody>
+																				
+										</table>
+											</div>
+										</div>
+											</div>
+
+											<div class="row clearfix">
+												<div class="col-md-12">
+													<button id="add_row" type="button" class="btn btn-default pull-left">Add Row</button>
+													<button id='delete_row' type="button" class="pull-right btn btn-default">Delete Row</button>
+											</div>
+								</div>
+							</td>
+					</tr>
+					<tr>
+						<td>
+
+							<div class="row clearfix" style="margin-top: 20px">
+								<div class="pull-right col-md-4">
+									<table class="table table-bordered table-hover"
+										id="tab_logic_total">
+										<tbody>
+											<tr>
+												<th class="text-center">SOUS-TOTAL</th>
+												<td class="text-center"><input type="number" name='sub_total' step="0.01" placeholder='0.00' class="form-control" id="sub_total" readonly th:field="*{bill.sub_total}"></td>
+											</tr>
+
+											<tr>
+												<th class="text-center">TPS 5%</th>
+												<td class="text-center"><div class="input-group mb-2 mb-sm-0">
+												<input type="number"  step="0.01" class="form-control" id="tps" name="tps" th:field="*{bill.tps}">
+												 <div class="input-group-addon">%</div></div>
+												</td>
+											</tr>
+											<tr>
+												<th class="text-center">TVQ 9.975%</th>
+												<td class="text-center"><div class="input-group mb-2 mb-sm-0">
+												<input type="number" class="form-control" id="tvq" name="tvq"  step="0.01" th:field="*{bill.tvq}">
+												<div class="input-group-addon">%</div></div>
+												</td>
+											</tr>
+											<tr>
+          								  <th class="text-center">TAX TOTAL</th>
+        							    <td class="text-center"><input type="number" name='tax_amount' id="tax_amount" placeholder='0.00'  step="0.01"  class="form-control" readonly/></td>
+     								     </tr>
+											
+
+											<tr>
+												<th class="text-center">TOTAL</th>
+												<td><input type="number"  class="form-control"  name="total_amount"  id="total_amount"  th:field="*{bill.total}"  step="0.01" ></td>
+											</tr>
+
+											<tr>
+												<td colspan="2"><button type="submit">Save</button></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+						</td>
+					</tr>
+					
+				</table>
+				
+				</div>
+			</form>
+		</div>
+
+	</div>
+	
+	
+	<script>
+	$(document).ready(function(){
+		var date_input=$('input[name="date"]'); //our date input has the name "date"
+		var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+		date_input.datepicker({
+			format: 'yyyy/mm/dd',
+			container: container,
+			todayHighlight: true,
+			autoclose: true,
+		})
+	})
+</script>
+</body>
+</html>

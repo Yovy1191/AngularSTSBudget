@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Budget Cat</title>
+ <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+<body>
+	<div  align="center">
+		<h1>Item</h1>
+		<a th:href="@{/additem}">Create  New Item</a>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>Item ID</th>
+					<th>Descripton</th>
+					<th>qte</th>
+					<th>price</th>
+					<th>subtotal</th>
+					<th>service</th>
+					<th>Supplier</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="item: ${listitems}">
+					<td th:text="${item.idItem}">Iitem Id</td>
+					<td th:text="${item.description}">Name</td>
+				    <td th:text="${item.qte}">qte</td>
+ 					<td th:text="${item.price}">price</td>
+					<td th:text="${item.subtotal}">subtotal</td>
+					<td th:text="${item.services.nameService}">Service</td>
+					<td th:text="${item.supplier.nameSupplier}">Supplier</td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+</body>
+</html>
