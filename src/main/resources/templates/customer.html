@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
 <head>
 <meta charset="ISO-8859-1">
 <title>Budget Cat</title>
  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 </head>
 <body>
+<div layout:fragment="content" th:remove="tag">
 	<div  align="center">
 		<h1>Customer</h1>
 		<a th:href="@{/addCustomer}">Create  New Customer</a>
@@ -35,5 +38,7 @@
 		</table>
 
 	</div>
+</div>
 </body>
+	
 </html>

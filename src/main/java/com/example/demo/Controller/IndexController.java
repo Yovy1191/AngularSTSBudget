@@ -58,6 +58,12 @@ public class IndexController {
         return "/error/access-denied";
     }
 
+    @GetMapping("/home")
+    public String home() {
+        return "/home";
+    }
+
+    
 
 	@RequestMapping("/addCustomer")
 	public String ShowNewCustomrForm(Model model) {
