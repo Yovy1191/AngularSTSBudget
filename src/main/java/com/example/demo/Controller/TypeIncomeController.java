@@ -7,30 +7,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.demo.model.Income;
-import com.example.demo.service.IIncomeService;
+import com.example.demo.model.TypeIncome;
+import com.example.demo.service.ITypeIncomeService;
+
 
 @Controller
-public class IncomeController {
+public class TypeIncomeController {
 
 	@Autowired
-	private IIncomeService serviceIncome;
+	private ITypeIncomeService serviceTypeIncome;
 
-	@RequestMapping("/income")
-	private String ListIncome(Model model) {
-		model.addAttribute("listincome", serviceIncome.listAll());
-		return "income";
+	@RequestMapping("/typeIncome")
+	private String ListTypeIncome(Model model) {
+		model.addAttribute("listTypeincome", serviceTypeIncome.listAll());
+		return "typeIncome";
 	}
 	
 	
-	@RequestMapping(value = "/addincome", method = RequestMethod.POST)
+	@RequestMapping(value = "/addTypeIncome", method = RequestMethod.POST)
 	public String SaveIncome( @RequestParam("idincome") Long idincome,
 			@RequestParam("nameIncome") String nameIncome) {
-		Income income = new Income();
-		
+		TypeIncome income = new TypeIncome();
 		income.setNameIncome(nameIncome);
-		serviceIncome.save(income);
-		return "redirect:/addincome";
+		serviceTypeIncome.save(income);
+		return "redirect:/addTypeIncome";
 	}
 
 }

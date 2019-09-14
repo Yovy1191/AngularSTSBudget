@@ -11,16 +11,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.model.Bill;
 import com.example.demo.model.Customer;
-import com.example.demo.model.Income;
 import com.example.demo.model.Item;
 import com.example.demo.model.ItemWrapper;
 import com.example.demo.model.ItemsCreationWrapper;
 import com.example.demo.model.ServicesOffered;
 import com.example.demo.model.Supplier;
+import com.example.demo.model.TypeIncome;
 import com.example.demo.service.IBillService;
 import com.example.demo.service.ICustomerService;
 import com.example.demo.service.IServicesOffered;
 import com.example.demo.service.ISupplierService;
+
 
 @Controller
 public class IndexController {
@@ -37,8 +38,8 @@ public class IndexController {
 	@Autowired
 	private IBillService serviceBill;
 	
-	
 
+	
     @GetMapping("/")
     public String root() {
         return "index";
@@ -87,11 +88,11 @@ public class IndexController {
 	}
 	
 
-	@RequestMapping("/addincome")
-	public String ShowNewIncomeForm(Model model) {
-		Income income = new Income();
-		model.addAttribute("income", income);
-		return "addincome";
+	@RequestMapping("/addTypeIncome")
+	public String ShowNewTypeIncomeForm(Model model) {
+		TypeIncome Typeincome = new TypeIncome();
+		model.addAttribute("TypeIncome", Typeincome);
+		return "addTypeIncome";
 	}
 	
 	

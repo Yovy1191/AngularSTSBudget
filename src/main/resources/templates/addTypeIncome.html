@@ -9,33 +9,26 @@
 <body>
 <div layout:fragment="content" th:remove="tag">
 	<div align="center">
-		<h1>Create New Customer</h1>
+		<h1>Create New Income</h1>
 		<br />
-		<form action="#" th:action="@{/addCustomer}" method="post">
+		<form action="#" th:action="@{/addTypeIncome}" method="post">
 		
-		<input type="hidden" th:field="*{customer.idCustomer}" />
+		<input type="hidden" th:field="*{TypeIncome.idincome}" />
 		
-		<table class="table table-bordered table-hover">
+			<table class="table table-bordered table-hover">
 			
-			   <tr>
-					<td>First Name</td>
-					<td><input type="text" th:field="*{customer.firstName}"  class="form-control"></td>
-				</tr>
 				<tr>
-					<td>Last Name</td>
-					<td><input type="text" th:field="*{customer.lastName}"  class="form-control"></td>
+					<td>Name</td>
+					<td><input type="text" th:field="*{TypeIncome.nameIncome}"  class="form-control"></td>
 				</tr>
-							
 				<tr>
 					<td colspan="2"><button type="submit">Save</button></td>
 				</tr>
 
-
 			</table>
-			
 			<p><a href="/" th:href="@{/}">Back to home page</a></p>
 		</form>
 	</div>
-		</div>
+</div>
 </body>
 </html>

@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
 <head>
 <meta charset="ISO-8859-1">
 <title>Budget Cat</title>
- <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 </head>
 <body>
+<div layout:fragment="content" th:remove="tag">
 	<div  align="center">
 		<h1>Income</h1>
-		<a th:href="@{/addincome}">Create  New Income</a>
-		<table border="1">
+		<a th:href="@{/addincome}"  class="pull-right">Create  New Income</a>
+		<table class="table table-bordered">
 			<thead>
 				<tr>
-					<th>Income ID</th>
-					<th>Name Income</th>
-					<th>Action</th>
+					<th  scope="col">Income ID</th>
+					<th  scope="col">Name Income</th>
+					<th  scope="col">Action</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -30,5 +32,6 @@
 		</table>
 
 	</div>
+</div>
 </body>
 </html>

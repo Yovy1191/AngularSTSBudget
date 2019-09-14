@@ -1,24 +1,27 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
 <head>
 <meta charset="ISO-8859-1">
 <title>Budget Cat</title>
- <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+<!--  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"> -->
 </head>
 <body>
-	<div  align="center">
+<div layout:fragment="content" th:remove="tag">
+	<div  class="container-fluid">
 		<h1>Bill</h1>
-		<a th:href="@{/addbill2}">Create  New Bill</a>
-		<table border="1">
+		<a th:href="@{/addbill2}"  class="pull-right">Create  New Bill</a>
+		<table class="table table-bordered">
 			<thead>
 				<tr>
-	-				<th>invoice Id</th>
-					<th>Date</th>
-					<th>Sub-total</th>
-					<th>Total</th>
-					<th>TPS</th>
-					<th>TVQ</th>
-					<th>Action</th>
+					<th scope="col">invoice Id</th>
+					<th scope="col">Date</th>
+					<th scope="col">Sub-total</th>
+					<th scope="col">Total</th>
+					<th scope="col">TPS</th>
+					<th scope="col">TVQ</th>
+					<th scope="col">Action</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -38,5 +41,6 @@
 		</table>
 
 	</div>
+</div>
 </body>
 </html>

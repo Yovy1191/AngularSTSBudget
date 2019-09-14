@@ -1,20 +1,16 @@
 package com.example.demo.model;
 
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "INCOME")
-public class Income {
+@Table(name = "TYPEINCOME")
+public class TypeIncome {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,9 +20,7 @@ public class Income {
 	@JoinColumn(name = "nameIncome")
 	private String nameIncome;
 	
-    @OneToMany(mappedBy = "income", cascade = CascadeType.ALL)
-	private Set<Customer> customers;
-
+   
 	public Long getIdincome() {
 		return idincome;
 	}
@@ -42,9 +36,8 @@ public class Income {
 	public void setNameIncome(String nameIncome) {
 		this.nameIncome = nameIncome;
 	}
-
 	
-	public Income() {
+	public TypeIncome() {
 
 	}
 

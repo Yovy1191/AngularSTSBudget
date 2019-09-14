@@ -5,17 +5,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-
-
 
 
 @Entity
 @Table(name = "CUSTOMER")
 public class Customer {
 	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@JoinColumn(name = "idCustomer")
@@ -27,34 +24,9 @@ public class Customer {
 	@JoinColumn(name = "lastName")
 	private String lastName;
 	
-		
-	@JoinColumn
-	private long incomeidincome;
 	
-	
-    // Mapping  - table income 	
 
-	@ManyToOne
-	@JoinColumn
-	private Income income = new Income();
-	
-		
-	public Income getIncome() {
-		return income;
-	}
-
-	public void setIncome(Income income) {
-		this.income = income;
-	}
-
-	public long getIncomeidincome() {
-		return incomeidincome;
-	}
-	
-	public void setIncomeidincome(long incomeidincome) {
-		this.incomeidincome = incomeidincome;
-	}
-
+	// Getter - Setter 	
 	public long getIdCustomer() {
 		return idCustomer;
 	}
@@ -62,8 +34,6 @@ public class Customer {
 	public void setIdCustomer(long idCustomer) {
 		this.idCustomer = idCustomer;
 	}
-
-
 
 
 	public String getFirstName() {
@@ -81,19 +51,5 @@ public class Customer {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
 
 }
