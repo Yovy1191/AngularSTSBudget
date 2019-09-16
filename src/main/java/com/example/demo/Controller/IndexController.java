@@ -18,9 +18,12 @@ import com.example.demo.model.Property;
 import com.example.demo.model.ServicesOffered;
 import com.example.demo.model.Supplier;
 import com.example.demo.model.TypeIncome;
+import com.example.demo.model.TypeProperty;
 import com.example.demo.model.TypesOfExpenses;
 import com.example.demo.service.IBillService;
 import com.example.demo.service.ICustomerService;
+import com.example.demo.service.IPropertyService;
+import com.example.demo.service.IPropertyTypeService;
 import com.example.demo.service.IServicesOffered;
 import com.example.demo.service.ISupplierService;
 
@@ -39,6 +42,9 @@ public class IndexController {
 	
 	@Autowired
 	private IBillService serviceBill;
+	
+	@Autowired
+	private IPropertyTypeService servicePropertyType;
 	
 
 	
@@ -145,8 +151,16 @@ public class IndexController {
 	@RequestMapping("/addproperty")
 	public String ShowNewPropertyForm(Model model) {
 		Property property = new Property();
+		model.addAttribute("listpropertytype", servicePropertyType.listAll());
 		model.addAttribute("property", property);
 		return "addproperty";
+	}
+	
+	@RequestMapping("/addtypeproperty")
+	public String ShowNewTypePropertyForm(Model model) {
+		TypeProperty propertyType = new TypeProperty();
+		model.addAttribute("propertyType", propertyType);
+		return "addtypeproperty";
 	}
 	
 }

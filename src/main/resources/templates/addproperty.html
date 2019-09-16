@@ -4,12 +4,12 @@
       layout:decorate="~{fragments/layout}">
 <head>
 <meta charset="ISO-8859-1">
-<title>Create new Property</title>
+<title>Create new Type Property</title>
 </head>
 <body>
 <div layout:fragment="content" th:remove="tag">
 	<div align="center">
-		<h1>Create New Property</h1>
+		<h1>Create New Type Property</h1>
 		<br />
 		<form action="#" th:action="@{/addproperty}" method="post">
 		
@@ -18,8 +18,13 @@
 			<table class="table table-bordered table-hover">
 					
 				<tr>
-					<td>Name</td>
-					<td><input type="text" th:field="*{property.nameProperty}" class="form-control"></td>
+				<td>Name</td>
+				<td><select name="idTypeProperty"  class="form-control" >
+						<option value=""> -- </option>
+						<option th:each="p : ${listpropertytype}"
+						th:value="${p.idTypeProperty}" th:utext="${p.nameProperty}"
+						th:selected="${idTypeProperty == 'p.idTypeProperty'}" />
+							</select></td>
 				</tr>
 				<tr>
 					<td>Value</td>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Create new Type Of Property</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag">
+	<div align="center">
+		<h1>Create New Type Of Property</h1>
+		<br />
+		<form action="#" th:action="@{/addtypeproperty}" method="post">
+		
+		<input type="hidden" th:field="*{propertyType.idTypeProperty}" />
+		
+		<table class="table table-bordered table-hover">
+			
+			   <tr>
+					<td>Name</td>
+					<td><input type="text" th:field="*{propertyType.nameProperty}"  class="form-control"></td>
+				</tr>
+				<tr>
+					<td colspan="2"><button type="submit">Save</button></td>
+				</tr>
+
+
+			</table>
+			
+			<p><a href="/" th:href="@{/}">Back to home page</a></p>
+		</form>
+	</div>
+		</div>
+</body>
+</html>

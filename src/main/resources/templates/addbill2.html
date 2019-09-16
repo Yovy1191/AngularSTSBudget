@@ -81,12 +81,7 @@
 											</tr>
 											<tr>
 												<th>Select Customer:</th>
-												<td><select name="idCustomer"  class="form-control" >
-														<option value=""> -- </option>
-														<option th:each="c : ${listcustomer}"
-															th:value="${c.idCustomer}" th:utext="${c.firstName}"
-															th:selected="${idCustomer == 'c.idCustomer'}" />
-												</select></td>
+												
 											</tr>
 										</tbody>
 									</table>

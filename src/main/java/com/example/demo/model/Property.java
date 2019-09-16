@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,9 +18,12 @@ public class Property {
 	@Column(name = "idProperty")
 	private Long idProperty;
 	
-	private String nameProperty;
-	
+	@Column(name = "value")
 	private Long value;
+			
+	@OneToOne
+	@JoinColumn(name = "propertyTypeId")
+	public TypeProperty propertyType;
 
 	
 	// Getter  - Setter
@@ -31,14 +36,6 @@ public class Property {
 		this.idProperty = idProperty;
 	}
 
-	public String getNameProperty() {
-		return nameProperty;
-	}
-
-	public void setNameProperty(String nameProperty) {
-		this.nameProperty = nameProperty;
-	}
-	
 	
 	public Long getValue() {
 		return value;
@@ -48,6 +45,13 @@ public class Property {
 		this.value = value;
 	}
 	
-	
+	public TypeProperty getPropertyType() {
+		return propertyType;
+	}
+
+	public void setPropertyType(TypeProperty propertyType) {
+		this.propertyType = propertyType;
+	}
+
 
 }

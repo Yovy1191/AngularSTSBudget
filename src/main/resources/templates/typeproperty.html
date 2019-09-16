@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Budget Cat</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag">
+	<div  align="center">
+		<h1>Type Of Property</h1>
+		<a th:href="@{/addtypeproperty}"  class="pull-right">Create  New Type Property</a>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th  scope="col">Property Type ID</th>
+					<th  scope="col">Name of type Property</th>
+					<th  scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="typeproperty: ${listpropertytype}">
+					<td th:text="${typeproperty.idTypeProperty}">Property Id</td>
+					<td th:text="${typeproperty.nameProperty}">Name</td>
+<!-- 					<td><a th:href="@{'/editcustomer/' + ${customer.idCustomer}}">Edit</a> -->
+<!-- 					  &nbsp;&nbsp;&nbsp; -->
+<!-- 					    <a th:href="@{'/deletecustomer/' + ${customer.idCustomer}}">Delete</a> -->
+<!-- 					</td> -->
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+	<p><a href="/" th:href="@{/}">Back to home page</a></p>
+</div>
+</body>
+</html>
