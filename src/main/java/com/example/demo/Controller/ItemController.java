@@ -33,7 +33,7 @@ public class ItemController {
 	
 		
 	@RequestMapping("/item")
-	private String ListCustomer(Model model) {
+	private String ListItems(Model model) {
 		model.addAttribute("listitems", serviceItem.listAll());
 		return "item";
 	}

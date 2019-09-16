@@ -1,40 +1,44 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
 <head>
 <meta charset="ISO-8859-1">
 <title>Budget Cat</title>
- <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+<!--  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"> -->
 </head>
 <body>
+<div layout:fragment="content" th:remove="tag">
 	<div  align="center">
 		<h1>Item</h1>
 		<a th:href="@{/additem}">Create  New Item</a>
-		<table border="1">
+		<table class="table table-bordered table-hover">
 			<thead>
 				<tr>
-					<th>Item ID</th>
-					<th>Descripton</th>
-					<th>qte</th>
-					<th>price</th>
-					<th>subtotal</th>
-					<th>service</th>
-					<th>Supplier</th>
-					<th>Action</th>
+					<th scope="col">Item ID</th>
+					<th scope="col">Descripton</th>
+					<th scope="col">qte</th>
+					<th scope="col">price</th>
+					<th scope="col">subtotal</th>
+					<th scope="col">service</th>
+					<th scope="col">Supplier</th>
+					<th scope="col">Action</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="item: ${listitems}">
-					<td th:text="${item.idItem}">Iitem Id</td>
-					<td th:text="${item.description}">Name</td>
-				    <td th:text="${item.qte}">qte</td>
- 					<td th:text="${item.price}">price</td>
-					<td th:text="${item.subtotal}">subtotal</td>
-					<td th:text="${item.services.nameService}">Service</td>
-					<td th:text="${item.supplier.nameSupplier}">Supplier</td>
+					<td th:text="${item.idItem}"  class="form-control">Iitem Id</td>
+					<td th:text="${item.description}"  class="form-control">Name</td>
+				    <td th:text="${item.qte}"  class="form-control">qte</td>
+ 					<td th:text="${item.price}"  class="form-control">price</td>
+					<td th:text="${item.subtotal}"  class="form-control">subtotal</td>
+					<td th:text="${item.services.nameService}"  class="form-control">Service</td>
+					<td th:text="${item.supplier.nameSupplier}"  class="form-control">Supplier</td>
 				</tr>
 			</tbody>
 		</table>
-
+	<p><a href="/" th:href="@{/}">Back to home page</a></p>
 	</div>
+</div>
 </body>
 </html>

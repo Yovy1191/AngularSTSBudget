@@ -1,43 +1,46 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
 <head>
 <meta charset="ISO-8859-1">
 <title>Create new Customer</title>
 </head>
 <body>
+<div layout:fragment="content" th:remove="tag">
 	<div align="center">
 		<h1>Create New Item</h1>
 		<br />
 		<form  th:objet="${itemw}" action="/additem/saveaction" method="post">
 	
-			<table border="0" cellpadding="10">
+			<table class="table table-bordered table-hover">
 			
 				<tr>
 					<td>Item Id</td>
-					<td><input type="text" th:field="*{itemw.InvoiceId}"></td>
+					<td><input type="text" th:field="*{itemw.InvoiceId}"  class="form-control"></td>
 				</tr>
 				<tr>
 					<td>Invoice Id</td>
-					<td><input type="text" th:field="*{itemw.ItemId}"></td>
+					<td><input type="text" th:field="*{itemw.ItemId}"  class="form-control"></td>
 				</tr>
 				<tr>
 					<td>Description</td>
-					<td><input type="text" th:field="*{itemw.description}"></td>
+					<td><input type="text" th:field="*{itemw.description}"  class="form-control"></td>
 				</tr>
 				<tr>
 					<td>Qte</td>
-					<td><input type="text" th:field="*{itemw.qte}"></td>
+					<td><input type="text" th:field="*{itemw.qte}"  class="form-control"></td>
 				</tr>
 				<tr>
 					<td>Price</td>
-					<td><input type="text" th:field="*{itemw.price}"></td>
+					<td><input type="text" th:field="*{itemw.price}"  class="form-control"></td>
 				</tr>
 				<tr>
 					<td>Subtotal</td>
-					<td><input type="text" th:field="*{itemw.subtotal}"></td>
+					<td><input type="text" th:field="*{itemw.total}"  class="form-control"></td>
 				</tr>
 				 <tr>
-				 <td>Select Service:</td>
+				 <td  class="form-control">Select Service:</td>
 						<td><select name="idService">
 								<option value=""> -- </option>
 								<option th:each="s : ${listservices}" th:value="${s.idService}"
@@ -47,7 +50,7 @@
 				</tr>
 				
 				 <tr>
-				 <td>Select Supplier:</td>
+				 <td  class="form-control">Select Supplier:</td>
 						<td><select name="idSupplier">
 								<option value=""> -- </option>
 								<option th:each="s : ${listsuppliers}" th:value="${s.idsupplier}"
@@ -60,7 +63,9 @@
 				</tr>
 
 			</table>
+			<p><a href="/" th:href="@{/}">Back to home page</a></p>
 		</form>
 	</div>
+</div>
 </body>
 </html>

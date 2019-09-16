@@ -14,9 +14,11 @@ import com.example.demo.model.Customer;
 import com.example.demo.model.Item;
 import com.example.demo.model.ItemWrapper;
 import com.example.demo.model.ItemsCreationWrapper;
+import com.example.demo.model.Property;
 import com.example.demo.model.ServicesOffered;
 import com.example.demo.model.Supplier;
 import com.example.demo.model.TypeIncome;
+import com.example.demo.model.TypesOfExpenses;
 import com.example.demo.service.IBillService;
 import com.example.demo.service.ICustomerService;
 import com.example.demo.service.IServicesOffered;
@@ -130,6 +132,23 @@ public class IndexController {
 		model.addAttribute("itemw", itemw);
 		return "additem";
 	}
+	
+	
+	@RequestMapping("/addtypexpenses")
+	public String ShowNewOfExpensesForm(Model model) {
+		TypesOfExpenses expenses = new TypesOfExpenses();
+		model.addAttribute("expenses", expenses);
+		return "addtypexpenses";
+	}
+	
+	
+	@RequestMapping("/addproperty")
+	public String ShowNewPropertyForm(Model model) {
+		Property property = new Property();
+		model.addAttribute("property", property);
+		return "addproperty";
+	}
+	
 }
 
 

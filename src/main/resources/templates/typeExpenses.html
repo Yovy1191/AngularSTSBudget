@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Budget Cat</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag">
+	<div  align="center">
+		<h1>Type Of Expenses</h1>
+		<a th:href="@{/addtypexpenses}"  class="pull-right">Create  New Type Expenses</a>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th  scope="col">Expenses ID</th>
+					<th  scope="col">Name of Expenses</th>
+					<th  scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="expense: ${listOfExpenses}">
+					<td th:text="${expense.idExpense}">Income Id</td>
+					<td th:text="${expense.nameTypeExpense}">Name</td>
+<!-- 					<td><a th:href="@{'/editcustomer/' + ${customer.idCustomer}}">Edit</a> -->
+<!-- 					  &nbsp;&nbsp;&nbsp; -->
+<!-- 					    <a th:href="@{'/deletecustomer/' + ${customer.idCustomer}}">Delete</a> -->
+<!-- 					</td> -->
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+	<p><a href="/" th:href="@{/}">Back to home page</a></p>
+</div>
+</body>
+</html>

@@ -4,22 +4,26 @@
       layout:decorate="~{fragments/layout}">
 <head>
 <meta charset="ISO-8859-1">
-<title>Create new Customer</title>
+<title>Create new Property</title>
 </head>
 <body>
 <div layout:fragment="content" th:remove="tag">
 	<div align="center">
-		<h1>Create New Supplier</h1>
+		<h1>Create New Property</h1>
 		<br />
-		<form action="#" th:action="@{/addsupplier}" method="post">
+		<form action="#" th:action="@{/addproperty}" method="post">
 		
-		<input type="hidden" th:field="*{supplier.idsupplier}" />
+		<input type="hidden" th:field="*{property.idProperty}" />
 		
 			<table class="table table-bordered table-hover">
 					
 				<tr>
 					<td>Name</td>
-					<td><input type="text" th:field="*{supplier.nameSupplier}" class="form-control"></td>
+					<td><input type="text" th:field="*{property.nameProperty}" class="form-control"></td>
+				</tr>
+				<tr>
+					<td>Value</td>
+					<td><input type="text" th:field="*{property.value}" class="form-control"></td>
 				</tr>
 				<tr>
 					<td colspan="2"><button type="submit">Save</button></td>
