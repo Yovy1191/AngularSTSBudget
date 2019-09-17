@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,18 +39,26 @@ public class TypeOfExpensesController {
 		return "redirect:/addtypexpenses";
 	}
 	
+	@RequestMapping(value = "/editypeofexpenses/{idExpense}")
+	public String ShowEditService(Model model, @PathVariable Long idExpense) {
+		model.addAttribute("expenses", serviceTypeOfExpenses.findById(idExpense));
+		return "editypeofexpenses";
+	}
+
+	@RequestMapping(value = "editypeofexpenses", method = RequestMethod.POST)
+	public String saveEditSupplier(Model model, TypesOfExpenses expense, @RequestParam("nameTypeExpense") String nameTypeExpense) {
+		expense.setNameTypeExpense(nameTypeExpense);
+		serviceTypeOfExpenses.save(expense);
+		return "redirect:/editypeofexpenses/" + expense.getIdExpense();
+	}
+
+	@RequestMapping(value = "/deletetypeofexpenses/{idService}")
+	public String deleteCustomer(Model model, @PathVariable Long idExpense) {
+		model.addAttribute("expenses", serviceTypeOfExpenses.findById(idExpense));
+		serviceTypeOfExpenses.deleteById(idExpense);
+		return "redirect:/typeExpenses";
+	}
 	
-//	@RequestMapping(value = "/additem/saveaction", method = RequestMethod.POST)
-//	@ResponseBody
-//	public String SubmitForm(Model model, ItemWrapper item,  HttpSession session,HttpServletRequest request) {
-//		String serviceid =  request.getParameter("idService");
-//		ServicesOffered service = serviceOffered.findOne(Long.parseLong(serviceid));
-//		String supplierid =  request.getParameter("idSupplier");
-//		Supplier supplier = serviceSupplier.findOne(Long.parseLong(supplierid));
-//	    item.setSupplier(supplier);
-//        item.setServices(service);
-//        Item itemsave = serviceItem.save(item.getInvoiceId(),item.getItemId(), item.getDescription(),
-//        								  item.getQte(), item.getPrice(),item.getTotal(), item.getServices(), item.getSupplier());
-//		return "item" + itemsave.getIdItem() + "item"   ;
-//	}
+	
+
 }

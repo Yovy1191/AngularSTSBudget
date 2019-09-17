@@ -11,17 +11,17 @@
 	<div align="center">
 		<h1>Edit Type Expenses</h1>
 		<br />
-		<form action="#" th:action="@{/editsupplier}" method="post">
+		<form action="#" th:action="@{/editypeofexpenses}" method="post">
 			<table class="table table-bordered">
 				<tr>
-					<td>Id User</td>
+					<td>Id Expenses</td>
 					<td><input th:style="${'color: red;'}" type="text" readonly
-						th:field="*{supplier.idsupplier}" /></td>
+						th:field="*{expenses.idExpense}" /></td>
 				</tr>
 
 				<tr>
-					<td>First Name</td>
-					<td><input type="text" th:field="*{supplier.nameSupplier}"></td>
+					<td>Name</td>
+					<td><input type="text" th:field="*{expenses.nameTypeExpense}"></td>
 				</tr>
 				
 				<tr>
