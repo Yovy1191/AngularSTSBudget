@@ -9,7 +9,7 @@
 <body>
 <div layout:fragment="content" th:remove="tag">
 	<div  align="center">
-		<h1>Income</h1>
+		<h1>Type Of Income</h1>
 		<a th:href="@{/addTypeIncome}"  class="pull-right">Create  New Type Income</a>
 		<table class="table table-bordered">
 			<thead>
@@ -23,10 +23,10 @@
 				<tr th:each="t: ${listTypeincome}">
 					<td th:text="${t.idincome}">Income Id</td>
 					<td th:text="${t.nameIncome}">Name</td>
-<!-- 					<td><a th:href="@{'/editcustomer/' + ${customer.idCustomer}}">Edit</a> -->
-<!-- 					  &nbsp;&nbsp;&nbsp; -->
-<!-- 					    <a th:href="@{'/deletecustomer/' + ${customer.idCustomer}}">Delete</a> -->
-<!-- 					</td> -->
+					<td><a th:href="@{'/editypeincome/' + ${t.idincome}}">Edit</a>
+					  &nbsp;&nbsp;&nbsp;
+					    <a th:href="@{'/deleteincome/' + ${t.idincome}}">Delete</a>
+					</td>
 				</tr>
 			</tbody>
 		</table>

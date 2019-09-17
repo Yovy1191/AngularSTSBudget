@@ -55,7 +55,7 @@ public class CustomerController {
 
 	@RequestMapping(value = "editcustomer", method = RequestMethod.POST)
 	public String saveEditCustomer(Model model, Customer customer, @RequestParam("firstName") String firstName,
-			@RequestParam("lastName") String lastName) {
+			@RequestParam("value") String lastName) {
 		customer.setFirstName(firstName);
 		customer.setLastName(lastName);
 		service.save(customer);

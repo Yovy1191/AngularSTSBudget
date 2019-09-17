@@ -5,17 +5,15 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Budget Cat</title>
-<!--  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"> -->
 </head>
 <body>
 <div layout:fragment="content" th:remove="tag">
 	<div  align="center">
 		<h1>Item</h1>
-		<a th:href="@{/additem}">Create  New Item</a>
+		<a th:href="@{/additem}"  class="pull-right">Create  New Item</a>
 		<table class="table table-bordered table-hover">
 			<thead>
 				<tr>
-					<th scope="col">Item ID</th>
 					<th scope="col">Descripton</th>
 					<th scope="col">qte</th>
 					<th scope="col">price</th>
@@ -26,15 +24,19 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="item: ${listitems}">
-					<td th:text="${item.idItem}"  class="form-control">Iitem Id</td>
+			<tr th:each="item: ${listitems}">
 					<td th:text="${item.description}"  class="form-control">Name</td>
-				    <td th:text="${item.qte}"  class="form-control">qte</td>
+				 	<td th:text="${item.qte}"  class="form-control">qte</td>
  					<td th:text="${item.price}"  class="form-control">price</td>
-					<td th:text="${item.subtotal}"  class="form-control">subtotal</td>
+					<td th:text="${item.total}"  class="form-control">subtotal</td>
 					<td th:text="${item.services.nameService}"  class="form-control">Service</td>
 					<td th:text="${item.supplier.nameSupplier}"  class="form-control">Supplier</td>
+<!-- 					<td><a th:href="@{'/edititem/' + ${item.idItem}}">Edit</a> -->
+<!-- 					  &nbsp;&nbsp;&nbsp; -->
+<!-- 					    <a th:href="@{'/deleteitem/' + ${item.idCustomer}}">Delete</a> -->
+<!-- 					</td> -->
 				</tr>
+				
 			</tbody>
 		</table>
 	<p><a href="/" th:href="@{/}">Back to home page</a></p>

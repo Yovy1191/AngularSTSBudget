@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.model.Bill;
 import com.example.demo.model.Customer;
+import com.example.demo.model.Income;
 import com.example.demo.model.Item;
 import com.example.demo.model.ItemWrapper;
 import com.example.demo.model.ItemsCreationWrapper;
@@ -22,10 +23,10 @@ import com.example.demo.model.TypeProperty;
 import com.example.demo.model.TypesOfExpenses;
 import com.example.demo.service.IBillService;
 import com.example.demo.service.ICustomerService;
-import com.example.demo.service.IPropertyService;
 import com.example.demo.service.IPropertyTypeService;
 import com.example.demo.service.IServicesOffered;
 import com.example.demo.service.ISupplierService;
+import com.example.demo.service.ITypeIncomeService;
 
 
 @Controller
@@ -45,6 +46,9 @@ public class IndexController {
 	
 	@Autowired
 	private IPropertyTypeService servicePropertyType;
+	
+	@Autowired
+	private ITypeIncomeService serviceTypeIncome;
 	
 
 	
@@ -73,7 +77,6 @@ public class IndexController {
     }
 
     
-
 	@RequestMapping("/addCustomer")
 	public String ShowNewCustomrForm(Model model) {
 		Customer customer = new Customer();
@@ -161,6 +164,16 @@ public class IndexController {
 		TypeProperty propertyType = new TypeProperty();
 		model.addAttribute("propertyType", propertyType);
 		return "addtypeproperty";
+	}
+	
+	
+	@RequestMapping("/addincome")
+	public String ShowNewIncomeForm(Model model) {
+		Income income = new Income();
+		model.addAttribute("listTypeincome", serviceTypeIncome.listAll());
+		model.addAttribute("listcustomer", service.listAll());
+		model.addAttribute("income", income);
+		return "addincome";
 	}
 	
 }

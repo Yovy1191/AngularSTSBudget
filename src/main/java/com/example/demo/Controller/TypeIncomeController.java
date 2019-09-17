@@ -3,6 +3,7 @@ package com.example.demo.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,6 +32,26 @@ public class TypeIncomeController {
 		income.setNameIncome(nameIncome);
 		serviceTypeIncome.save(income);
 		return "redirect:/addTypeIncome";
+	}
+	
+	@RequestMapping(value = "/editypeincome/{idincome}")
+	public String ShowEditTypeIncome(Model model, @PathVariable Long idincome) {
+		model.addAttribute("typeincome", serviceTypeIncome.findOne(idincome));
+		return "editypeincome";
+	}
+
+	@RequestMapping(value = "editypeincome", method = RequestMethod.POST)
+	public String saveEditTypeIncome(Model model, TypeIncome typeincome, @RequestParam("nameIncome") String nameIncome) {
+		typeincome.setNameIncome(nameIncome);
+		serviceTypeIncome.save(typeincome);
+		return "redirect:/editypeincome/" + typeincome.getIdincome();
+	}
+	
+	@RequestMapping(value = "/deletetypeincome/{idincome}")
+	public String deleteTypeIncome(Model model, @PathVariable Long idincome) {
+		model.addAttribute("typeincome", serviceTypeIncome.findOne(idincome));
+		serviceTypeIncome.delete(idincome);
+		return "redirect:/income";
 	}
 
 }

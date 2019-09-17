@@ -3,6 +3,7 @@ package com.example.demo.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,5 +33,26 @@ public class ServicesOfferedController {
 		serviceOffered.save(services);
 		return "redirect:/servicesoffered";
 	}
+	
+	@RequestMapping(value = "/editservice/{idService}")
+	public String ShowEditService(Model model, @PathVariable Long idService) {
+		model.addAttribute("service", serviceOffered.findOne(idService));
+		return "editservice";
+	}
+
+	@RequestMapping(value = "editservice", method = RequestMethod.POST)
+	public String saveEditSupplier(Model model, ServicesOffered service, @RequestParam("nameService") String nameService) {
+		service.setNameService(nameService);
+		serviceOffered.save(service);
+		return "redirect:/editservice/" + service.getIdService();
+	}
+
+	@RequestMapping(value = "/deleteservice/{idService}")
+	public String deleteCustomer(Model model, @PathVariable Long idService) {
+		model.addAttribute("service", serviceOffered.findOne(idService));
+		serviceOffered.delete(idService);
+		return "redirect:/servicesoffered";
+	}
+	
 	
 }

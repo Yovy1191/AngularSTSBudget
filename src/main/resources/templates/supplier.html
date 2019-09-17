@@ -24,10 +24,10 @@
 				<tr th:each="supplier: ${listsupplier}">
 					<td th:text="${supplier.idsupplier}">Supplier Id</td>
 					<td th:text="${supplier.nameSupplier}">Name</td>
-<!-- 					<td><a th:href="@{'/editcustomer/' + ${customer.idCustomer}}">Edit</a> -->
-<!-- 					  &nbsp;&nbsp;&nbsp; -->
-<!-- 					    <a th:href="@{'/deletecustomer/' + ${customer.idCustomer}}">Delete</a> -->
-<!-- 					</td> -->
+					<td><a th:href="@{'/editsupplier/' + ${supplier.idsupplier}}">Edit</a>
+					  &nbsp;&nbsp;&nbsp;
+					    <a th:href="@{'/deletesupplier/' + ${supplier.idsupplier}}">Delete</a>
+					</td>
 				</tr>
 			</tbody>
 		</table>

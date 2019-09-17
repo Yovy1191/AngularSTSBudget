@@ -1,10 +1,13 @@
 package com.example.demo.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -24,7 +27,12 @@ public class Customer {
 	@JoinColumn(name = "lastName")
 	private String lastName;
 	
+	@OneToMany(mappedBy="property")
+	public List<Property> properties;
+		
 	
+	public Customer() {
+	}
 
 	// Getter - Setter 	
 	public long getIdCustomer() {
@@ -52,4 +60,11 @@ public class Customer {
 		this.lastName = lastName;
 	}
 
+	public List<Property> getProperties() {
+		return properties;
+	}
+
+	public void setProperties(List<Property> properties) {
+		this.properties = properties;
+	}
 }

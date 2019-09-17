@@ -21,12 +21,12 @@
 			</thead>
 			<tbody>
 				<tr th:each="expense: ${listOfExpenses}">
-					<td th:text="${expense.idExpense}">Income Id</td>
+					<td th:text="${expense.idExpense}">Expense Id</td>
 					<td th:text="${expense.nameTypeExpense}">Name</td>
-<!-- 					<td><a th:href="@{'/editcustomer/' + ${customer.idCustomer}}">Edit</a> -->
-<!-- 					  &nbsp;&nbsp;&nbsp; -->
-<!-- 					    <a th:href="@{'/deletecustomer/' + ${customer.idCustomer}}">Delete</a> -->
-<!-- 					</td> -->
+					<td><a th:href="@{'/editypeofexpenses/' + ${expense.idExpense}}">Edit</a>
+					  &nbsp;&nbsp;&nbsp;
+					    <a th:href="@{'/deletetypeofexpenses/' + ${expense.idExpense}}">Delete</a>
+					</td>
 				</tr>
 			</tbody>
 		</table>

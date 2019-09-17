@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Budget Cat</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag">
+	<div align="center">
+		<h1>Edit Service</h1>
+		<br />
+		<form action="#" th:action="@{/editservice}" method="post">
+			<table class="table table-bordered">
+				<tr>
+					<td>Id Service</td>
+					<td><input th:style="${'color: red;'}" type="text" readonly
+						th:field="*{service.idService}" /></td>
+				</tr>
+
+				<tr>
+					<td>First Name</td>
+					<td><input type="text" th:field="*{service.nameService}"></td>
+				</tr>
+				
+				<tr>
+					<td colspan="2"><button type="submit">Save</button></td>
+				</tr>
+
+			</table>
+			<p><a href="/" th:href="@{/}">Back to home page</a></p>
+		</form>
+	</div>
+</div>
+</body>
+</html>

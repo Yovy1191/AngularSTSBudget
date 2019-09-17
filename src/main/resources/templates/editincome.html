@@ -14,21 +14,22 @@
 <!-- Include Date Range Picker -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-
 <meta charset="ISO-8859-1">
 <title>Budget Cat</title>
 </head>
 <body>
 <div layout:fragment="content" th:remove="tag">
 	<div align="center">
-		<h1>Create New Income</h1>
+		<h1>Edit Income</h1>
 		<br />
-		<form action="#" th:action="@{/addincome}" method="post">
-		
-		<input type="hidden" th:field="*{income.idIncome}" />
-		
-			<table class="table table-bordered table-hover">
-			
+		<form action="#" th:action="@{/editincome}" method="post">
+			<table border="0" cellpadding="10">
+				<tr>
+					<td>Id User</td>
+					<td><input th:style="${'color: red;'}" type="text" readonly
+						th:field="*{income.idIncome}" /></td>
+				</tr>
+
 				<tr>
 					<tr>	<div class="bootstrap-iso">
 														<div class="container-fluid">
@@ -90,8 +91,8 @@
 				</tr>
 
 			</table>
-				<p><a href="/" th:href="@{/}">Back to home page</a></p>
 		</form>
+		<p><a href="/" th:href="@{/}">Back to home page</a></p>
 	</div>
 	<script>
 	$(document).ready(function(){

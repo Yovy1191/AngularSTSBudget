@@ -15,22 +15,28 @@
 			<thead>
 				<tr>
 					<th  scope="col">Income ID</th>
-					<th  scope="col">Name Income</th>
+					<th  scope="col">Date</th>
+					<th  scope="col">Value</th>
+					<th  scope="col">Type Income</th>
+					<th  scope="col">Customer</th>
 					<th  scope="col">Action</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="income: ${listincome}">
-					<td th:text="${income.idincome}">Income Id</td>
-					<td th:text="${income.nameIncome}">Name</td>
-<!-- 					<td><a th:href="@{'/editcustomer/' + ${customer.idCustomer}}">Edit</a> -->
-<!-- 					  &nbsp;&nbsp;&nbsp; -->
-<!-- 					    <a th:href="@{'/deletecustomer/' + ${customer.idCustomer}}">Delete</a> -->
-<!-- 					</td> -->
+				<tr th:each="income: ${listIncome}">
+					<td th:text="${income.idIncome}">Income Id</td>
+					<td th:text="${income.date}">Date</td>
+					<td th:text="${income.value}">Value</td>
+					<td th:text="${income.typeIncome.nameIncome}">Type Income</td>
+					<td th:text="${income.customer.firstName}">Customer</td>
+					<td><a th:href="@{'/editypeincome/' + ${income.idIncome}}">Edit</a>
+					  &nbsp;&nbsp;&nbsp;
+					    <a th:href="@{'/deletetypeincome/' + ${income.idIncome}}">Delete</a>
+					</td>
 				</tr>
 			</tbody>
 		</table>
-
+	<p><a href="/" th:href="@{/}">Back to home page</a></p>
 	</div>
 </div>
 </body>

@@ -3,10 +3,12 @@ package com.example.demo.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.model.Customer;
 import com.example.demo.model.Supplier;
 import com.example.demo.service.ISupplierService;
 
@@ -32,5 +34,27 @@ public class SupplierController {
 		serviceSupplier.save(customerSupplier);
 		return "redirect:/addsupplier";
 	}
+	
+	@RequestMapping(value = "/editsupplier/{idsupplier}")
+	public String ShowEditSupplier(Model model, @PathVariable Long idsupplier) {
+		model.addAttribute("supplier", serviceSupplier.findOne(idsupplier));
+		return "editsupplier";
+	}
+
+	@RequestMapping(value = "editsupplier", method = RequestMethod.POST)
+	public String saveEditSupplier(Model model, Supplier supplier, @RequestParam("nameSupplier") String nameSupplier) {
+		supplier.setNameSupplier(nameSupplier);
+		serviceSupplier.save(supplier);
+		return "redirect:/editsupplier/" + supplier.getIdsupplier();
+	}
+
+	@RequestMapping(value = "/deletesupplier/{idsupplier}")
+	public String deleteCustomer(Model model, @PathVariable Long idsupplier) {
+		model.addAttribute("supplier", serviceSupplier.findOne(idsupplier));
+		serviceSupplier.delete(idsupplier);
+		return "redirect:/supplier";
+	}
+	
+	
 
 }
