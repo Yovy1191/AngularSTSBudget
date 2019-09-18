@@ -30,9 +30,15 @@
 					<td th:text="${property.propertyType.getNameProperty()}">Name</td>
 					<td th:text="${property.customer.getFirstName()}">Name</td>
 					<td th:text="${property.value}">Value</td>
-					<td><a th:href="@{'/editproperty/' + ${property.idProperty}}">Edit</a>
-					  &nbsp;&nbsp;&nbsp;
-					    <a th:href="@{'/deleteproperty/' + ${property.idProperty}}">Delete</a>
+					<td><p>  <a th:href="@{'/editproperty/' + ${property.idProperty}}" class="btn btn-info btn-sm">
+         					 <span class="glyphicon glyphicon-pencil"></span> Edit 
+        					</a> 
+							&nbsp;&nbsp;&nbsp;
+							 <a th:href="@{'/deleteproperty/' + ${property.idProperty}}"
+									class="btn btn-info btn-sm"> <span
+									class="glyphicon glyphicon-trash"></span> Delete
+								</a>
+							 <a th:href="@{'/deleteproperty/' + ${property.idProperty}}"></a></p>
 					</td>
 				</tr>
 			</tbody>

@@ -23,9 +23,15 @@
 				<tr th:each="expense: ${listOfExpenses}">
 					<td th:text="${expense.idExpense}">Expense Id</td>
 					<td th:text="${expense.nameTypeExpense}">Name</td>
-					<td><a th:href="@{'/editypeofexpenses/' + ${expense.idExpense}}">Edit</a>
-					  &nbsp;&nbsp;&nbsp;
-					    <a th:href="@{'/deletetypeofexpenses/' + ${expense.idExpense}}">Delete</a>
+					<td><p>  <a th:href="@{'/editypeofexpenses/' + ${expense.idExpense}}" class="btn btn-info btn-sm">
+         					 <span class="glyphicon glyphicon-pencil"></span> Edit 
+        					</a> 
+							&nbsp;&nbsp;&nbsp;
+							 <a th:href="@{'/deletetypeofexpenses/' + ${expense.idExpense}}"
+									class="btn btn-info btn-sm"> <span
+									class="glyphicon glyphicon-trash"></span> Delete
+								</a>
+						</p>
 					</td>
 				</tr>
 			</tbody>

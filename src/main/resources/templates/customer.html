@@ -28,10 +28,17 @@
 					<td th:text="${customer.idCustomer}">Customer Id</td>
 					<td th:text="${customer.firstName}">first Name</td>
 					<td th:text="${customer.LastName}">Last Name</td>
-					<td><a th:href="@{'/editcustomer/' + ${customer.idCustomer}}">Edit</a>
-					  &nbsp;&nbsp;&nbsp;
-					    <a th:href="@{'/deletecustomer/' + ${customer.idCustomer}}">Delete</a>
+					<td><p>  <a th:href="@{'/editcustomer/' + ${customer.idCustomer}}" class="btn btn-info btn-sm">
+         					 <span class="glyphicon glyphicon-pencil"></span> Edit 
+        					</a> 
+							&nbsp;&nbsp;&nbsp;
+							 <a th:href="@{'/deletecustomer/' + ${customer.idCustomer}}"
+									class="btn btn-info btn-sm"> <span
+									class="glyphicon glyphicon-trash"></span> Delete
+								</a>
+						</p>
 					</td>
+				
 				</tr>
 			</tbody>
 			

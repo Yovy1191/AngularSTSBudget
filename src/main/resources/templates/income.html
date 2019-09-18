@@ -29,10 +29,17 @@
 					<td th:text="${income.value}">Value</td>
 					<td th:text="${income.typeIncome.nameIncome}">Type Income</td>
 					<td th:text="${income.customer.firstName}">Customer</td>
-					<td><a th:href="@{'/editypeincome/' + ${income.idIncome}}">Edit</a>
-					  &nbsp;&nbsp;&nbsp;
-					    <a th:href="@{'/deletetypeincome/' + ${income.idIncome}}">Delete</a>
+					<td><p>  <a th:href="@{'/editincome/' + ${income.idIncome}}" class="btn btn-info btn-sm">
+         					 <span class="glyphicon glyphicon-pencil"></span> Edit 
+        					</a> 
+							&nbsp;&nbsp;&nbsp;
+							 <a th:href="@{'/deleteincome/' + ${income.idIncome}}"
+									class="btn btn-info btn-sm"> <span
+									class="glyphicon glyphicon-trash"></span> Delete
+								</a>
+						</p>
 					</td>
+					
 				</tr>
 			</tbody>
 		</table>

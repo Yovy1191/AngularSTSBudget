@@ -23,10 +23,17 @@
 				<tr th:each="t: ${listTypeincome}">
 					<td th:text="${t.idincome}">Income Id</td>
 					<td th:text="${t.nameIncome}">Name</td>
-					<td><a th:href="@{'/editypeincome/' + ${t.idincome}}">Edit</a>
-					  &nbsp;&nbsp;&nbsp;
-					    <a th:href="@{'/deleteincome/' + ${t.idincome}}">Delete</a>
+					<td><p>  <a  th:href="@{'/editypeincome/' + ${t.idincome}}" class="btn btn-info btn-sm">
+         					 <span class="glyphicon glyphicon-pencil"></span> Edit 
+        					</a> 
+							&nbsp;&nbsp;&nbsp;
+							 <a th:href="@{'/deleteincome/' + ${t.idincome}}"
+									class="btn btn-info btn-sm"> <span
+									class="glyphicon glyphicon-trash"></span> Delete
+								</a>
+						</p>
 					</td>
+					
 				</tr>
 			</tbody>
 		</table>

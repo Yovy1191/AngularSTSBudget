@@ -24,10 +24,17 @@
 				<tr th:each="service: ${listservices}">
 					<td th:text="${service.idService}">Service Id</td>
 					<td th:text="${service.nameService}">Name</td>
-					<td><a th:href="@{'/editservice/' + ${service.idService}}">Edit</a>
-					  &nbsp;&nbsp;&nbsp;
-					    <a th:href="@{'/deleteservice/' + ${service.idService}}">Delete</a>
+					<td><p>  <a th:href="@{'/editservice/' + ${service.idService}}" class="btn btn-info btn-sm">
+         					 <span class="glyphicon glyphicon-pencil"></span> Edit 
+        					</a> 
+							&nbsp;&nbsp;&nbsp;
+							 <a th:href="@{'/deleteservice/' + ${service.idService}}"
+									class="btn btn-info btn-sm"> <span
+									class="glyphicon glyphicon-trash"></span> Delete
+								</a>
+						</p>
 					</td>
+					
 				</tr>
 			</tbody>
 		</table>
