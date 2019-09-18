@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.model.ServicesOffered;
 import com.example.demo.model.TypesOfExpenses;
 import com.example.demo.repository.TypeOfExpensesRepository;
 import com.example.demo.service.ITypeOfExpensesService;
@@ -29,10 +30,10 @@ public class TypeOfExpenseserviceImpl implements ITypeOfExpensesService {
 	}
 
 	@Override
-	public Optional<TypesOfExpenses> findById(Long id) {
-		return repositoryTypeOfExpenses.findById(id);
+	public TypesOfExpenses findOne(Long id) {
+		return repositoryTypeOfExpenses.findById(id).get();
 	}
-
+	
 	@Override
 	public List<TypesOfExpenses> listAll() {
 		return repositoryTypeOfExpenses.findAll();

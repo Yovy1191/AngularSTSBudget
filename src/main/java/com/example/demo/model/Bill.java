@@ -26,6 +26,14 @@ public class Bill  {
 	@JoinColumn(name = "date")
 	private String date;
 	
+	@OneToOne
+	@JoinColumn(name = "idCustomer")
+	private Customer customer;
+	
+	@OneToOne
+	@JoinColumn(name = "typeexpensesId")
+	private TypesOfExpenses typeexpenses;
+	
 	@JoinColumn(name = "sub_total")
 	private Double sub_total;
 	
@@ -37,16 +45,11 @@ public class Bill  {
 	
 	@JoinColumn(name = "tvq")
 	private Double tvq;
-	
-	@OneToOne
-	@JoinColumn(name = "idCustomer")
-	private Customer customer;
-
-	
-	@OneToMany(mappedBy="bill")
-	public List<Item> items;
 		
 
+	@OneToMany(mappedBy="bill")
+	public List<Item> items;
+	
 	public List<Item> getItems() {
 		return items;
 	}
@@ -54,9 +57,6 @@ public class Bill  {
 	public List<Item> setItems(List<Item> items) {
 		return this.items = items;
 	}
-
-	
-	
 
 	public Long getInvoiceId() {
 		return invoiceId;
@@ -114,6 +114,14 @@ public class Bill  {
 		this.customer = customer;
 	}
 
+	public TypesOfExpenses getTypeexpenses() {
+		return typeexpenses;
+	}
+
+	public void setTypeexpenses(TypesOfExpenses typeexpenses) {
+		this.typeexpenses = typeexpenses;
+	}
+	
 	public Bill() {
 	}
 

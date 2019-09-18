@@ -17,8 +17,6 @@ import com.example.demo.service.ITypeOfExpensesService;
 @Controller
 public class TypeOfExpensesController {
 	
-
-	
 	@Autowired
 	private ITypeOfExpensesService serviceTypeOfExpenses;
 	
@@ -41,7 +39,7 @@ public class TypeOfExpensesController {
 	
 	@RequestMapping(value = "/editypeofexpenses/{idExpense}")
 	public String ShowEditService(Model model, @PathVariable Long idExpense) {
-		model.addAttribute("expenses", serviceTypeOfExpenses.findById(idExpense));
+		model.addAttribute("expenses", serviceTypeOfExpenses.findOne(idExpense));
 		return "editypeofexpenses";
 	}
 
@@ -54,11 +52,8 @@ public class TypeOfExpensesController {
 
 	@RequestMapping(value = "/deletetypeofexpenses/{idService}")
 	public String deleteCustomer(Model model, @PathVariable Long idExpense) {
-		model.addAttribute("expenses", serviceTypeOfExpenses.findById(idExpense));
+		model.addAttribute("expenses", serviceTypeOfExpenses.findOne(idExpense));
 		serviceTypeOfExpenses.deleteById(idExpense);
 		return "redirect:/typeExpenses";
 	}
-	
-	
-
 }

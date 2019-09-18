@@ -38,7 +38,4 @@ public class ServicesOffered  {
 	public void setNameService(String nameService) {
 		this.nameService = nameService;
 	}
-	
-	
-
 }

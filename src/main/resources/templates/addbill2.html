@@ -88,6 +88,15 @@
 															th:selected="${idCustomer == 'c.idCustomer'}" />
 												</select></td>
 											</tr>
+											<tr>
+												<th>Select Type Of Expenses:</th>
+												<td><select name="idTypeOfExpenses"  class="form-control" >
+														<option value=""> -- </option>
+														<option th:each="c : ${listypeOfExpenses}"
+															th:value="${c.idExpense}" th:utext="${c.nameTypeExpense}"
+															th:selected="${idTypeOfExpenses == 'c.idExpense'}" />
+												</select></td>
+											</tr>
 										</tbody>
 									</table>
 								</div>
@@ -187,7 +196,7 @@
 											</tr>
 
 											<tr>
-												<td colspan="2"><button type="submit">Save</button></td>
+												<td colspan="2"><button class="btn btn-primary" type="submit">Save</button></td>
 											</tr>
 										</tbody>
 									</table>
@@ -205,8 +214,6 @@
 		</div>
 
 	</div>
-	
-	
 	<script>
 	$(document).ready(function(){
 		var date_input=$('input[name="date"]'); //our date input has the name "date"

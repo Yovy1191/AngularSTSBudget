@@ -1,12 +1,14 @@
 package com.example.demo.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -26,15 +28,19 @@ public class Property {
 	@JoinColumn(name = "propertyTypeId")
 	public TypeProperty propertyType;
 	
-	@ManyToOne
-    public Property property;
-
+	
+	@OneToOne
+	@JoinColumn(name = "propertyId")
+	public Customer customer;
+	
 	
 	// Getter  - Setter
 	
 	public Long getIdProperty() {
 		return idProperty;
 	}
+
+
 
 	public void setIdProperty(Long idProperty) {
 		this.idProperty = idProperty;
@@ -55,6 +61,15 @@ public class Property {
 
 	public void setPropertyType(TypeProperty propertyType) {
 		this.propertyType = propertyType;
+	}
+	
+	public Customer getCustomer() {
+		return customer;
+	}
+
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 

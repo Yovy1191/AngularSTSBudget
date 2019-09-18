@@ -20,11 +20,13 @@ import com.example.demo.model.ItemWrapper;
 import com.example.demo.model.ItemsCreationWrapper;
 import com.example.demo.model.ServicesOffered;
 import com.example.demo.model.Supplier;
+import com.example.demo.model.TypesOfExpenses;
 import com.example.demo.service.IBillService;
 import com.example.demo.service.ICustomerService;
 import com.example.demo.service.IItemService;
 import com.example.demo.service.IServicesOffered;
 import com.example.demo.service.ISupplierService;
+import com.example.demo.service.ITypeOfExpensesService;
 
 @Controller
 public class BillController {
@@ -46,10 +48,13 @@ public class BillController {
 	@Autowired
 	private IItemService serviceItem;
 	
+	@Autowired
+	private ITypeOfExpensesService serviceTypeOfExpenses;
+	
 	public static int idCounter = 1;
 
 	@RequestMapping("/bill")
-	private String ListCustomer(Model model) {
+	private String ListBill(Model model) {
 		model.addAttribute("listbill", serviceBill.listAll());
 		return "bill";
 	}
@@ -70,6 +75,7 @@ public class BillController {
 //		}	
 		Customer customer = new Customer();
 		ServicesOffered service = new ServicesOffered();
+		TypesOfExpenses expenses =  new TypesOfExpenses();
 		List<Item> items = new ArrayList<Item>();
 		Supplier supplier = new Supplier();
 		String date = request.getParameter("date");
@@ -77,6 +83,9 @@ public class BillController {
 		String customerid = request.getParameter("idCustomer");
 		customer = serviceCustomer.findOne(Long.parseLong(customerid));
 		bill.setCustomer(customer);
+		String expensesTypeId = request.getParameter("idTypeOfExpenses");
+		expenses = serviceTypeOfExpenses.findOne(Long.parseLong(expensesTypeId));
+		bill.setTypeexpenses(expenses);
 		String serviceid = request.getParameter("idService");
 		service = serviceOffered.findOne(Long.parseLong(serviceid));
 		String supplierid = request.getParameter("idSupplier");

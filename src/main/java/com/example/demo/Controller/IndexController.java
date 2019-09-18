@@ -27,6 +27,7 @@ import com.example.demo.service.IPropertyTypeService;
 import com.example.demo.service.IServicesOffered;
 import com.example.demo.service.ISupplierService;
 import com.example.demo.service.ITypeIncomeService;
+import com.example.demo.service.ITypeOfExpensesService;
 
 
 @Controller
@@ -49,6 +50,9 @@ public class IndexController {
 	
 	@Autowired
 	private ITypeIncomeService serviceTypeIncome;
+	
+	@Autowired
+	private ITypeOfExpensesService serviceTypeOfExpenses;
 	
 
 	
@@ -126,6 +130,7 @@ public class IndexController {
 		model.addAttribute("itemw", itemw);
 		model.addAttribute("listItemws", listItemws);
 		model.addAttribute("listcustomer", service.listAll());
+		model.addAttribute("listypeOfExpenses", serviceTypeOfExpenses.listAll());
 		model.addAttribute("wrapper", wrapper);
 		
 		return "addbill2";
@@ -154,6 +159,9 @@ public class IndexController {
 	@RequestMapping("/addproperty")
 	public String ShowNewPropertyForm(Model model) {
 		Property property = new Property();
+		List<Customer> customersList =   new ArrayList<Customer>();
+		model.addAttribute("customersList", customersList);
+		model.addAttribute("listcustomer", service.listAll());
 		model.addAttribute("listpropertytype", servicePropertyType.listAll());
 		model.addAttribute("property", property);
 		return "addproperty";

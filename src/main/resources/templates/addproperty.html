@@ -1,43 +1,59 @@
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:th="http://www.thymeleaf.org"
-      layout:decorate="~{fragments/layout}">
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{fragments/layout}">
 <head>
 <meta charset="ISO-8859-1">
 <title>Create new Type Property</title>
+<script src="/js/addproperty.js"></script>
 </head>
 <body>
-<div layout:fragment="content" th:remove="tag">
-	<div align="center">
-		<h1>Create New Type Property</h1>
-		<br />
-		<form action="#" th:action="@{/addproperty}" method="post">
-		
-		<input type="hidden" th:field="*{property.idProperty}" />
-		
-			<table class="table table-bordered table-hover">
-					
-				<tr>
-				<td>Name</td>
-				<td><select name="idTypeProperty"  class="form-control" >
-						<option value=""> -- </option>
-						<option th:each="p : ${listpropertytype}"
-						th:value="${p.idTypeProperty}" th:utext="${p.nameProperty}"
-						th:selected="${idTypeProperty == 'p.idTypeProperty'}" />
-							</select></td>
-				</tr>
-				<tr>
-					<td>Value</td>
-					<td><input type="text" th:field="*{property.value}" class="form-control"></td>
-				</tr>
-				<tr>
-					<td colspan="2"><button type="submit">Save</button></td>
-				</tr>
+	<div layout:fragment="content" th:remove="tag">
+		<div align="center">
+			<h1>Create New Type Property</h1>
+			<br />
+			<form action="#" th:action="@{/addproperty}" method="post">
 
-			</table>
-			<p><a href="/" th:href="@{/}">Back to home page</a></p>
-		</form>
-	</div>
+				<input type="hidden" th:field="*{property.idProperty}" />
+
+				<table class="table table-bordered table-hover" id="tab_logic">
+
+					<tr>
+						<td>Name</td>
+						<td><select name="idTypeProperty" class="form-control">
+								<option value=""> -- </option>
+								<option th:each="p : ${listpropertytype}"
+									th:value="${p.idTypeProperty}" th:utext="${p.nameProperty}"
+									th:selected="${idTypeProperty == 'p.idTypeProperty'}" />
+						</select></td>
+					</tr>
+					<tr>
+						<td>Select Customer</td>
+
+						<td><select name="idCustomer" class="form-control">
+								<option value=""> -- </option>
+								<option th:each="c : ${listcustomer}" th:value="${c.idCustomer}"
+									th:utext="${c.firstName}"
+									th:selected="${idCustomer == 'c.idCustomer'}" />
+						</select></td>
+					</tr>
+
+
+					<tr>
+						<td>Value</td>
+						<td><input type="text" th:field="*{property.value}"
+							class="form-control"></td>
+					</tr>
+					<tr>
+						<td colspan="2"><button class="btn btn-primary"  type="submit">Save</button></td>
+					</tr>
+
+				</table>
+				<p>
+					<a href="/" th:href="@{/}">Back to home page</a>
+				</p>
+			</form>
+		</div>
 	</div>
 </body>
 </html>
