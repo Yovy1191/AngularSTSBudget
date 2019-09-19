@@ -14,20 +14,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.model.Customer;
 import com.example.demo.service.ICustomerService;
 
-
-
 @Controller
 public class CustomerController {
 
 	@Autowired
-	private ICustomerService service;
-
-
-
+	private ICustomerService serviceCustomer;
 
 	@RequestMapping("/customer")
 	private String ListCustomer(Model model) {
-		model.addAttribute("listcustomer", service.listAll());
+		model.addAttribute("listcustomer", serviceCustomer.listAll());
 		return "customer";
 	}
 
@@ -37,35 +32,29 @@ public class CustomerController {
 			@RequestParam("lastName") String lastName) {
 		customer.setFirstName(firstName);
 		customer.setLastName(lastName);
-		service.save(customer);
+		serviceCustomer.save(customer);
 		return "redirect:/addCustomer";
 	}
 
-//	@RequestMapping(value = "/addCustomer", method = RequestMethod.POST, params = "action=SearchIncome")
-//	public String ListIncome(Model model, @RequestParam(value = "action", required = true) String action) {
-//		model.addAttribute("listincome", serviceIncome.listAll());
-//		return "/addCustomer";
-//	}
-
 	@RequestMapping(value = "/editcustomer/{idCustomer}")
 	public String ShowEditCustomer(Model model, @PathVariable Long idCustomer) {
-		model.addAttribute("customer", service.findOne(idCustomer));
+		model.addAttribute("customer", serviceCustomer.findOne(idCustomer));
 		return "editcustomer";
 	}
 
 	@RequestMapping(value = "editcustomer", method = RequestMethod.POST)
 	public String saveEditCustomer(Model model, Customer customer, @RequestParam("firstName") String firstName,
-			@RequestParam("value") String lastName) {
+			@RequestParam("lastName") String lastName) {
 		customer.setFirstName(firstName);
 		customer.setLastName(lastName);
-		service.save(customer);
+		serviceCustomer.save(customer);
 		return "redirect:/editcustomer/" + customer.getIdCustomer();
 	}
 
 	@RequestMapping(value = "/deletecustomer/{idCustomer}")
 	public String deleteCustomer(Model model, @PathVariable Long idCustomer) {
-		model.addAttribute("customer", service.findOne(idCustomer));
-		service.delete(idCustomer);
+		model.addAttribute("customer", serviceCustomer.findOne(idCustomer));
+		serviceCustomer.delete(idCustomer);
 		return "redirect:/customer";
 	}
 

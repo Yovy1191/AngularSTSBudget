@@ -9,23 +9,23 @@
 <body>
 <div layout:fragment="content" th:remove="tag">
 	<div align="center">
-		<h1>Edit Customer</h1>
+		<h1>Edit Type Income</h1>
 		<br />
 		<form action="#" th:action="@{/editypeincome}" method="post">
 			<table class="table table-bordered">
 				<tr>
 					<td>Id Type Income</td>
-					<td><input th:style="${'color: red;'}" type="text" readonly
+					<td><input th:style="${'color: red;'}" type="text" readonly  class="form-control"
 						th:field="*{typeincome.idincome}" /></td>
 				</tr>
 
 				<tr>
 					<td>Name</td>
-					<td><input type="text" th:field="*{typeincome.nameIncome}"></td>
+					<td><input type="text" th:field="*{typeincome.nameIncome}" class="form-control"></td>
 				</tr>
 				
 				<tr>
-					<td colspan="2"><button type="submit">Save</button></td>
+					<td colspan="2"><button class="btn btn-primary" type="submit">Save</button></td>
 				</tr>
 
 			</table>

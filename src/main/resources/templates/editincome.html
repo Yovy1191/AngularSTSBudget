@@ -1,111 +1,138 @@
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:th="http://www.thymeleaf.org"
-      layout:decorate="~{fragments/layout}">
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{fragments/layout}">
 <head>
-<link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet" media="screen" />
+<link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"
+	media="screen" />
 <script th:src="@{/jquery/jquery.min.js}"></script>
 <script th:src="@{/popper/popper.min.js}"></script>
 <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
-<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
-<link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
-<style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}</style>
+<link rel="stylesheet"
+	href="https://formden.com/static/cdn/bootstrap-iso.css" />
+<link rel="stylesheet"
+	href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
+<style>
+.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p,
+	.bootstrap-iso form {
+	font-family: Arial, Helvetica, sans-serif;
+	color: black
+}
+
+.bootstrap-iso form button, .bootstrap-iso form button:hover {
+	color: white !important;
+}
+
+.asteriskField {
+	color: red;
+}
+</style>
 
 <!-- Include Date Range Picker -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
 <meta charset="ISO-8859-1">
 <title>Budget Cat</title>
 </head>
 <body>
-<div layout:fragment="content" th:remove="tag">
-	<div align="center">
-		<h1>Edit Income</h1>
-		<br />
-		<form action="#" th:action="@{/editincome}" method="post">
-			<table border="0" cellpadding="10">
-				<tr>
-					<td>Id User</td>
-					<td><input th:style="${'color: red;'}" type="text" readonly
-						th:field="*{income.idIncome}" /></td>
-				</tr>
-
-				<tr>
-					<tr>	<div class="bootstrap-iso">
-														<div class="container-fluid">
-															<div class="row">
-																<div class="col-md-6 col-sm-6 col-xs-12">
-																	<th>
-																		<div class="form-group">
-																		<label class="control-label col-sm-2 requiredField" for="date"> Date
-																		 <span class="asteriskField">
-																		* </span>
-																		</label>
-																		</div>
-																		</th>
-																		<td>
-																		<div class="col-sm-10">
-																			<div class="input-group">
-																				<div class="input-group-addon">
-																					<i class="fa fa-calendar"> </i>
-																				</div>
-																				<input class="form-control"   th:field="*{income.date}"
-																				 id="date" name="date"
-																					placeholder="MM/DD/YYYY" type="text" />
-																			</div>
-																		</div>
-																	</td>
-																</div>
-
-															</div>
-														</div>
-													</div>
-											
-											</tr>
-									
-				<tr>
-				<td>Type Income</td>
-					<td><select name="idTypeIncome"  class="form-control" >
-						<option value=""> -- </option>
-						<option th:each="typeIncome : ${listTypeincome}"
-						th:value="${typeIncome.idincome}" th:utext="${typeIncome.nameIncome}"
-						th:selected="${idTypeIncome == 'typeIncome.idincome'}" />
-					</select></td>
-				</tr>
-				<tr>
-				<td>Customer</td>
-					<td><select name="idCustomer"  class="form-control" >
-						<option value=""> -- </option>
-						<option th:each="customer : ${listcustomer}"
-						th:value="${customer.idCustomer}" th:utext="${customer.firstName}"
-						th:selected="${idCustomer == 'customer.idCustomer'}" />
-					</select></td>
-				</tr>
+	<div layout:fragment="content" th:remove="tag">
+		<div align="center">
+			<h1>Edit Income</h1>
+			<br />
+			<form action="#" th:action="@{/editincome}" method="post">
+				<table class="table table-bordered">
+					<tr>
+						<td>Id User</td>
+						<td><input th:style="${'color: red;'}" type="text" readonly
+							class="form-control" th:field="*{income.idIncome}" /></td>
+					</tr>
 				
-				<tr>
-					<td>Value</td>
-					<td><input type="text" th:field="*{income.value}"  class="form-control"></td>
-				</tr>
-				<tr>
-					<td colspan="2"><button type="submit">Save</button></td>
-				</tr>
+					<tr>
+						<div class="bootstrap-iso">
+							<div class="form-control">
+								<div class="row">
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<th>
+											<div class="form-group">
+												<label class="control-label col-sm-2 requiredField"
+													for="date"> Date <span class="asteriskField">
+														* </span>
+												</label>
+											</div>
+										</th>
+										<td>
+											<div class="col-sm-10">
+												<div class="input-group">
+													<div class="input-group-addon">
+														<i class="fa fa-calendar"> </i>
+													</div>
+													<input class="form-control" th:field="*{income.date}"
+														id="date" name="date" placeholder="MM/DD/YYYY" type="text" />
+												</div>
+											</div>
+										</td>
+									</div>
 
-			</table>
-		</form>
-		<p><a href="/" th:href="@{/}">Back to home page</a></p>
+								</div>
+							</div>
+						</div>
+
+					</tr>
+
+					<tr>
+						<td>Type Income</td>
+						<td><select name="idTypeIncome" class="form-control">
+								<option value=""> -- </option>
+								<option th:each="typeIncome : ${listTypeincome}"
+									th:value="${typeIncome.idincome}"
+									th:utext="${typeIncome.nameIncome}"
+									th:selected="${idTypeIncome == 'typeIncome.idincome'}" />
+						</select></td>
+					</tr>
+					<tr>
+						<td>Customer</td>
+						<td><select name="idCustomer" class="form-control">
+								<option value=""> -- </option>
+								<option th:each="customer : ${listcustomer}"
+									th:value="${customer.idCustomer}"
+									th:utext="${customer.firstName}"
+									th:selected="${idCustomer == 'customer.idCustomer'}" />
+						</select></td>
+					</tr>
+
+					<tr>
+						<td>Value</td>
+						<td><input type="text" th:field="*{income.value}"
+							class="form-control"></td>
+					</tr>
+					<tr>
+						<td colspan="2"><button class="btn btn-primary" type="submit">Save</button></td>
+					</tr>
+
+				</table>
+			</form>
+			<p>
+				<a href="/" th:href="@{/}">Back to home page</a>
+			</p>
+		</div>
+		<script>
+			$(document)
+					.ready(
+							function() {
+								var date_input = $('input[name="date"]'); //our date input has the name "date"
+								var container = $('.bootstrap-iso form').length > 0 ? $(
+										'.bootstrap-iso form').parent()
+										: "body";
+								date_input.datepicker({
+									format : 'yyyy/mm/dd',
+									container : container,
+									todayHighlight : true,
+									autoclose : true,
+								})
+							})
+		</script>
 	</div>
-	<script>
-	$(document).ready(function(){
-		var date_input=$('input[name="date"]'); //our date input has the name "date"
-		var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-		date_input.datepicker({
-			format: 'yyyy/mm/dd',
-			container: container,
-			todayHighlight: true,
-			autoclose: true,
-		})
-	})
-</script>
-</div>
 </body>
 </html>

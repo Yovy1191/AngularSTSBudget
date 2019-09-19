@@ -1,40 +1,41 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
 <head>
 <meta charset="ISO-8859-1">
 <title>Create new Customer</title>
 </head>
 <body>
+<div layout:fragment="content" th:remove="tag">
 	<div align="center">
 		<h1>Edit Customer</h1>
 		<br />
 		<form action="#" th:action="@{/editcustomer}" method="post">
-			<table border="0" cellpadding="10">
+			<table class="table table-bordered">
 				<tr>
 					<td>Id User</td>
-					<td><input th:style="${'color: red;'}" type="text" readonly
+					<td><input th:style="${'color: red;'}" type="text" readonly class="form-control"
 						th:field="*{customer.idCustomer}" /></td>
 				</tr>
 
 				<tr>
 					<td>First Name</td>
-					<td><input type="text" th:field="*{customer.firstName}"></td>
+					<td><input type="text" th:field="*{customer.firstName}"  class="form-control"></td>
 				</tr>
 				<tr>
 					<td>Last Name</td>
-					<td><input type="text" th:field="*{customer.lastName}"></td>
+					<td><input type="text" th:field="*{customer.lastName}"  class="form-control"></td>
 				</tr>
-
+			
 				<tr>
-					<td>Income Id</td>
-					<td><input type="text" th:field="*{customer.incomeidincome}"></td>
-				</tr>
-				<tr>
-					<td colspan="2"><button type="submit">Save</button></td>
+					<td colspan="2"><button class="btn btn-primary" type="submit">Save</button></td>
 				</tr>
 
 			</table>
 		</form>
+		<p><a href="/" th:href="@{/}">Back to home page</a></p>
 	</div>
+</div>
 </body>
 </html>

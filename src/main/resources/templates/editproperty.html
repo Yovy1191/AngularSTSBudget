@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Budget Cat</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag">
+	<div align="center">
+		<h1>Edit Property</h1>
+		<br />
+		<form action="#" th:action="@{/editproperty}" method="post">
+			<table class="table table-bordered">
+				<tr>
+					<td>Id User</td>
+					<td><input th:style="${'color: red;'}" type="text" readonly  class="form-control"
+						th:field="*{property.idProperty}" /></td>
+				</tr>
+
+				<tr>
+						<td>Name</td>
+						<td><select name="idTypeProperty" class="form-control">
+								<option value=""> -- </option>
+								<option th:each="p : ${listpropertytype}"
+									th:value="${p.idTypeProperty}" th:utext="${p.nameProperty}"
+									th:selected="${idTypeProperty == 'p.idTypeProperty'}" />
+						</select></td>
+					</tr>
+				
+				<tr>
+						<td>Customer</td>
+						<td><select name="idCustomer" class="form-control">
+								<option value=""> -- </option>
+								<option th:each="customer : ${listcustomer}"
+									th:value="${customer.idCustomer}"
+									th:utext="${customer.firstName}"
+									th:selected="${idCustomer == 'customer.idCustomer'}" />
+						</select></td>
+					</tr>
+					<tr>
+					<td>Value</td>
+					<td><input type="text" th:field="*{property.value}" class="form-control" ></td>
+				</tr>
+				
+				<tr>
+					<td colspan="2"><button class="btn btn-primary" type="submit">Save</button></td>
+				</tr>
+
+			</table>
+			<p><a href="/" th:href="@{/}">Back to home page</a></p>
+		</form>
+	</div>
+</div>
+</body>
+</html>

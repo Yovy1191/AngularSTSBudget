@@ -43,7 +43,7 @@ public class PropertyController {
 	
 	@RequestMapping(value = "/addproperty", method = RequestMethod.POST)
 	public String SaveProperty(Model model, Property property, 	HttpServletRequest request, @RequestParam("idProperty") Long idProperty,
-			@RequestParam("value") Long value) {
+			@RequestParam("value") Double value) {
 		List<Customer> customersList = new ArrayList<Customer>();
 		property.setIdProperty(idProperty);
 		TypeProperty type = new TypeProperty();
@@ -57,6 +57,28 @@ public class PropertyController {
 		property.setCustomer(customer);
 		serviceProperty.save(property);
 		return "redirect:/addproperty";
+	}
+	
+	@RequestMapping(value = "/editproperty/{idProperty}")
+	public String ShowEditProperty(Model model, @PathVariable Long idProperty) {
+		model.addAttribute("listpropertytype", servicePropertyType.listAll());
+		model.addAttribute("listcustomer", serviceCustomer.listAll());
+		model.addAttribute("property",serviceProperty.findOne(idProperty));
+		return "editproperty";
+	}
+
+	@RequestMapping(value = "editproperty", method = RequestMethod.POST)
+	public String saveEditProperty(Model model, HttpServletRequest request, Property property, @RequestParam("value") Double value) {
+		TypeProperty type = new TypeProperty();
+		String propertyTypeid = request.getParameter("idTypeProperty");
+		type = servicePropertyType.findOne(Long.parseLong(propertyTypeid));
+		property.setPropertyType(type);
+		Customer customer = new Customer();
+		String customerid = request.getParameter("idCustomer");
+		customer = serviceCustomer.findOne(Long.parseLong(customerid));
+		property.setCustomer(customer);
+		serviceProperty.save(property);
+		return "redirect:/editproperty/" + property.getIdProperty();
 	}
 	
 	@RequestMapping(value = "/deleteproperty/{idProperty}")

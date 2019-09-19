@@ -22,7 +22,7 @@ public class Property {
 	private Long idProperty;
 	
 	@Column(name = "value")
-	private Long value;
+	private Double value;
 			
 	@OneToOne
 	@JoinColumn(name = "propertyTypeId")
@@ -47,14 +47,19 @@ public class Property {
 	}
 
 	
-	public Long getValue() {
+	
+	public Double getValue() {
 		return value;
 	}
 
-	public void setValue(Long value) {
+
+
+	public void setValue(Double value) {
 		this.value = value;
 	}
-	
+
+
+
 	public TypeProperty getPropertyType() {
 		return propertyType;
 	}
