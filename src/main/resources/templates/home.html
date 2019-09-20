@@ -7,59 +7,46 @@
 </head>
 <body>
 <div layout:fragment="content" th:remove="tag">
-    <h1>Buget Yovy - Cat</h1>
-    <p>This is an unsecured page, but you can access the secured pages after authenticating.</p>
-   <a th:href="@{/customer}" >Customer>> </a> 
-	 <br/> 
-	 <a th:href="@{/bill}" >Bill>> </a>
-	 <br/> 
-	 <a th:href="@{/income}" >Income>> </a> 
-	 <br/> 
-	 <a th:href="@{/typeIncome}" >Type Income>> </a> 
-	 <br/> 
-	 <a th:href="@{/supplier}" >Supplier>> </a> 
-	 <br/> 
-	 <a th:href="@{/servicesoffered}" >Services>> </a> 
-	 <br/>
-	 <a th:href="@{/item}" >Item>> </a>
-	 <br/>
-	 <a th:href="@{/typeExpenses}" >Types Of Expenses>> </a> 
-	 <br/>
-	 <a th:href="@{/property}" >Property>> </a> 
-	 <br/>
-	 <a th:href="@{/typeproperty}" >Type Property>> </a> 
+
+<nav class="nav flex-column">
+   <ul class="nav flex-column">
+  <li class="nav-item">
+     <a class="nav-link" th:href="@{/customer}">Customer</a>
+  </li>
+  <li class="nav-item">
+   <a class="nav-link" th:href="@{/bill}">Invoice</a>
+  </li>
+  <li class="nav-item">
+   <a class="nav-link" th:href="@{/typeIncome}">Type of Income</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" th:href="@{/supplier}">Supplier</a>
+  </li>
+  <li class="nav-item">
+     <a class="nav-link" th:href="@{/servicesoffered}">Service</a>
+  </li>
+   <li class="nav-item">
+     <a class="nav-link" th:href="@{/typeIncome}">Type of Income</a>
+  </li>
+   <li class="nav-item">
+      <a class="nav-link" th:href="@{/item}" >Item</a>
+  </li>
+  <li class="nav-item">
+     <a class="nav-link" th:href="@{/typeExpenses}">Type of Expenses</a>
+  </li>
+  <li class="nav-item">
+     <a class="nav-link" th:href="@{/property}">Property</a>
+  </li>
+  <li class="nav-item">
+     <a class="nav-link" th:href="@{/typeproperty}">Type of Property</a>
+  </li>
+</ul>
+  
+
+</nav>
+
 	</div>
 </body>
 </html>
 
-
-
-
-<!-- <!DOCTYPE HTML> -->
-<!-- <html xmlns:th="http://www.thymeleaf.org"> -->
-<!-- <head> -->
-<!-- <title>Family Budget</title> -->
-<!-- <th:block th:replace="fragments/header :: header-css"></th:block> -->
-<!-- </head> -->
-<!-- <body> -->
-<!-- 	<th:block th:replace="fragments/header :: header"></th:block> -->
-
-<!-- 	<div class="container"> -->
-
-<!-- 		<div class="starter-template"> -->
-<!-- 			<div class="container"> -->
-<!-- 				<div class="row justify-content-center"> -->
-<!-- 					<h1 class="text-center">Family Budget</h1> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 			<h2>1. Visit <a th:href="@{/admin}">Admin page (Spring Security protected, Need Admin Role)</a></h2> -->
-<!-- 			<h2>2. Visit <a th:href="@{/user}">User page (Spring Security protected, Need User Role)</a></h2> -->
-<!-- 			<h2>3. Visit <a th:href="@{/about}">Normal page</a></h2> -->
-<!-- 		</div> -->
-
-<!-- 	</div> -->
-<!-- 	<th:block th:replace="fragments/footer :: footer"></th:block> -->
-
-<!-- </body> -->
-<!-- </html> -->
 

@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.example.demo.model.Bill;
 import com.example.demo.model.Customer;
@@ -31,7 +33,13 @@ import com.example.demo.service.ITypeOfExpensesService;
 
 
 @Controller
-public class IndexController {
+public class IndexController  implements WebMvcConfigurer {
+	
+	
+	 @Override
+	    public void addViewControllers(ViewControllerRegistry registry) {
+	        registry.addViewController("/results").setViewName("results");
+	    }
 
 	@Autowired
 	private ICustomerService service;
@@ -81,12 +89,12 @@ public class IndexController {
     }
 
     
-	@RequestMapping("/addCustomer")
-	public String ShowNewCustomrForm(Model model) {
-		Customer customer = new Customer();
-		model.addAttribute("customer", customer);
-		return "addCustomer";
-	}
+//    @GetMapping("/addCustomer")
+//	public String ShowNewCustomrForm(Model model) {
+//		Customer customer = new Customer();
+//		model.addAttribute("customer", customer);
+//		return "addCustomer";
+//	}
 
 	@RequestMapping("/addsupplier")
 	public String ShowNewSupplierForm(Model model) {
