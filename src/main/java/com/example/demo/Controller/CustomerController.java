@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,20 +49,13 @@ public class CustomerController {
 	}
 	
 	
-	 @GetMapping("/addCustomer")
-		public String ShowNewCustomrForm(Model model) {
-			Customer customer = new Customer();
-			model.addAttribute("customer", customer);
-			return "addCustomer";
-		}
-
-	
 	//@PostMapping(value = "/addCustomer", method = RequestMethod.POST)
 
 	@PostMapping(value = "/addCustomer")
-	public String SaveCustomer(@Valid Customer newcustomer, Model model,  HttpServletRequest request, BindingResult bindingResult,
-			@RequestParam("idCustomer") Integer idCustomer, @RequestParam("firstName") String firstName,
-			@RequestParam("lastName") String lastName) {
+	public String SaveCustomer(@ModelAttribute @Valid Customer newcustomer, BindingResult bindingResult, Model model
+			) {
+		System.out.println("helllpoooooooo");
+		
 		 if (bindingResult.hasErrors()) {
 			    logger.info("Validation errors while submitting form.");
 	            return "addCustomer";
@@ -92,7 +86,7 @@ public class CustomerController {
 	       	
 	       	
 	        
-		 return "redirect:/addCustomer";
+		 return "redirect:/customer";
 	}
 
 	@RequestMapping(value = "/editcustomer/{idCustomer}")

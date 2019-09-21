@@ -45,7 +45,7 @@ public class SpringSecurityConfig  extends WebSecurityConfigurerAdapter {
                     .permitAll()
 						.and()
 	                .exceptionHandling().accessDeniedHandler(accessDeniedHandler);
-	    }
+	        }
 
 	    // create two users, admin and user
 	    @Autowired

@@ -1,49 +1,39 @@
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:th="http://www.thymeleaf.org"
-      layout:decorate="~{fragments/layout}">
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{fragments/layout}">
 <head>
-    <title th:text="#{app.title}" >Budget</title>
+<title th:text="#{app.title}">Budget</title>
 </head>
 <body>
-<div layout:fragment="content" th:remove="tag">
+	<div layout:fragment="content" th:remove="tag">
 
-<nav class="nav flex-column">
-   <ul class="nav flex-column">
-  <li class="nav-item">
-     <a class="nav-link" th:href="@{/customer}">Customer</a>
-  </li>
-  <li class="nav-item">
-   <a class="nav-link" th:href="@{/bill}">Invoice</a>
-  </li>
-  <li class="nav-item">
-   <a class="nav-link" th:href="@{/typeIncome}">Type of Income</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" th:href="@{/supplier}">Supplier</a>
-  </li>
-  <li class="nav-item">
-     <a class="nav-link" th:href="@{/servicesoffered}">Service</a>
-  </li>
-   <li class="nav-item">
-     <a class="nav-link" th:href="@{/typeIncome}">Type of Income</a>
-  </li>
-   <li class="nav-item">
-      <a class="nav-link" th:href="@{/item}" >Item</a>
-  </li>
-  <li class="nav-item">
-     <a class="nav-link" th:href="@{/typeExpenses}">Type of Expenses</a>
-  </li>
-  <li class="nav-item">
-     <a class="nav-link" th:href="@{/property}">Property</a>
-  </li>
-  <li class="nav-item">
-     <a class="nav-link" th:href="@{/typeproperty}">Type of Property</a>
-  </li>
-</ul>
-  
+		<nav class="nav flex-column">
+			<ul class="nav flex-column">
+				<li class="nav-item"><a class="nav-link" th:href="@{/customer}">Customer</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/bill}">Invoice</a>
+				</li>
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/typeIncome}">Type of Income</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/supplier}">Supplier</a>
+				</li>
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/servicesoffered}">Service</a></li>
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/typeIncome}">Type of Income</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/item}">Item</a>
+				</li>
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/typeExpenses}">Type of Expenses</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/property}">Property</a>
+				</li>
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/typeproperty}">Type of Property</a></li>
+			</ul>
 
-</nav>
+
+		</nav>
 
 	</div>
 </body>

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -87,6 +88,13 @@ public class IndexController  implements WebMvcConfigurer {
     public String home() {
         return "/home";
     }
+
+    @GetMapping("/addCustomer")
+	public String ShowNewCustomrForm(Model model) {
+		Customer customer = new Customer();
+		model.addAttribute("customer", customer);
+		return "addCustomer";
+	}
 
     
 //    @GetMapping("/addCustomer")

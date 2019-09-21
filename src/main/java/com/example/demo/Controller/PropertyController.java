@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,7 +43,6 @@ public class PropertyController {
 	@RequestMapping(value = "/addproperty", method = RequestMethod.POST)
 	public String SaveProperty(Model model, Property property, 	HttpServletRequest request, @RequestParam("idProperty") Long idProperty,
 			@RequestParam("value") Double value) {
-		List<Customer> customersList = new ArrayList<Customer>();
 		property.setIdProperty(idProperty);
 		TypeProperty type = new TypeProperty();
 		property.setValue(value);
