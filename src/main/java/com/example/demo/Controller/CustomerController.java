@@ -1,8 +1,5 @@
 package com.example.demo.Controller;
 
-import java.util.Optional;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -13,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,65 +24,36 @@ import com.example.demo.service.ICustomerService;
 @Controller
 public class CustomerController {
 
-	private static final Logger logger = LoggerFactory.getLogger(CustomerController.class);	
-	
+	private static final Logger logger = LoggerFactory.getLogger(CustomerController.class);
+
 	@Autowired
 	private ICustomerService serviceCustomer;
-	
+
 	@InitBinder
-    public void initBinder(WebDataBinder binder) {
-        binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
-    }
-	
+	public void initBinder(WebDataBinder binder) {
+		binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
+	}
+
 	public String finalString = null;
-	
-	
 
 	@RequestMapping("/customer")
 	private String ListCustomer(Model model) {
 		model.addAttribute("listcustomer", serviceCustomer.listAll());
 		return "customer";
 	}
-	
-	
-	//@PostMapping(value = "/addCustomer", method = RequestMethod.POST)
+
+	// @PostMapping(value = "/addCustomer", method = RequestMethod.POST)
 
 	@PostMapping(value = "/addCustomer")
-	public String SaveCustomer(@ModelAttribute @Valid Customer newcustomer, BindingResult bindingResult, Model model
-			) {
-		System.out.println("helllpoooooooo");
-		
-		 if (bindingResult.hasErrors()) {
-			    logger.info("Validation errors while submitting form.");
-	            return "addCustomer";
-	        } 
-		 
-	      		model.addAttribute("customer", newcustomer);
-	        		
-//	        		 if (newcustomer != null) {
-//	                     try {
-//	                         // check for comments and if not present set to 'none'
-//	                         String lastname = checkNullString(newcustomer.getLastName());
-//	                         if (lastname != "") {
-//	                             System.out.println("nothing changes");
-//	                         } else {
-//	                        	 newcustomer.setLastName(lastname);;
-//	                         }
-//	                     } catch (Exception e) {
-//	      
-//	                         System.out.println(e);
-//	      
-//	                     }
-//	                    
-//	                 }
-	      
-	        		 serviceCustomer.save(newcustomer);
-	        		 logger.info("Form submitted successfully.");
-	        	
-	       	
-	       	
-	        
-		 return "redirect:/customer";
+	public String SaveCustomer(@ModelAttribute @Valid Customer newcustomer, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			logger.info("Validation errors while submitting form.");
+			return "addCustomer";
+		}
+		model.addAttribute("customer", newcustomer);
+		serviceCustomer.save(newcustomer);
+		logger.info("Form submitted successfully.");
+		return "redirect:/customer";
 	}
 
 	@RequestMapping(value = "/editcustomer/{idCustomer}")
@@ -110,24 +77,5 @@ public class CustomerController {
 		serviceCustomer.delete(idCustomer);
 		return "redirect:/customer";
 	}
-	
-	
-	 public String checkNullString(String str){
-	        String endString = null;
-	        if(str == null || str.isEmpty()){
-	            System.out.println("yes it is empty");
-	            str = null;
-	            Optional<String> opt = Optional.ofNullable(str);
-	            endString = opt.orElse("None");
-	            System.out.println("endString : " + endString);
-	        }
-	        else{
-	            ; //do nothing
-	        }
-	         
-	         
-	        return endString;
-	         
-	    }
 
 }

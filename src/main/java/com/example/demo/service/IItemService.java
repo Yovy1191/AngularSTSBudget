@@ -16,4 +16,5 @@ public interface IItemService {
 	Item save(Long InvoiceId, Long ItemId, String description, Double qte, Double price, Double subtotal,
 			ServicesOffered service, Supplier supplier);
 
+
 }

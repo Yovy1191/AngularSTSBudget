@@ -1,45 +1,105 @@
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:th="http://www.thymeleaf.org"
-      layout:decorate="~{fragments/layout}">
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{fragments/layout}">
 <head>
-
 <title>Supplier</title>
-<!--  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"> -->
 </head>
 <body>
-<div layout:fragment="content" th:remove="tag">
-	<div  align="center">
-		<h1>Supplier</h1>
-		<a th:href="@{/addsupplier}" class="pull-right">Create  New Supplier</a>
-		<table class="table table-bordered">
-			<thead>
-				<tr>
-					<th scope="col">Supplier ID</th>
-					<th scope="col">Name Supplier</th>
-					<th scope="col">Action</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="supplier: ${listsupplier}">
-					<td th:text="${supplier.idsupplier}">Supplier Id</td>
-					<td th:text="${supplier.nameSupplier}">Name</td>
-					<td><p>  <a th:href="@{'/editsupplier/' + ${supplier.idsupplier}}" class="btn btn-info btn-sm">
-         					 <span class="glyphicon glyphicon-pencil"></span> Edit 
-        					</a> 
-							&nbsp;&nbsp;&nbsp;
-							 <a th:href="@{'/deletesupplier/' + ${supplier.idsupplier}}"
+	<div layout:fragment="content" th:remove="tag">
+
+		<div class="container-fluid">
+
+			<div class="page-title">
+				<h2>
+					<span class="fa fa-arrow-circle-o-left"></span> Supplier
+				</h2>
+			</div>
+
+			<a th:href="@{/addsupplier}" class="pull-right">Create New
+				Supplier</a>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th scope="col">Supplier ID</th>
+						<th scope="col">Name Supplier</th>
+						<th scope="col">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="supplier: ${listsupplier}">
+						<td th:text="${supplier.idsupplier}">Supplier Id</td>
+						<td th:text="${supplier.nameSupplier}">Name</td>
+						<td><p>
+								<a th:href="@{'/editsupplier/' + ${supplier.idsupplier}}"
+									class="btn btn-info btn-sm"> <span
+									class="glyphicon glyphicon-pencil"></span> Edit
+								</a> &nbsp;&nbsp;&nbsp; <a
+									th:href="@{'/deletesupplier/' + ${supplier.idsupplier}}"
 									class="btn btn-info btn-sm"> <span
 									class="glyphicon glyphicon-trash"></span> Delete
 								</a>
-						</p>
-					</td>
-								
-				</tr>
-			</tbody>
-		</table>
+							</p></td>
 
+					</tr>
+				</tbody>
+			</table>
+
+	
+		<div class="row">
+			<div class="form-group col-md-1">
+				<select class="form-control pagination" id="pageSizeSelect">
+					<option th:each="pageSize : ${pageSizes}" th:text="${pageSize}"
+						th:value="${pageSize}"
+						th:selected="${pageSize} == ${selectedPageSize}"></option>
+				</select>
+			</div>
+			<div th:if="${listsupplier.totalPages != 1}"
+				class="form-group col-md-11 pagination-centered">
+				<ul class="pagination">
+					<li th:class="${listsupplier.number == 0} ? disabled"><a
+						class="pageLink"
+						th:href="@{/(pageSize=${selectedPageSize}, page=1)}">«</a></li>
+					<li th:class="${listsupplier.number == 0} ? disabled"><a
+						class="pageLink"
+						th:href="@{/(pageSize=${selectedPageSize}, page=${listsupplier.number})}">←</a>
+					</li>
+					<li
+						th:class="${listsupplier.number == (page - 1)} ? 'active pointer-disabled'"
+						th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+						<a class="pageLink"
+						th:href="@{/(pageSize=${selectedPageSize}, page=${page})}"
+						th:text="${page}"></a>
+					</li>
+					<li
+						th:class="${listsupplier.number + 1 == listsupplier.totalPages} ? disabled">
+						<a class="pageLink"
+						th:href="@{/(pageSize=${selectedPageSize}, page=${listsupplier.number + 2})}">→</a>
+					</li>
+					<li
+						th:class="${listsupplier.number + 1 == listsupplier.totalPages} ? disabled">
+						<a class="pageLink"
+						th:href="@{/(pageSize=${selectedPageSize}, page=${listsupplier.totalPages})}">»</a>
+					</li>
+				</ul>
+			</div>
+		</div>
 	</div>
-	</div>
+		</div>
+	<!-- END PAGE CONTENT -->
+	<!-- END PAGE CONTAINER -->
+
+	<script>
+   $(document).ready(function(){ {
+    changePageAndSize();
+});
+function changePageAndSize() {
+    $('#pageSizeSelect').change(function(evt) {
+        window.location.replace("/?pageSize=" + this.value + "&page=1");
+    });
+}
+      
+    </script>
+
 </body>
 </html>

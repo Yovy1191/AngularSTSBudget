@@ -1,11 +1,13 @@
 package com.example.demo.service.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.model.Bill;
 import com.example.demo.model.Income;
 import com.example.demo.repository.IncomeRepository;
 import com.example.demo.service.IIncomeService;
@@ -35,6 +37,19 @@ public class IncomeImpl implements IIncomeService {
 	public void delete(Long id) {
 		repositoryIncome.deleteById(id);
 
+	}
+
+	@Override
+	public List<Income> getIncomeMonthly(Long monthly) {
+		return repositoryIncome.getIncomeMonthly(monthly);
+	}
+
+	@Override
+	public Double TotalIncomeBudget(List<Income> incomeTotal) {
+		int total = 0;	
+		for (Income item : incomeTotal) {
+			    total = total + item.getValue().intValue();	}
+	return  Double.valueOf(total);
 	}
 
 	

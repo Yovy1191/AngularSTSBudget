@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "SUPPLIER")
@@ -16,6 +18,8 @@ public class Supplier  {
 	@Column(name = "idsupplier")
 	private Long idsupplier;
 	
+	@NotNull
+	@Size(min=2, max=100, message="First name must be between 2 and 100 characters")
 	@Column(name = "namesupplier")
 	private String nameSupplier;
 	

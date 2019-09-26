@@ -3,6 +3,12 @@ package com.example.demo.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Supplier;
@@ -15,10 +21,6 @@ public class SupplierServiceImp implements ISupplierService {
 	@Autowired
 	private SupplierRepository repositorySupplier;
 	
-	@Override
-	public List<Supplier> listAll() {
-		return repositorySupplier.findAll();
-	}
 
 	@Override
 	public void save(Supplier supplier) {
@@ -36,6 +38,23 @@ public class SupplierServiceImp implements ISupplierService {
 	public void delete(Long id) {
 		repositorySupplier.deleteById(id);
 		
+	}
+
+	@Override
+
+	public Page<Supplier> listAll(Pageable pageable) {
+		return repositorySupplier.findAll(pageable);
+	}
+
+	@Override
+	public List<Supplier> findAll() {
+		return (List<Supplier>) repositorySupplier.findAll();
+	}
+
+	@Override
+	public int count() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

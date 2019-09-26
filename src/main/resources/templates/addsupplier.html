@@ -1,33 +1,46 @@
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:th="http://www.thymeleaf.org"
-      layout:decorate="~{fragments/layout}">
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{fragments/layout}">
 <head>
 <title>Create New Supplier</title>
 </head>
 <body>
-<div layout:fragment="content" th:remove="tag">
-	<div align="center">
-		<h1>Create New Supplier</h1>
-		<br />
-		<form action="#" th:action="@{/addsupplier}" method="post">
-		
-		<input type="hidden" th:field="*{supplier.idsupplier}" />
-		
-			<table class="table table-bordered table-hover">
-					
-				<tr>
-					<td>Name</td>
-					<td><input type="text" th:field="*{supplier.nameSupplier}" class="form-control"></td>
-				</tr>
-				<tr>
-					<td colspan="2"><button class="btn btn-primary" type="submit">Save</button></td>
-				</tr>
+	<div layout:fragment="content" th:remove="tag">
+		<div align="center">
+			<h1>Create New Supplier</h1>
+			<br />
+			<form class="form-horizontal" action="#" th:action="@{/addsupplier}"
+				method="post">
 
-			</table>
-			<p><a href="/" th:href="@{/}">Back to home page</a></p>
-		</form>
-	</div>
+				<input type="hidden" th:field="*{supplier.idsupplier}" />
+
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="Name">Name:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control"
+							th:field="*{supplier.nameSupplier}" id="Name"
+							placeholder="Enter  Name" name="Name">
+						<div th:if="${#fields.hasErrors('supplier.nameSupplier')}"
+							th:errors="*{supplier.nameSupplier}" class="alert alert-danger"
+							role="alert">
+							<p th:class="'error'" class="alert-link">Id Error</p>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</div>
+				</div>
+	
+
+
+			<p>
+				<a href="/" th:href="@{/}">Back to home page</a>
+			</p>
+			</form>
+		</div>
 	</div>
 </body>
 </html>

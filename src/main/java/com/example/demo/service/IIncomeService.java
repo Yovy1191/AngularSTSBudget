@@ -11,6 +11,8 @@ public interface IIncomeService {
 	Income save(Income income); 
 	public Optional<Income> findOne(Long id);
 	public void delete(Long id);
+	public List<Income> getIncomeMonthly(Long monthly);
+	public Double TotalIncomeBudget(List<Income> incomeTotal) ; 
 	
 
 }

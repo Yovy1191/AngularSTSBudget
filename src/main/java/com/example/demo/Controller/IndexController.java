@@ -1,7 +1,14 @@
 package com.example.demo.Controller;
 
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +16,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -24,8 +33,10 @@ import com.example.demo.model.Supplier;
 import com.example.demo.model.TypeIncome;
 import com.example.demo.model.TypeProperty;
 import com.example.demo.model.TypesOfExpenses;
+import com.example.demo.repository.IncomeRepository;
 import com.example.demo.service.IBillService;
 import com.example.demo.service.ICustomerService;
+import com.example.demo.service.IIncomeService;
 import com.example.demo.service.IPropertyTypeService;
 import com.example.demo.service.IServicesOffered;
 import com.example.demo.service.ISupplierService;
@@ -64,7 +75,16 @@ public class IndexController  implements WebMvcConfigurer {
 	private ITypeOfExpensesService serviceTypeOfExpenses;
 	
 
+	@Autowired
+	private IIncomeService serviceIncome;
 	
+
+	static LocalDate localDate = LocalDate.now();
+	
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+	String formattedString = localDate.format(formatter);
+	
+		
     @GetMapping("/")
     public String root() {
         return "index";
@@ -139,7 +159,7 @@ public class IndexController  implements WebMvcConfigurer {
 	    items.add(item);
 	    model.addAttribute("inextId", inextId.toString());
 		model.addAttribute("listserv", serviceOffered.listAll());
-		model.addAttribute("listsupplier", serviceSupplier.listAll());
+		model.addAttribute("listsupplier", serviceSupplier.listAll(null));
 		model.addAttribute("bill", bill);
 		model.addAttribute("items", items);
 		model.addAttribute("item", item);
@@ -157,7 +177,7 @@ public class IndexController  implements WebMvcConfigurer {
 		ItemWrapper itemw = new ItemWrapper();
 		Item item = new Item();
 		model.addAttribute("listservices", serviceOffered.listAll());
-		model.addAttribute("listsuppliers", serviceSupplier.listAll());
+		model.addAttribute("listsuppliers", serviceSupplier.listAll(null));
 		model.addAttribute("item", item);
 		model.addAttribute("itemw", itemw);
 		return "additem";
@@ -200,6 +220,27 @@ public class IndexController  implements WebMvcConfigurer {
 		return "addincome";
 	}
 	
+	@RequestMapping(value="/budget", method = RequestMethod.GET)
+	public String ShowNewBudgetForm(Model model, HttpServletRequest request) {
+		int month = localDate.getMonth().getValue();
+		Long monthly = Long.parseLong(Integer.toString(month));
+		List<Income> incomeList = new ArrayList<Income>();
+		List<Bill> expensesList = new ArrayList<Bill>();
+		incomeList = serviceIncome.getIncomeMonthly(monthly);
+		expensesList =  serviceBill.getExpensesMonthly(monthly);
+		model.addAttribute("totalInvoice", serviceBill.TotalInvoiceBudget(expensesList));
+		model.addAttribute("totalIncome", serviceIncome.TotalIncomeBudget(incomeList));
+		model.addAttribute("difference", calulerdireferen(serviceBill.TotalInvoiceBudget(expensesList),serviceIncome.TotalIncomeBudget(incomeList)));
+		model.addAttribute("incomeList", incomeList);
+		model.addAttribute("expensesList", expensesList);
+		return "budget";
+	}
+
+	private Double calulerdireferen(Double totalInvoiceBudget, Double totalIncomeBudget) {
+		int totadofference ;	
+		totadofference =  (int) (totalIncomeBudget - totalInvoiceBudget); 
+	return  Double.valueOf(totadofference);
+	}
 }
 
 
