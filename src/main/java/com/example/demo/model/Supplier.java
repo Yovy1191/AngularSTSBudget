@@ -27,7 +27,6 @@ public class Supplier  {
 	public Supplier() {	}
 
 
-
 	public Long getIdsupplier() {
 		return idsupplier;
 	}
@@ -46,6 +45,11 @@ public class Supplier  {
 		this.nameSupplier = nameSupplier;
 	}
 	
+	@Override
+    public String toString() {
+        return "Supplier [idsupplier=" + idsupplier + ", nameSupplier=" + nameSupplier +  "]";
+    }
+
 	
 
 }

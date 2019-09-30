@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.demo.model.PagerModel;
+import com.example.demo.model.Pager;
 import com.example.demo.model.Supplier;
 import com.example.demo.service.ISupplierService;
 
@@ -31,23 +31,22 @@ public class SupplierController {
 	 private static final int BUTTONS_TO_SHOW = 3;
 	 private static final int INITIAL_PAGE = 0;
 	 private static final int INITIAL_PAGE_SIZE = 5;
-	 private static final int[] PAGE_SIZES = { 5, 15};
+	 private static final int[] PAGE_SIZES = { 5, 10};
 	
 	
 	@Autowired
 	private ISupplierService serviceSupplier;
 	
-	
 	private static final Logger logger = LoggerFactory.getLogger(SupplierController.class);
 
 	@GetMapping("/supplier")
-	 public ModelAndView SupplierPage(@RequestParam("pageSize") Optional<Integer> pageSize,
+	 public ModelAndView ShowSupplierPage(@RequestParam("pageSize") Optional<Integer> pageSize,
 	            @RequestParam("page") Optional<Integer> page){
-	        ModelAndView modelAndView = new ModelAndView("supplier");
+	        ModelAndView modelAndView = new ModelAndView("/supplier");
 	        int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
 	        int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
 	        Page<Supplier> listsupplier = serviceSupplier.listAll(PageRequest.of(evalPage, evalPageSize));
-	        PagerModel pager = new PagerModel(listsupplier.getTotalPages(),listsupplier.getNumber(),BUTTONS_TO_SHOW);
+	        Pager pager = new Pager(listsupplier.getTotalPages(),listsupplier.getNumber(),BUTTONS_TO_SHOW);
 	        modelAndView.addObject("listsupplier",listsupplier);
 	        modelAndView.addObject("selectedPageSize", evalPageSize);
 	        modelAndView.addObject("pageSizes", PAGE_SIZES);

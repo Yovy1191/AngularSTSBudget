@@ -3,6 +3,8 @@
 	xmlns:th="http://www.thymeleaf.org"
 	layout:decorate="~{fragments/layout}">
 <head>
+ <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/pag.css}" rel="stylesheet"/>
 <title>Supplier</title>
 </head>
 <body>
@@ -10,11 +12,7 @@
 
 		<div class="container-fluid">
 
-			<div class="page-title">
-				<h2>
-					<span class="fa fa-arrow-circle-o-left"></span> Supplier
-				</h2>
-			</div>
+			<h1>Supplier</h1>
 
 			<a th:href="@{/addsupplier}" class="pull-right">Create New
 				Supplier</a>
@@ -45,7 +43,7 @@
 				</tbody>
 			</table>
 
-
+	</div>
 			<div class="row">
 				<div class="form-group col-md-1">
 					<select class="form-control pagination" id="pageSizeSelect">
@@ -59,44 +57,36 @@
 					<ul class="pagination">
 						<li th:class="${listsupplier.number == 0} ? disabled"><a
 							class="pageLink"
-							th:href="@{/(pageSize=${selectedPageSize}, page=1)}">«</a></li>
+							th:href="@{/supplier(pageSize=${selectedPageSize}, page=1)}">«</a></li>
 						<li th:class="${listsupplier.number == 0} ? disabled"><a
 							class="pageLink"
-							th:href="@{/(pageSize=${selectedPageSize}, page=${listsupplier.number})}">←</a>
+							th:href="@{/supplier(pageSize=${selectedPageSize}, page=${listsupplier.number})}">←</a>
 						</li>
 						<li
 							th:class="${listsupplier.number == (page - 1)} ? 'active pointer-disabled'"
 							th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
 							<a class="pageLink"
-							th:href="@{/(pageSize=${selectedPageSize}, page=${page})}"
+							th:href="@{/supplier(pageSize=${selectedPageSize}, page=${page})}"
 							th:text="${page}"></a>
 						</li>
 						<li
 							th:class="${listsupplier.number + 1 == listsupplier.totalPages} ? disabled">
 							<a class="pageLink"
-							th:href="@{/(pageSize=${selectedPageSize}, page=${listsupplier.number + 2})}">&rarr;</a>
+							th:href="@{/supplier(pageSize=${selectedPageSize}, page=${listsupplier.number + 2})}">&rarr;</a>
 						</li>
 						<li
 							th:class="${listsupplier.number + 1 == listsupplier.totalPages} ? disabled">
 							<a class="pageLink"
-							th:href="@{/(pageSize=${selectedPageSize}, page=${listsupplier.totalPages})}">»</a>
+							th:href="@{/supplier(pageSize=${selectedPageSize}, page=${listsupplier.totalPages})}">»</a>
 						</li>
 					</ul>
 				</div>
-			</div>
+		
 		</div>
 	</div>
-	<script>
-   $(document).ready(function(){ {
-    changePageAndSize();
-});
-function changePageAndSize() {
-    $('#pageSizeSelect').change(function(evt) {
-        window.location.replace("/?pageSize=" + this.value + "&page=1");
-    });
-}
-      
-    </script>
+<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/pag.js}"></script>
 
 </body>
 </html>
