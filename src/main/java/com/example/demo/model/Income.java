@@ -21,6 +21,7 @@ public class Income {
 	@JoinColumn(name = "date")
 	private String date;
 	
+	
 	@JoinColumn(name = "value")
 	private Double value;
 		
