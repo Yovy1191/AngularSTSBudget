@@ -3,7 +3,8 @@
       xmlns:th="http://www.thymeleaf.org"
       layout:decorate="~{fragments/layout}">
 <head>
-
+<link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/pag.css}" rel="stylesheet"/>
 <title>Services</title>
 <!--  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"> -->
 </head>
@@ -40,6 +41,50 @@
 		</table>
 
 	</div>
-</div>
+		<div class="row">
+				<div class="form-group col-md-1">
+					<select class="form-control pagination" id="pageSizeSelect">
+						<option th:each="pageSize : ${pageSizes}" th:text="${pageSize}"
+							th:value="${pageSize}"
+							th:selected="${pageSize} == ${selectedPageSize}"></option>
+					</select>
+				</div>
+				<div th:if="${listservices.totalPages != 1}"
+					class="form-group col-md-11 pagination-centered">
+					<ul class="pagination">
+						<li th:class="${listservices.number == 0} ? disabled"><a
+							class="pageLink"
+							th:href="@{/supplier(pageSize=${selectedPageSize}, page=1)}">«</a></li>
+						<li th:class="${listservices.number == 0} ? disabled"><a
+							class="pageLink"
+							th:href="@{/servicesoffered(pageSize=${selectedPageSize}, page=${listservices.number})}">←</a>
+						</li>
+						<li
+							th:class="${listservices.number == (page - 1)} ? 'active pointer-disabled'"
+							th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+							<a class="pageLink"
+							th:href="@{/servicesoffered(pageSize=${selectedPageSize}, page=${page})}"
+							th:text="${page}"></a>
+						</li>
+						<li
+							th:class="${listservices.number + 1 == listservices.totalPages} ? disabled">
+							<a class="pageLink"
+							th:href="@{/servicesoffered(pageSize=${selectedPageSize}, page=${listservices.number + 2})}">&rarr;</a>
+						</li>
+						<li
+							th:class="${listservices.number + 1 == listservices.totalPages} ? disabled">
+							<a class="pageLink"
+							th:href="@{/servicesoffered(pageSize=${selectedPageSize}, page=${listservices.totalPages})}">»</a>
+						</li>
+					</ul>
+				</div>
+		
+		</div>
+	</div>
+
+<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/pag.js}"></script>
+
 </body>
 </html>
