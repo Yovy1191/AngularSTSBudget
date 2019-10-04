@@ -10,92 +10,87 @@
 		<form class="form-horizontal">
 
 			<div class="row  form-group">
-				<div class="col-sm-4">
-				<select name="RapportExpenses"  class="form-control" >
-				  <option value="Monthly" selected="selected">Monthly</option>
-				  <option th:value="Biannual" th:utext="Biannual"  />
-				  <option th:value="Quarterly" th:utext="Quarterly"/>
-					</select>
-				
-			
-				</div>
 				<div class="col-sm-4"></div>
+				<div class="col-sm-4"></div>
+				<button type="submit" class="btn btn-success"  value="Monthly" name="action" >Monthly</button>
+				<button type="submit" class="btn btn-success"  value="Biannual" name="action">Biannual</button>
+				<button type="submit" class="btn btn-success"  value="Quartely" name="action">Quartely</button>
 				<div class="col-sm-4"></div>
 			</div>
 
 			<div class="form-group">
-			<h1>Total Income</h1>				
-			<table class="table table-bordered">
-				<thead>
-					<tr>
-						<th scope="col">Date</th>
-						<th scope="col">Type Income</th>
-						<th scope="col">Customer</th>
-						<th scope="col">Value</th>
-					
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="income: ${incomeList}">
-						<td th:text="${income.date}">Date</td>
-						<td th:text="${income.typeIncome.nameIncome}">Type Income</td>
-						<td th:text="${income.customer.firstName}">Customer</td>
-						<td th:text="${income.value}">Value</td>
+				<h1>Total Income</h1>
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th scope="col">Date</th>
+							<th scope="col">Type Income</th>
+							<th scope="col">Customer</th>
+							<th scope="col">Value</th>
+
 						</tr>
-				</tbody>
-			</table>
-			
-			
+					</thead>
+					<tbody>
+						<tr th:each="income: ${incomeList}">
+							<td th:text="${income.date}">Date</td>
+							<td th:text="${income.typeIncome.nameIncome}">Type Income</td>
+							<td th:text="${income.customer.firstName}">Customer</td>
+							<td th:text="${income.value}">Value</td>
+						</tr>
+					</tbody>
+				</table>
+
+
 			</div>
 			<div class="form-group">
-			<h1>Total of Expenses</h1>	
-			<table class="table table-bordered">
-			<thead>
-				<tr>
-					<th scope="col">Date</th>
-					<th scope="col">Customer</th>
-					<th scope="col">Sub-total</th>
-					<th scope="col">TPS</th>
-					<th scope="col">TVQ</th>
-					<th scope="col">Total</th>
-					
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="bill: ${expensesList}">
-					<td th:text="${bill.date}">Date</td>
-					<td th:text="${bill.customer.firstName}">Date</td>
-					<td th:text="${bill.sub_total}">Subtotal</td>
-					<td th:text="${bill.tvq}">TVQ</td>
-					<td th:text="${bill.tps}">TPS</td>
-					<td th:text="${bill.total}">Total</td>
-				</tr>
-			</tbody>
-		</table>
-				<div class="row clearfix" style="margin-top: 20px">
-								<div class="pull-right col-md-4">
-									<table class="table table-bordered table-hover"
-										id="tab_logic_total">
-										<tbody>
-											<tr>
-												<th class="form-control">Subtotal Expenses</th>
-												<td class="text-center" th:text="${totalIncome}"></td>
-											</tr>
+				<h1>Total of Expenses</h1>
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th scope="col">Date</th>
+							<th scope="col">Customer</th>
+							<th scope="col">Sub-total</th>
+							<th scope="col">TPS</th>
+							<th scope="col">TVQ</th>
+							<th scope="col">Total</th>
 
-										<tr>
-          								  <th class="form-control">Sunbtotal Income</th>
-        							    <td class="text-center"  th:text="${totalInvoice}" ></td>
-     								     </tr>
-     								     <tr>
-          								  <th class="form-control">Total</th>
-        							    <td class="text-center"  th:text="${difference}" ></td>
-     								     </tr>
-											
-										</tbody>
-									</table>
-								</div>
-							</div>
-		
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="bill: ${expensesList}">
+							<td th:text="${bill.date}">Date</td>
+							<td th:text="${bill.customer.firstName}">Date</td>
+							<td th:text="${bill.sub_total}">Subtotal</td>
+							<td th:text="${bill.tvq}">TVQ</td>
+							<td th:text="${bill.tps}">TPS</td>
+							<td th:text="${bill.total}">Total</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="row clearfix" style="margin-top: 20px">
+					<div class="pull-right col-md-4">
+						<table class="table table-bordered table-hover"
+							id="tab_logic_total">
+							<tbody>
+								<tr>
+									<th class="form-control">Subtotal Expenses</th>
+									<td class="text-center" th:text="${totalIncome}"></td>
+								</tr>
+
+								<tr>
+									<th class="form-control">Sunbtotal Income</th>
+									<td class="text-center" th:text="${totalInvoice}"></td>
+								</tr>
+								<tr>
+									<th class="form-control">Total</th>
+									<td class="text-center" th:text="${difference}"></td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+
 
 			</div>
 		</form>

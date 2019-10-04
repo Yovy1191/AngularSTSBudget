@@ -6,9 +6,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "SERVICE")
+@Table(name = "SERVICESOFFERED")
 public class ServicesOffered  {
 	
 	@Id
@@ -16,12 +18,12 @@ public class ServicesOffered  {
 	@Column(name = "idService")
 	private Long idService;
 	
+	@NotNull
+	@Size(min=2, max=100, message="First name must be between 2 and 100 characters")
 	@Column(name = "nameService")
 	private String nameService;
 	
-	public ServicesOffered() {
-		
-	}
+	public ServicesOffered() { }
 	
 	public Long getIdService() {
 		return idService;

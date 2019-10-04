@@ -59,4 +59,19 @@ public class BillServiceImpl implements IBillService {
 	return  Double.valueOf(total);
 	}
 
+	@Override
+	public List<Bill> findAll() {
+		return repositoryBill.findAll();
+	}
+
+	@Override
+	public List<Bill> getExpensesBiannual() {
+		return repositoryBill.getExpensesBiannual();
+	}
+
+	@Override
+	public List<Bill> getExpensesQuartely() {
+		return repositoryBill.getExpensesQuartely();
+	}
+
 }

@@ -57,7 +57,7 @@ public class BillController {
 
 	@RequestMapping("/bill")
 	private String ShowFormListBill(Model model,@RequestParam(defaultValue="0") int page ) {
-		model.addAttribute("listbill", serviceBill.listAll(new PageRequest(page,4)));
+		model.addAttribute("listbill", serviceBill.findAll());
 		return "bill";
 	}
 
@@ -89,7 +89,7 @@ public class BillController {
 		expenses = serviceTypeOfExpenses.findOne(Long.parseLong(expensesTypeId));
 		bill.setTypeexpenses(expenses);
 		String serviceid = request.getParameter("idService");
-		service = serviceOffered.findOne(Long.parseLong(serviceid));
+		service = serviceOffered.findOne(Long.parseLong(serviceid)); 
 		String supplierid = request.getParameter("idSupplier");
 		supplier = serviceSupplier.findOne(Long.parseLong(supplierid));
 		Long inextId =  serviceBill.getNextSeriesInvoiceId();

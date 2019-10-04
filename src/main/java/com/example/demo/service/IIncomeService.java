@@ -13,6 +13,7 @@ public interface IIncomeService {
 	public void delete(Long id);
 	public List<Income> getIncomeMonthly(Long monthly);
 	public Double TotalIncomeBudget(List<Income> incomeTotal) ; 
-	
+	public List<Income> getIncomeBiannual();
+	public List<Income> getExpensesQuartely();
 
 }

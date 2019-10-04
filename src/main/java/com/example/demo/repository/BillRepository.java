@@ -18,7 +18,14 @@ public interface BillRepository extends JpaRepository<Bill, Long> {
 	public Long getNextSeriesInvoiceId();
 	
 	@Query(value = "SELECT * FROM budget.bill where MONTH(date) = ?1", nativeQuery =    true)
-	List<Bill> getExpensesMonthly(Long monthly);
+	public List<Bill> getExpensesMonthly(Long monthly);
+	
+	@Query(value = "SELECT * FROM budget.bill b WHERE MONTH(b.date)  BETWEEN  month(NOW()- INTERVAL 1 MONTH)  AND  MONTH(NOW())", nativeQuery =    true)
+	public List<Bill> getExpensesBiannual();
+	
+	@Query(value = "SELECT * FROM budget.bill b WHERE MONTH(b.date)  BETWEEN  month(NOW()- INTERVAL 6 MONTH)  AND  MONTH(NOW())", nativeQuery =    true)
+	public List<Bill> getExpensesQuartely();
+	
 	
 
 }

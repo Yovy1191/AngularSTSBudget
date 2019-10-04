@@ -5,6 +5,10 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.model.ServicesOffered;
 
+
+
+
+
 @Repository
 public interface ServicesOfferedRepository extends PagingAndSortingRepository<ServicesOffered, Long>  {
 
