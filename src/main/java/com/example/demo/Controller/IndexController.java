@@ -149,13 +149,13 @@ public class IndexController  implements WebMvcConfigurer {
 	public String ShowNewBillForm( Model model) {
 		ItemsCreationWrapper wrapper = new ItemsCreationWrapper();
 		List<Item> items =   new ArrayList<Item>();
-		Long inextId =  serviceBill.getNextSeriesInvoiceId();
+	//	Long inextId =  serviceBill.getNextSeriesInvoiceId();
 		Bill bill = new Bill();
 		Item item = new Item();
 		ItemWrapper itemw = new ItemWrapper();
 		List<ItemWrapper> listItemws =   new ArrayList<ItemWrapper>();
 	    items.add(item);
-	    model.addAttribute("inextId", inextId.toString());
+	//    model.addAttribute("inextId", inextId.toString());
 		model.addAttribute("listserv", serviceOffered.listAll());
 		model.addAttribute("listsupplier", serviceSupplier.findAll());
 		model.addAttribute("bill", bill);

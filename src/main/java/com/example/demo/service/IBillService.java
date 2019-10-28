@@ -20,5 +20,4 @@ public interface IBillService {
 	public Double TotalInvoiceBudget(List<Bill> invoiceTotal); 
 	public List<Bill> getExpensesBiannual();
 	public List<Bill> getExpensesQuartely();
-
 }

@@ -4,9 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Income;
+import com.example.demo.model.Supplier;
 import com.example.demo.repository.IncomeRepository;
 import com.example.demo.service.IIncomeService;
 
@@ -17,8 +20,8 @@ public class IncomeImpl implements IIncomeService {
 	private IncomeRepository repositoryIncome;
 
 	@Override
-	public List<Income> listAll() {
-		return repositoryIncome.findAll();
+	public List<Income> findAll() {
+		return (List<Income>) repositoryIncome.findAll();
 	}
 
 	@Override
@@ -58,6 +61,17 @@ public class IncomeImpl implements IIncomeService {
 	@Override
 	public List<Income> getExpensesQuartely() {
 		return repositoryIncome.getExpensesQuartely();
+	}
+
+	@Override
+	public Long getNextSeriesIncomeId() {
+		return repositoryIncome.getNextSeriesIncomeId();
+	}
+
+	@Override
+	public Page<Income> listAll(Pageable pageable) {
+		return repositoryIncome.findAll(pageable);
+		
 	}
 
 	

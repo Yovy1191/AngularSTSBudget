@@ -37,7 +37,6 @@ public class SupplierServiceImp implements ISupplierService {
 	}
 
 	@Override
-
 	public Page<Supplier> listAll(Pageable pageable) {
 		return repositorySupplier.findAll(pageable);
 	}

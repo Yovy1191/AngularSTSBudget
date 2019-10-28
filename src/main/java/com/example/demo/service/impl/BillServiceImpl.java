@@ -16,8 +16,7 @@ public class BillServiceImpl implements IBillService {
 	@Autowired
 	private BillRepository repositoryBill;
 	
-	private Double total;
-
+	
 	@Override
 	public List<Bill> listAll(PageRequest pageRequest) {
 		return repositoryBill.findAll();
@@ -73,5 +72,7 @@ public class BillServiceImpl implements IBillService {
 	public List<Bill> getExpensesQuartely() {
 		return repositoryBill.getExpensesQuartely();
 	}
+	
+
 
 }

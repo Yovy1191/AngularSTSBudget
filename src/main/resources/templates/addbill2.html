@@ -30,6 +30,12 @@
 			<h1>Invoce</h1>
 			<br />
 			<form   action="#" th:action="@{/addbill2}" method="post">
+			<div class="row  form-group">
+				<div class="col-sm-4"></div>
+				<div class="col-sm-4"></div>
+				<button type="submit" class="btn btn-success"  value="AutomaticMonthlyInvoices" name="action" >Automatic Monthly Invoices</button>
+				<div class="col-sm-4"></div>
+			</div>
 	<div  th:objet="${itemw}" >
 				<input type="hidden" th:field="*{bill.customer}" /> 
 				<input type="hidden" th:field="*{bill.items}" />

@@ -22,6 +22,12 @@
 		<h1>Create New Income</h1>
 		<br />
 		<form action="#" th:action="@{/addincome}" method="post">
+		<div class="row  form-group">
+				<div class="col-sm-4"></div>
+				<div class="col-sm-4"></div>
+				<button type="submit" class="btn btn-success"  value="AutomaticMonthlyIncomes" name="action" >Automatic Monthly Income</button>
+				<div class="col-sm-4"></div>
+			</div>
 		
 		<input type="hidden" th:field="*{income.idIncome}" />
 		

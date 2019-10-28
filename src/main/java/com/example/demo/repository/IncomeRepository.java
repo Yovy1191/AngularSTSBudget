@@ -14,6 +14,9 @@ import com.example.demo.model.Income;
 @Repository
 public interface IncomeRepository extends JpaRepository<Income, Long> {
 	
+	@Query(value = "SELECT * FROM budget.idincome", nativeQuery =    true)
+	public Long getNextSeriesIncomeId();
+	
 	@Query(value = "SELECT  budget.income.idIncome,budget.income.date,budget.income.typeIncomeId, budget.typeincome.nameIncome,budget.customer.firstName, budget.income.customer, budget.income.value FROM budget.income LEFT JOIN  budget.typeincome ON budget.income.typeIncomeId = budget.typeincome.idincome LEFT JOIN  budget.customer on budget.income.customer = budget.customer.idCustomer where  MONTH(date) = ?1 ", nativeQuery =    true)
 	public List<Income> getIncomeMonthly(Long monthly);
 	

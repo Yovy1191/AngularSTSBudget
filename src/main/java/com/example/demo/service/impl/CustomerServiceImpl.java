@@ -3,6 +3,8 @@ package com.example.demo.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Customer;
@@ -34,6 +36,11 @@ public class CustomerServiceImpl implements ICustomerService {
 	public void delete(Long id) {
 		repo.deleteById(id);
 
+	}
+
+	@Override
+	public Page<Customer> findAll(Pageable pageable) {
+		return repo.findAll(pageable);
 	}
 
 }

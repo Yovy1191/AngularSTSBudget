@@ -7,15 +7,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "INCOME")
 public class Income {
 	
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idIncome")
+	@SequenceGenerator(name = "idIncome", sequenceName = "idIncome", allocationSize = 1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "idIncome")
+	@Column(name = "idIncome", updatable = false, nullable = false )
 	private Long idIncome;
 	
 	@JoinColumn(name = "date")

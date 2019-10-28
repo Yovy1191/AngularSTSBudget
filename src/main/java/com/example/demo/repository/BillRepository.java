@@ -14,7 +14,10 @@ import com.example.demo.model.Bill;
 @Repository
 public interface BillRepository extends JpaRepository<Bill, Long> {
 	
-	@Query(value = "SELECT AUTO_INCREMENT FROM information_schema.TABLES   WHERE TABLE_SCHEMA = 'budget' AND TABLE_NAME = 'bill'", nativeQuery =    true)
+//	@Query(value = "SELECT AUTO_INCREMENT FROM information_schema.TABLES   WHERE TABLE_SCHEMA = 'budget' AND TABLE_NAME = 'invoiceid'", nativeQuery =    true)
+//	public Long getNextSeriesInvoiceId();
+	
+	@Query(value = "SELECT * FROM budget.invoiceid", nativeQuery =    true)
 	public Long getNextSeriesInvoiceId();
 	
 	@Query(value = "SELECT * FROM budget.bill where MONTH(date) = ?1", nativeQuery =    true)

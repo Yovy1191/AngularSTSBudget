@@ -2,6 +2,7 @@ package com.example.demo.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,7 +21,7 @@ public class Bill  {
 	@Id
 	@SequenceGenerator(name = "invoiceId", sequenceName = "invoiceId", allocationSize = 1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "invoiceId")
-	@JoinColumn(name = "invoiceId", updatable = false)
+	@Column(name = "invoiceId", updatable = false, nullable = false )
 	public Long invoiceId;
 	
 	@JoinColumn(name = "date")
@@ -123,6 +124,20 @@ public class Bill  {
 	}
 	
 	public Bill() {
+	}
+
+	public Bill(Long invoiceId, String date, Customer customer, TypesOfExpenses typeexpenses, Double sub_total,
+			Double total, Double tps, Double tvq, List<Item> items) {
+		super();
+		this.invoiceId = invoiceId;
+		this.date = date;
+		this.customer = customer;
+		this.typeexpenses = typeexpenses;
+		this.sub_total = sub_total;
+		this.total = total;
+		this.tps = tps;
+		this.tvq = tvq;
+		this.items = items;
 	}
 
  

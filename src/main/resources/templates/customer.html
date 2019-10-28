@@ -45,6 +45,45 @@
 		</table>
 	<p><a href="/" th:href="@{/}">Back to home page</a></p>
 	</div>
+	<div class="row">
+				<div class="form-group col-md-1">
+					<select class="form-control pagination" id="pageSizeSelect">
+						<option th:each="pageSize : ${pageSizes}" th:text="${pageSize}"
+							th:value="${pageSize}"
+							th:selected="${pageSize} == ${selectedPageSize}"></option>
+					</select>
+				</div>
+				<div th:if="${listcustomer.totalPages != 1}"
+					class="form-group col-md-11 pagination-centered">
+					<ul class="pagination">
+						<li th:class="${listcustomer.number == 0} ? disabled"><a
+							class="pageLink"
+							th:href="@{/customer(pageSize=${selectedPageSize}, page=1)}">«</a></li>
+						<li th:class="${listcustomer.number == 0} ? disabled"><a
+							class="pageLink"
+							th:href="@{/customer(pageSize=${selectedPageSize}, page=${listcustomer.number})}">←</a>
+						</li>
+						<li
+							th:class="${listcustomer.number == (page - 1)} ? 'active pointer-disabled'"
+							th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+							<a class="pageLink"
+							th:href="@{/customer(pageSize=${selectedPageSize}, page=${page})}"
+							th:text="${page}"></a>
+						</li>
+						<li
+							th:class="${listcustomer.number + 1 == listcustomer.totalPages} ? disabled">
+							<a class="pageLink"
+							th:href="@{/customer(pageSize=${selectedPageSize}, page=${listsupplier.number + 2})}">&rarr;</a>
+						</li>
+						<li
+							th:class="${listsupplier.number + 1 == listsupplier.totalPages} ? disabled">
+							<a class="pageLink"
+							th:href="@{/customer(pageSize=${selectedPageSize}, page=${listcustomer.totalPages})}">»</a>
+						</li>
+					</ul>
+				</div>
+		
+		</div>
 </div>
 </body>
 	
