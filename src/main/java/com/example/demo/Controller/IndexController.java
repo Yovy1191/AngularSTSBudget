@@ -211,7 +211,7 @@ public class IndexController  implements WebMvcConfigurer {
 	@RequestMapping("/addincome")
 	public String ShowNewIncomeForm(Model model) {
 		Income income = new Income();
-		model.addAttribute("listTypeincome", serviceTypeIncome.listAll());
+		model.addAttribute("listTypeincome", serviceTypeIncome.findAll());
 		model.addAttribute("listcustomer", service.listAll());
 		model.addAttribute("income", income);
 		return "addincome";

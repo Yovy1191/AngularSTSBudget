@@ -3,6 +3,8 @@ package com.example.demo.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.TypeIncome;
@@ -29,17 +31,24 @@ public class TypeIncomeServiceImpl implements ITypeIncomeService {
 		
 	}
 
-	
 
-	@Override
-	public List<TypeIncome> listAll() {
-	return repositoryTypeIncome.findAll();
-	}
 
 
 	@Override
 	public TypeIncome findOne(Long id) {
 	 return repositoryTypeIncome.findById(id).get();
+	}
+
+
+	@Override
+	public Page<TypeIncome> listAll(Pageable pageable) {
+		return repositoryTypeIncome.findAll(pageable);
+	}
+
+
+	@Override
+	public List<TypeIncome> findAll() {
+		return repositoryTypeIncome.findAll();
 	}
 
 

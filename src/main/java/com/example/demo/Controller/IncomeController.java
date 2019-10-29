@@ -93,7 +93,7 @@ public class IncomeController {
 			
 	@RequestMapping(value = "/editincome/{idIncome}")
 	public String ShowEditIncome(Model model, @PathVariable Long idIncome) {
-		model.addAttribute("listTypeincome", serviceTypeIncome.listAll());
+		model.addAttribute("listTypeincome", serviceTypeIncome.findAll());
 		model.addAttribute("listcustomer", service.listAll());
 		model.addAttribute("income", serviceIncome.findOne(idIncome));
 		return "editincome";
