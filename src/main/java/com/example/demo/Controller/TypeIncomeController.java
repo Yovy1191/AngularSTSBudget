@@ -63,8 +63,8 @@ public class TypeIncomeController {
 	@RequestMapping(value = "/deletetypeincome/{idincome}")
 	public String deleteTypeIncome(Model model, @PathVariable Long idincome) {
 		model.addAttribute("typeincome", serviceTypeIncome.findOne(idincome));
-		serviceTypeIncome.delete(idincome);
-		return "redirect:/income";
+		serviceTypeIncome.deleteById(idincome);
+		return "redirect:/typeIncome";
 	}
 
 }

@@ -10,7 +10,6 @@ public interface ITypeIncomeService {
 	TypeIncome save(TypeIncome TypeIncome); 
 	public void deleteById(Long id);
 	public TypeIncome findOne(Long id);
-	public void delete(Long id);
 	public List<TypeIncome> listAll();
 
 

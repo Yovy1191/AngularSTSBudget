@@ -26,7 +26,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.model.Customer;
 import com.example.demo.model.Pager;
-import com.example.demo.model.Supplier;
 import com.example.demo.service.ICustomerService;
 
 @Controller

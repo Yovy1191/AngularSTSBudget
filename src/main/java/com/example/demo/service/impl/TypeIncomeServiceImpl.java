@@ -33,26 +33,16 @@ public class TypeIncomeServiceImpl implements ITypeIncomeService {
 
 	@Override
 	public List<TypeIncome> listAll() {
-
 	return repositoryTypeIncome.findAll();
-			}
+	}
 
 
 	@Override
 	public TypeIncome findOne(Long id) {
-	
-		return repositoryTypeIncome.findById(id).get();
+	 return repositoryTypeIncome.findById(id).get();
 	}
 
 
-	@Override
-	public void delete(Long id) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	
 	
 
 }
