@@ -1,13 +1,21 @@
 package com.example.demo.Controller;
 
+import javax.validation.Valid;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.model.Customer;
 import com.example.demo.model.TypeIncome;
 import com.example.demo.service.ITypeIncomeService;
 
@@ -17,6 +25,8 @@ public class TypeIncomeController {
 
 	@Autowired
 	private ITypeIncomeService serviceTypeIncome;
+	
+	private static final Logger logger = LoggerFactory.getLogger(TypeIncomeController.class);
 
 	@RequestMapping("/typeIncome")
 	private String ListTypeIncome(Model model) {
@@ -25,12 +35,15 @@ public class TypeIncomeController {
 	}
 	
 	
-	@RequestMapping(value = "/addTypeIncome", method = RequestMethod.POST)
-	public String SaveIncome( @RequestParam("idincome") Long idincome,
-			@RequestParam("nameIncome") String nameIncome) {
-		TypeIncome income = new TypeIncome();
-		income.setNameIncome(nameIncome);
-		serviceTypeIncome.save(income);
+	@PostMapping(value = "/addTypeIncome")
+	public String SaveTypeIncome(@ModelAttribute @Valid TypeIncome newTypeIncome, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			logger.info("Validation errors while submitting form.");
+			return "addTypeIncome";
+		}
+		model.addAttribute("typeIncome", newTypeIncome);
+		serviceTypeIncome.save(newTypeIncome);
+		logger.info("Form submitted successfully.");
 		return "redirect:/addTypeIncome";
 	}
 	

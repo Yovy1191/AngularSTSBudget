@@ -3,31 +3,58 @@
       xmlns:th="http://www.thymeleaf.org"
       layout:decorate="~{fragments/layout}">
 <head>
-<title>Create Newe Type Income</title>
+<title>Create New Type Income</title>
 </head>
 <body>
 <div layout:fragment="content" th:remove="tag">
-	<div align="center">
+<div align="center">
 		<h1>Create New Income</h1>
-		<br />
-		<form action="#" th:action="@{/addTypeIncome}" method="post">
-		
-		<input type="hidden" th:field="*{TypeIncome.idincome}" />
-		
-			<table class="table table-bordered table-hover">
-			
-				<tr>
-					<td>Name</td>
-					<td><input type="text" th:field="*{TypeIncome.nameIncome}"  class="form-control"></td>
-				</tr>
-				<tr>
-					<td colspan="2"><button class="btn btn-primary" type="submit">Save</button></td>
-				</tr>
-
-			</table>
-			<p><a href="/" th:href="@{/}">Back to home page</a></p>
-		</form>
-	</div>
-</div>
+ </div>
+<form class="form-horizontal" action="#" th:action="@{/addTypeIncome}"   th:object="${typeIncome}"  method="post">
+    <input type="hidden" th:field="*{idincome}" /> 
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="Name">Name</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="Name"  th:field="*{nameIncome}"  placeholder="Enter Name" name="Name">
+        <div th:if="${#fields.hasErrors('nameIncome')}"  th:errors="*{nameIncome}"  class="alert alert-danger" role="alert">
+  			<p th:class="'error'" class="alert-link" ></p>
+			</div>
+        
+      </div>
+    </div>
+   
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+    <p><a href="/" th:href="@{/}">Back to home page</a></p>
+  </form>
+   </div>
 </body>
 </html>
+
+
+<!-- <div layout:fragment="content" th:remove="tag"> -->
+<!-- 	<div align="center"> -->
+<!-- 		<h1>Create New Income</h1> -->
+<!-- 		<br /> -->
+<!-- 		<form action="#" method="post"> -->
+		
+		
+		
+<!-- 			<table class="table table-bordered table-hover"> -->
+			
+<!-- 				<tr> -->
+<!-- 					<td>Name</td> -->
+<!-- 					<td><input type="text" th:field="*{TypeIncome.nameIncome}"  class="form-control"></td> -->
+<!-- 				</tr> -->
+<!-- 				<tr> -->
+<!-- 					<td colspan="2"><button class="btn btn-primary" type="submit">Save</button></td> -->
+<!-- 				</tr> -->
+
+<!-- 			</table> -->
+<!-- 			<p><a href="/" th:href="@{/}">Back to home page</a></p> -->
+<!-- 		</form> -->
+<!-- 	</div> -->
+<!-- </div> -->

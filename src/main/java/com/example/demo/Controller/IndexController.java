@@ -139,8 +139,8 @@ public class IndexController  implements WebMvcConfigurer {
 
 	@RequestMapping("/addTypeIncome")
 	public String ShowNewTypeIncomeForm(Model model) {
-		TypeIncome Typeincome = new TypeIncome();
-		model.addAttribute("TypeIncome", Typeincome);
+		TypeIncome typeincome = new TypeIncome();
+		model.addAttribute("typeIncome", typeincome);
 		return "addTypeIncome";
 	}
 	
