@@ -91,7 +91,7 @@
 							th:text="${page}"></a>
 						</li>
 						<li
-							th:class="${listIncome.number + 1 == listsupplier.totalPages} ? disabled">
+							th:class="${listIncome.number + 1 == listIncome.totalPages} ? disabled">
 							<a class="pageLink"
 							th:href="@{/income(pageSize=${selectedPageSize}, page=${listIncome.number + 2})}">&rarr;</a>
 						</li>

@@ -3,7 +3,9 @@ package com.example.demo.Controller;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,6 +19,7 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.example.demo.model.Bill;
+import com.example.demo.model.Category;
 import com.example.demo.model.Customer;
 import com.example.demo.model.Income;
 import com.example.demo.model.Item;
@@ -106,6 +109,12 @@ public class IndexController  implements WebMvcConfigurer {
     public String home() {
         return "/home";
     }
+    
+    @GetMapping("/grapgh")
+    public String graph() {
+        return "/grapgh";
+    }
+
 
     @GetMapping("/addCustomer")
 	public String ShowNewCustomrForm(Model model) {
@@ -184,7 +193,7 @@ public class IndexController  implements WebMvcConfigurer {
 	@RequestMapping("/addtypexpenses")
 	public String ShowNewOfExpensesForm(Model model) {
 		TypesOfExpenses expenses = new TypesOfExpenses();
-		model.addAttribute("expenses", expenses);
+		model.addAttribute("typexpenses", expenses);
 		return "addtypexpenses";
 	}
 	
@@ -207,6 +216,12 @@ public class IndexController  implements WebMvcConfigurer {
 		return "addtypeproperty";
 	}
 	
+	@RequestMapping("/addCategory")
+	public String ShowNewCategoryForm(Model model) {
+		Category category = new Category();
+		model.addAttribute("category", category);
+		return "addCategory";
+	}
 	
 	@RequestMapping("/addincome")
 	public String ShowNewIncomeForm(Model model) {
@@ -280,6 +295,24 @@ public class IndexController  implements WebMvcConfigurer {
 		return "budget";
 	}
 	
+	@GetMapping("/displayBarGraph")
+	public String barGraph(Model model) {
+		Map<String, Integer> surveyMap = new LinkedHashMap<>();
+		surveyMap.put("Bills & utilites", 40);
+		surveyMap.put("Auto & Transport", 25);
+		surveyMap.put("Food & dining", 20);
+		surveyMap.put("Shopping", 15);
+		surveyMap.put("Entertaiment", 8);
+		model.addAttribute("surveyMap", surveyMap);
+		return "barGraph";
+	}
+
+	@GetMapping("/displayPieChart")
+	public String pieChart(Model model) {
+		model.addAttribute("pass", 50);
+		model.addAttribute("fail", 50);
+		return "pieChart";
+	}
 	
 	private Double calulerdireferen(Double totalInvoiceBudget, Double totalIncomeBudget) {
 		int totadofference ;	

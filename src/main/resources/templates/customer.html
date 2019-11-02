@@ -73,10 +73,10 @@
 						<li
 							th:class="${listcustomer.number + 1 == listcustomer.totalPages} ? disabled">
 							<a class="pageLink"
-							th:href="@{/customer(pageSize=${selectedPageSize}, page=${listsupplier.number + 2})}">&rarr;</a>
+							th:href="@{/customer(pageSize=${selectedPageSize}, page=${listcustomer.number + 2})}">&rarr;</a>
 						</li>
 						<li
-							th:class="${listsupplier.number + 1 == listsupplier.totalPages} ? disabled">
+							th:class="${listcustomer.number + 1 == listcustomer.totalPages} ? disabled">
 							<a class="pageLink"
 							th:href="@{/customer(pageSize=${selectedPageSize}, page=${listcustomer.totalPages})}">»</a>
 						</li>

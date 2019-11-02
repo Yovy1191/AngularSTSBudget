@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
+<head>
+<title>List Category</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag">
+	<div class="container-fluid">
+		<h1>Category</h1>
+		<a th:href="@{/addCategory}" class="pull-right" >Create  New Category</a>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th scope="col">Category ID</th>
+					<th scope="col">Category Name</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+			<tr th:if="${listcategory.empty}">
+			 <td colspan="2"> No Category Available </td>
+      			  </tr>
+				<tr th:each="category: ${listcategory}">
+					<td th:text="${category.idCategory}">Category Id</td>
+					<td th:text="${category.categoryName}">Category Name</td>
+					<td><p>  <a th:href="@{'/editcategory/' + ${category.idCategory}}" class="btn btn-info btn-sm">
+         					 <span class="glyphicon glyphicon-pencil"></span> Edit 
+        					</a> 
+							&nbsp;&nbsp;&nbsp;
+							 <a th:href="@{'/deletecategory/' + ${category.idCategory}}"
+									class="btn btn-info btn-sm"> <span
+									class="glyphicon glyphicon-trash"></span> Delete
+								</a>
+						</p>
+					</td>
+				
+				</tr>
+			</tbody>
+			
+		
+		</table>
+	<p><a href="/" th:href="@{/}">Back to home page</a></p>
+	</div>
+	<div class="row">
+				<div class="form-group col-md-1">
+					<select class="form-control pagination" id="pageSizeSelect">
+						<option th:each="pageSize : ${pageSizes}" th:text="${pageSize}"
+							th:value="${pageSize}"
+							th:selected="${pageSize} == ${selectedPageSize}"></option>
+					</select>
+				</div>
+				<div th:if="${listcategory.totalPages != 1}"
+					class="form-group col-md-11 pagination-centered">
+					<ul class="pagination">
+						<li th:class="${listcategory.number == 0} ? disabled"><a
+							class="pageLink"
+							th:href="@{/category(pageSize=${selectedPageSize}, page=1)}">«</a></li>
+						<li th:class="${listcategory.number == 0} ? disabled"><a
+							class="pageLink"
+							th:href="@{/category(pageSize=${selectedPageSize}, page=${listcategory.number})}">←</a>
+						</li>
+						<li
+							th:class="${listcategory.number == (page - 1)} ? 'active pointer-disabled'"
+							th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+							<a class="pageLink"
+							th:href="@{/category(pageSize=${selectedPageSize}, page=${page})}"
+							th:text="${page}"></a>
+						</li>
+						<li
+							th:class="${listcategory.number + 1 == listcategory.totalPages} ? disabled">
+							<a class="pageLink"
+							th:href="@{/category(pageSize=${selectedPageSize}, page=${listcategory.number + 2})}">&rarr;</a>
+						</li>
+						<li
+							th:class="${listcategory.number + 1 == listcategory.totalPages} ? disabled">
+							<a class="pageLink"
+							th:href="@{/category(pageSize=${selectedPageSize}, page=${listcategory.totalPages})}">»</a>
+						</li>
+					</ul>
+				</div>
+		
+		</div>
+</div>
+</body>
+	
+</html>
