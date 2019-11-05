@@ -9,7 +9,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Income;
-import com.example.demo.model.Supplier;
 import com.example.demo.repository.IncomeRepository;
 import com.example.demo.service.IIncomeService;
 

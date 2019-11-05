@@ -23,9 +23,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.model.Category;
 import com.example.demo.model.Pager;
-import com.example.demo.model.Supplier;
+import com.example.demo.model.TypeIncome;
 import com.example.demo.model.TypesOfExpenses;
+import com.example.demo.service.ICategoryService;
 import com.example.demo.service.ITypeOfExpensesService;
 
 @Controller
@@ -41,6 +43,9 @@ public class TypeOfExpensesController {
 	
 	@Autowired
 	private ITypeOfExpensesService serviceTypeOfExpenses;
+	
+	@Autowired
+	private ICategoryService serviceCategory;
 	
 		
 	@RequestMapping("/typeExpenses")
@@ -66,26 +71,37 @@ public class TypeOfExpensesController {
 	
 	
 	@PostMapping(value = "/addtypexpenses")
-	public String SaveTypeOfExpenses(@ModelAttribute @Valid TypesOfExpenses newTypeOfexpense, BindingResult bindingResult, Model model) {
+	public String SaveTypeOfExpenses(@ModelAttribute @Valid TypesOfExpenses newTypeOfexpense, BindingResult bindingResult, Model model, 
+			HttpServletRequest request) {
 		if (bindingResult.hasErrors()) {
 			logger.info("Validation errors while submitting form.");
 			return "addtypexpenses";
 		}
 		model.addAttribute("typexpenses", newTypeOfexpense);
+		String idCategory = request.getParameter("idCategory");
+		Category category = new Category();
+		category = serviceCategory.findOne(Long.parseLong(idCategory));
+		newTypeOfexpense.setCategory(category);
 		serviceTypeOfExpenses.save(newTypeOfexpense);
 		logger.info("Form submitted successfully.");
 		return "redirect:/typeExpenses";
 	}
 	
 	@RequestMapping(value = "/editypeofexpenses/{idExpense}")
-	public String ShowEditService(Model model, @PathVariable Long idExpense) {
+	public String ShowEditTypeOfExpenses(Model model, @PathVariable Long idExpense) {
 		model.addAttribute("typeOfexpenses", serviceTypeOfExpenses.findOne(idExpense));
+		model.addAttribute("listcategory", serviceCategory.listAll());
 		return "editypeofexpenses";
 	}
 
 	@RequestMapping(value = "editypeofexpenses", method = RequestMethod.POST)
-	public String saveEditSupplier(Model model, TypesOfExpenses expense, @RequestParam("nameTypeExpense") String nameTypeExpense) {
+	public String saveEditTypeOfExpenses(Model model, TypesOfExpenses expense, @RequestParam("nameTypeExpense") String nameTypeExpense, 
+			HttpServletRequest request) {
 		expense.setNameTypeExpense(nameTypeExpense);
+		String categoryid = request.getParameter("idCategory");
+		Category category = new Category();
+		category = serviceCategory.findOne(Long.parseLong(categoryid));
+		expense.setCategory(category);
 		serviceTypeOfExpenses.save(expense);
 		return "redirect:/editypeofexpenses/" + expense.getIdExpense();
 	}

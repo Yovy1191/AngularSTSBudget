@@ -1,36 +1,50 @@
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:th="http://www.thymeleaf.org"
-      layout:decorate="~{fragments/layout}">
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{fragments/layout}">
 <head>
 <title>Edit Type Of Expenses</title>
 </head>
 <body>
-<div layout:fragment="content" th:remove="tag">
-	<div align="center">
-		<h1>Edit Type Expenses</h1>
-		<br />
-		<form action="#" th:action="@{/editypeofexpenses}" method="post">
-			<table class="table table-bordered">
-				<tr>
-					<td>Id Expenses</td>
-					<td><input th:style="${'color: red;'}" type="text" readonly  class="form-control"
-						th:field="*{expenses.idExpense}" /></td>
-				</tr>
+	<div layout:fragment="content" th:remove="tag">
+		<div align="center">
+			<h1>Edit Type Expenses</h1>
+			<br />
+			<form action="#" th:action="@{/editypeofexpenses}" method="post">
+				<table class="table table-bordered">
+					<tr>
+						<td>Id Expenses</td>
+						<td><input th:style="${'color: red;'}" type="text" readonly
+							class="form-control" th:field="*{typeOfexpenses.idExpense}" /></td>
+					</tr>
 
-				<tr>
-					<td>Name</td>
-					<td><input type="text" th:field="*{expenses.nameTypeExpense}" class="form-control"></td>
-				</tr>
-				
-				<tr>
-					<td colspan="2"><button class="btn btn-primary" type="submit">Save</button></td>
-				</tr>
+					<tr>
+						<td>Name</td>
+						<td><input type="text"
+							th:field="*{typeOfexpenses.nameTypeExpense}" class="form-control"></td>
+					</tr>
 
-			</table>
-			<p><a href="/" th:href="@{/}">Back to home page</a></p>
-		</form>
+					<tr>
+						<td>Category</td>
+						<td><select name="idCategory" class="form-control">
+								<option value=""> -- </option>
+								<option th:each="category : ${listcategory}"
+									th:value="${category.idCategory}"
+									th:utext="${category.categoryName}"
+									th:selected="${idCategory == 'category.idCategory'}" />
+						</select></td>
+					</tr>
+
+					<tr>
+						<td colspan="2"><button class="btn btn-primary" type="submit">Save</button></td>
+					</tr>
+
+				</table>
+				<p>
+					<a href="/" th:href="@{/}">Back to home page</a>
+				</p>
+			</form>
+		</div>
 	</div>
-</div>
 </body>
 </html>

@@ -33,6 +33,7 @@ import com.example.demo.model.TypeProperty;
 import com.example.demo.model.TypesOfExpenses;
 import com.example.demo.repository.PeriodicityRepository;
 import com.example.demo.service.IBillService;
+import com.example.demo.service.ICategoryService;
 import com.example.demo.service.ICustomerService;
 import com.example.demo.service.IIncomeService;
 import com.example.demo.service.IPropertyTypeService;
@@ -78,6 +79,9 @@ public class IndexController  implements WebMvcConfigurer {
 
 	@Autowired
 	private IIncomeService serviceIncome;
+	
+	@Autowired
+	private ICategoryService serviceCategory;
 	
 
 	static LocalDate localDate = LocalDate.now();
@@ -193,6 +197,7 @@ public class IndexController  implements WebMvcConfigurer {
 	@RequestMapping("/addtypexpenses")
 	public String ShowNewOfExpensesForm(Model model) {
 		TypesOfExpenses expenses = new TypesOfExpenses();
+		model.addAttribute("listcategory", serviceCategory.listAll());
 		model.addAttribute("typexpenses", expenses);
 		return "addtypexpenses";
 	}
