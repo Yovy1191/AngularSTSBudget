@@ -32,8 +32,16 @@
        
       </ul>
     </li>
-    <li><a th:href="@{/budget}">Budget</a></li>
-    <li><a th:href="@{/grapgh}">Bar</a></li>
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" th:href="@{/budget}">Financial Reports<span class="caret"></span></a>
+      <ul class="dropdown-menu">
+      	  <li><a th:href="@{/budget}">Budget</a></li>
+         <li><a th:href="@{/grapgh}">Bar</a></li>
+         <li><a  th:href="@{/overview}">Overview</a></li>
+     </ul>
+    </li>
+   
+    
   </ul>
 </div>
 </th:block>

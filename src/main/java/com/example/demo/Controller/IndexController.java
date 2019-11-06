@@ -25,6 +25,7 @@ import com.example.demo.model.Income;
 import com.example.demo.model.Item;
 import com.example.demo.model.ItemWrapper;
 import com.example.demo.model.ItemsCreationWrapper;
+import com.example.demo.model.Overview;
 import com.example.demo.model.Property;
 import com.example.demo.model.ServicesOffered;
 import com.example.demo.model.Supplier;
@@ -227,6 +228,14 @@ public class IndexController  implements WebMvcConfigurer {
 		model.addAttribute("category", category);
 		return "addCategory";
 	}
+	
+	@RequestMapping("/addOverview")
+	public String ShowNewOverviewForm(Model model) {
+		Overview overview = new Overview();
+		model.addAttribute("overview", overview);
+		return "addOverview";
+	}
+	
 	
 	@RequestMapping("/addincome")
 	public String ShowNewIncomeForm(Model model) {

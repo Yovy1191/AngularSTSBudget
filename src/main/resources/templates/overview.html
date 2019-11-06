@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
+<head>
+<title>List Overview</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag">
+	<div class="container-fluid">
+		<h1>Overview</h1>
+		<a th:href="@{/addOverview}" class="pull-right" >Create  New Overview</a>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th scope="col">Overview ID</th>
+					<th scope="col">Overview Name</th>
+					<th scope="col">Overview Value</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+			<tr th:if="${listoverview.empty}">
+			 <td colspan="2"> No Overview Available </td>
+      			  </tr>
+				<tr th:each="overview: ${listoverview}">
+					<td th:text="${overview.idOverview}">Overview Id</td>
+					<td th:text="${overview.nameOverview}">Overview Name</td>
+					<td th:text="${overview.valueOverview}">Overview Value</td>
+					<td><p>  <a th:href="@{'/editoverview/' + ${overview.idOverview}}" class="btn btn-info btn-sm">
+         					 <span class="glyphicon glyphicon-pencil"></span> Edit 
+        					</a> 
+							&nbsp;&nbsp;&nbsp;
+							 <a th:href="@{'/deleteoverview/' + ${overview.idOverview}}"
+									class="btn btn-info btn-sm"> <span
+									class="glyphicon glyphicon-trash"></span> Delete
+								</a>
+						</p>
+					</td>
+				
+				</tr>
+			</tbody>
+			
+		
+		</table>
+	<p><a href="/" th:href="@{/}">Back to home page</a></p>
+	</div>
+	<div class="row">
+				<div class="form-group col-md-1">
+					<select class="form-control pagination" id="pageSizeSelect">
+						<option th:each="pageSize : ${pageSizes}" th:text="${pageSize}"
+							th:value="${pageSize}"
+							th:selected="${pageSize} == ${selectedPageSize}"></option>
+					</select>
+				</div>
+				<div th:if="${listoverview.totalPages != 1}"
+					class="form-group col-md-11 pagination-centered">
+					<ul class="pagination">
+						<li th:class="${listoverview.number == 0} ? disabled"><a
+							class="pageLink"
+							th:href="@{/overview(pageSize=${selectedPageSize}, page=1)}">Â«</a></li>
+						<li th:class="${listcategory.number == 0} ? disabled"><a
+							class="pageLink"
+							th:href="@{/overview(pageSize=${selectedPageSize}, page=${listoverview.number})}">←</a>
+						</li>
+						<li
+							th:class="${listoverview.number == (page - 1)} ? 'active pointer-disabled'"
+							th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+							<a class="pageLink"
+							th:href="@{/overview(pageSize=${selectedPageSize}, page=${page})}"
+							th:text="${page}"></a>
+						</li>
+						<li
+							th:class="${listoverview.number + 1 == listoverview.totalPages} ? disabled">
+							<a class="pageLink"
+							th:href="@{/overview(pageSize=${selectedPageSize}, page=${listoverview.number + 2})}">&rarr;</a>
+						</li>
+						<li
+							th:class="${listoverview.number + 1 == listoverview.totalPages} ? disabled">
+							<a class="pageLink"
+							th:href="@{/overview(pageSize=${selectedPageSize}, page=${listoverview.totalPages})}">»</a>
+						</li>
+					</ul>
+				</div>
+		
+		</div>
+</div>
+</body>
+	
+</html>

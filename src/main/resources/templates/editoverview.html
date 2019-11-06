@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
+<head>
+<title>Edit Overview</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag">
+	<div align="center">
+		<h1>Edit Overview</h1>
+		<br />
+		<form action="#" th:action="@{/editoverview}" method="post">
+			<table class="table table-bordered">
+				<tr>
+					<td>Id Overview</td>
+					<td><input th:style="${'color: red;'}" type="text" readonly class="form-control"
+						th:field="*{overview.idOverview}" /></td>
+				</tr>
+
+				<tr>
+					<td>Overview Name</td>
+					<td><input type="text" th:field="*{overview.nameOverview}"  class="form-control"></td>
+				</tr>
+				<tr>
+					<td>Overview Value</td>
+					<td><input type="text" th:field="*{overview.valueOverview}"  class="form-control"></td>
+				</tr>
+				
+			<tr>
+					<td colspan="2"><button class="btn btn-primary" type="submit">Save</button></td>
+				</tr>
+
+			</table>
+		</form>
+		<p><a href="/" th:href="@{/}">Back to home page</a></p>
+	</div>
+</div>
+</body>
+</html>

@@ -111,6 +111,7 @@ public class BillController {
           InvoiceCeliMonthly();
           InvoicePretAlejo();
           InvoicePretYovanna();
+          InvoiceRentMonthly();
 		return "redirect:/bill";
 	}
 
@@ -133,7 +134,7 @@ public class BillController {
 		billPretYovanna.setTvq(tvq );
 		billPretYovanna.setTotal(sub_total);
 		TypesOfExpenses typeEx = new TypesOfExpenses();
-		typeEx = serviceTypeOfExpenses.findOne((Long.parseLong("3")));
+		typeEx = serviceTypeOfExpenses.findOne((Long.parseLong("7")));
 		billPretYovanna.setTypeexpenses(typeEx);
 		Item itemYovanna = new Item();
 		ItemId idItem = new ItemId(billPretYovanna.getInvoiceId(), (Long.parseLong("1")));
@@ -175,7 +176,7 @@ public class BillController {
 		billPretAlejo.setTvq(tvq );
 		billPretAlejo.setTotal(sub_total);
 		TypesOfExpenses typeEx = new TypesOfExpenses();
-		typeEx = serviceTypeOfExpenses.findOne((Long.parseLong("3")));
+		typeEx = serviceTypeOfExpenses.findOne((Long.parseLong("7")));
 		billPretAlejo.setTypeexpenses(typeEx);
 		Item itemAlejo = new Item();
 		ItemId idItem = new ItemId(billPretAlejo.getInvoiceId(), (Long.parseLong("1")));
@@ -217,7 +218,7 @@ public class BillController {
 		billCeli.setTvq(tvq );
 		billCeli.setTotal(sub_total);
 		TypesOfExpenses typeEx = new TypesOfExpenses();
-		typeEx = serviceTypeOfExpenses.findOne((Long.parseLong("3")));
+		typeEx = serviceTypeOfExpenses.findOne((Long.parseLong("78")));
 		billCeli.setTypeexpenses(typeEx);
 		Item itemCeli = new Item();
 		ItemId idItem = new ItemId(billCeli.getInvoiceId(), (Long.parseLong("1")));
@@ -232,7 +233,7 @@ public class BillController {
 		Supplier supplier = new Supplier();
 		supplier = serviceSupplier.findOne((Long.parseLong("2")));
 		itemCeli.setSupplier(supplier); 
-		serviceItem.save(id, (Long.parseLong("1")), "CELI", (Double.parseDouble("1")), sub_total, sub_total, service, supplier);
+		serviceItem.save(id, (Long.parseLong("1")), "CONTRIBUTION CELI", (Double.parseDouble("1")), sub_total, sub_total, service, supplier);
 		List<Item> items =  new ArrayList<Item>() ;
 		items.add(itemCeli);
 		billCeli.setItems(items);
@@ -260,12 +261,12 @@ public class BillController {
 		billCar.setTvq(tvq );
 		billCar.setTotal(sub_total);
 		TypesOfExpenses typeEx = new TypesOfExpenses();
-		typeEx = serviceTypeOfExpenses.findOne((Long.parseLong("3")));
+		typeEx = serviceTypeOfExpenses.findOne((Long.parseLong("17")));
 		billCar.setTypeexpenses(typeEx);
 		Item itemCar = new Item();
 		ItemId idItem = new ItemId(serviceBill.getNextSeriesInvoiceId(), (Long.parseLong("1")));
 		itemCar.setIdItem(idItem);
-		itemCar.setDescription("LOYER AUTOMOBILE TOYOTA CREDIT");
+		itemCar.setDescription("TOYOTA CREDIT");
 		itemCar.setQte((Double.parseDouble("1")));
 		itemCar.setPrice(sub_total);
 		itemCar.setTotal(sub_total);
@@ -276,6 +277,91 @@ public class BillController {
 		supplier = serviceSupplier.findOne((Long.parseLong("2")));
 		itemCar.setSupplier(supplier);
 		serviceItem.save(id, (Long.parseLong("1")), "LOYER AUTOMOBILE TOYOTA CREDIT", (Double.parseDouble("1")), sub_total, sub_total, service, supplier);
+		List<Item> items =  new ArrayList<Item>() ;
+		items.add(itemCar);
+		billCar.setItems(items);
+		serviceBill.save(billCar);
+		return billCar;
+		
+	}
+	
+	private Bill InvoiceRentMonthly() {
+		Bill billCar = new Bill();
+		Long id = serviceBill.getNextSeriesInvoiceId();
+        billCar.setInvoiceId(id);
+        LocalDate date = LocalDate.now(); 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        String strDate = formatter.format(date);  
+        billCar.setDate(strDate);
+        Customer customer = new Customer();
+        customer = serviceCustomer.findOne((Long.parseLong("15")));
+        billCar.setCustomer(customer);
+        Double sub_total = 720.00;
+		billCar.setSub_total(sub_total);
+		Double tps = 0.00;
+		billCar.setTps(tps);
+		Double tvq =  0.00;
+		billCar.setTvq(tvq );
+		billCar.setTotal(sub_total);
+		TypesOfExpenses typeEx = new TypesOfExpenses();
+		typeEx = serviceTypeOfExpenses.findOne((Long.parseLong("79")));
+		billCar.setTypeexpenses(typeEx);
+		Item itemCar = new Item();
+		ItemId idItem = new ItemId(serviceBill.getNextSeriesInvoiceId(), (Long.parseLong("1")));
+		itemCar.setIdItem(idItem);
+		itemCar.setDescription("lES IMMEUBLES - APP 101");
+		itemCar.setQte((Double.parseDouble("1")));
+		itemCar.setPrice(sub_total);
+		itemCar.setTotal(sub_total);
+		ServicesOffered service = new ServicesOffered();
+		service = serviceOffered.findOne((Long.parseLong("15")));
+		itemCar.setServices(service);
+		Supplier supplier = new Supplier();
+		supplier = serviceSupplier.findOne((Long.parseLong("2")));
+		itemCar.setSupplier(supplier);
+		serviceItem.save(id, (Long.parseLong("1")), "lES IMMEUBLES - APP 101", (Double.parseDouble("1")), sub_total, sub_total, service, supplier);
+		List<Item> items =  new ArrayList<Item>() ;
+		items.add(itemCar);
+		billCar.setItems(items);
+		serviceBill.save(billCar);
+		return billCar;
+		
+	}
+	private Bill InvoiceNetflixMonthly() {
+		Bill billCar = new Bill();
+		Long id = serviceBill.getNextSeriesInvoiceId();
+        billCar.setInvoiceId(id);
+        LocalDate date = LocalDate.now(); 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        String strDate = formatter.format(date);  
+        billCar.setDate(strDate);
+        Customer customer = new Customer();
+        customer = serviceCustomer.findOne((Long.parseLong("15")));
+        billCar.setCustomer(customer);
+        Double sub_total = 15.39;
+		billCar.setSub_total(sub_total);
+		Double tps = 0.00;
+		billCar.setTps(tps);
+		Double tvq =  0.00;
+		billCar.setTvq(tvq );
+		billCar.setTotal(sub_total);
+		TypesOfExpenses typeEx = new TypesOfExpenses();
+		typeEx = serviceTypeOfExpenses.findOne((Long.parseLong("1")));
+		billCar.setTypeexpenses(typeEx);
+		Item itemCar = new Item();
+		ItemId idItem = new ItemId(serviceBill.getNextSeriesInvoiceId(), (Long.parseLong("1")));
+		itemCar.setIdItem(idItem);
+		itemCar.setDescription("NEXTFLIX");
+		itemCar.setQte((Double.parseDouble("1")));
+		itemCar.setPrice(sub_total);
+		itemCar.setTotal(sub_total);
+		ServicesOffered service = new ServicesOffered();
+		service = serviceOffered.findOne((Long.parseLong("15")));
+		itemCar.setServices(service);
+		Supplier supplier = new Supplier();
+		supplier = serviceSupplier.findOne((Long.parseLong("2")));
+		itemCar.setSupplier(supplier);
+		serviceItem.save(id, (Long.parseLong("1")), "NEXTFLIX", (Double.parseDouble("1")), sub_total, sub_total, service, supplier);
 		List<Item> items =  new ArrayList<Item>() ;
 		items.add(itemCar);
 		billCar.setItems(items);

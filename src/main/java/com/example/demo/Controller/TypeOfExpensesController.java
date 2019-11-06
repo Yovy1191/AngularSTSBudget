@@ -25,7 +25,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.model.Category;
 import com.example.demo.model.Pager;
-import com.example.demo.model.TypeIncome;
 import com.example.demo.model.TypesOfExpenses;
 import com.example.demo.service.ICategoryService;
 import com.example.demo.service.ITypeOfExpensesService;
