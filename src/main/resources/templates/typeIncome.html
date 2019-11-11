@@ -11,7 +11,7 @@
 	<div  align="center">
 		<h1>Type Of Income</h1>
 		<a th:href="@{/addTypeIncome}"  class="pull-right">Create  New Type Income</a>
-		<table class="table table-bordered">
+		<table class="table responsive table-striped table-bordered table-sm" id="sort">
 			<thead>
 				<tr>
 					<th  scope="col">Income ID</th>
@@ -37,7 +37,7 @@
 				</tr>
 			</tbody>
 		</table>
-
+		<p><a href="/" th:href="@{/}" class="pull-right">Back to home page</a></p>	
 	</div>
 	<div class="row">
 				<div class="form-group col-md-1">
@@ -78,6 +78,15 @@
 				</div>
 		
 		</div>
+		<script>
+		$(document).ready(function() {
+			   $("#sort").DataTable({
+				   "bPaginate":   false
+
+			   });
+			});
+
+</script>
 </div>
 </body>
 </html>
