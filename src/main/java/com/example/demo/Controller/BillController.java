@@ -4,23 +4,30 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.model.Bill;
+import com.example.demo.model.Category;
 import com.example.demo.model.Customer;
 import com.example.demo.model.Item;
 import com.example.demo.model.ItemId;
 import com.example.demo.model.ItemWrapper;
 import com.example.demo.model.ItemsCreationWrapper;
+import com.example.demo.model.Pager;
 import com.example.demo.model.ServicesOffered;
 import com.example.demo.model.Supplier;
 import com.example.demo.model.TypesOfExpenses;
@@ -34,6 +41,11 @@ import com.example.demo.service.ITypeOfExpensesService;
 @Controller
 public class BillController {
 
+	 private static final int BUTTONS_TO_SHOW = 3;
+	 private static final int INITIAL_PAGE = 0;
+	 private static final int INITIAL_PAGE_SIZE = 5;
+	 private static final int[] PAGE_SIZES = { 5, 10};
+	
 	static LocalDate localDate = LocalDate.now();
 
 	@Autowired
@@ -61,6 +73,21 @@ public class BillController {
 		model.addAttribute("listbill", serviceBill.findAll());
 		return "bill";
 	}
+	
+	@GetMapping("/bill")
+	 public ModelAndView ShowBillPage(@RequestParam("pageSize") Optional<Integer> pageSize,
+	            @RequestParam("page") Optional<Integer> page){
+	        ModelAndView modelAndView = new ModelAndView("/bill");
+	        int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
+	        int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
+	        Page<Bill> listbill = serviceBill.listAll(PageRequest.of(evalPage, evalPageSize));
+	        Pager pager = new Pager(listbill.getTotalPages(),listbill.getNumber(),BUTTONS_TO_SHOW);
+	        modelAndView.addObject("listbill",listbill);
+	        modelAndView.addObject("selectedPageSize", evalPageSize);
+	        modelAndView.addObject("pageSizes", PAGE_SIZES);
+	        modelAndView.addObject("pager", pager);
+	        return modelAndView;
+	    }
 
 	@RequestMapping(value = "/addbill2", method = RequestMethod.POST)
 	public String SaveBill(@ModelAttribute ItemsCreationWrapper form, Model model,  ItemWrapper itemw,  HttpServletRequest request) {
@@ -112,6 +139,7 @@ public class BillController {
           InvoicePretAlejo();
           InvoicePretYovanna();
           InvoiceRentMonthly();
+          InvoiceNetflixMonthly();
 		return "redirect:/bill";
 	}
 

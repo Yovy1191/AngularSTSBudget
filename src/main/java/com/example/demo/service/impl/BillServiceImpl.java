@@ -3,7 +3,9 @@ package com.example.demo.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Bill;
@@ -17,12 +19,7 @@ public class BillServiceImpl implements IBillService {
 	private BillRepository repositoryBill;
 	
 	
-	@Override
-	public List<Bill> listAll(PageRequest pageRequest) {
-		return repositoryBill.findAll();
-
-	}
-
+	
 	@Override
 	public Bill save(Bill bill) {
 		return repositoryBill.save(bill);
@@ -71,6 +68,11 @@ public class BillServiceImpl implements IBillService {
 	@Override
 	public List<Bill> getExpensesQuartely() {
 		return repositoryBill.getExpensesQuartely();
+	}
+
+	@Override
+	public Page<Bill> listAll(Pageable pageable) {
+		return repositoryBill.findAll(pageable);
 	}
 	
 

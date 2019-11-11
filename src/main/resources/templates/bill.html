@@ -4,45 +4,78 @@
       layout:decorate="~{fragments/layout}">
 <head>
 <title>Create New Invoice</title>
-<!--  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"> -->
 </head>
 <body>
 <div layout:fragment="content" th:remove="tag">
 	<div  class="container-fluid">
 		<h1>Bill</h1>
 		<a th:href="@{/addbill2}"  class="pull-right">Create  New Bill</a>
-		<table class="table table-bordered">
+		<table  class="table responsive table-striped table-bordered table-sm" id="bill">
 			<thead>
 				<tr>
 					<th scope="col">invoice Id</th>
 					<th scope="col">Date</th>
 					<th scope="col">Sub-total</th>
-					<th scope="col">Total</th>
 					<th scope="col">TPS</th>
 					<th scope="col">TVQ</th>
-					<th scope="col">Action</th>
+					<th scope="col">Total</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="bill: ${listbill}">
 					<td th:text="${bill.invoiceId}">Bill Id</td>
 					<td th:text="${bill.date}">Date</td>
-					<td th:text="${bill.sub_total}">Subtotal</td>
-					<td th:text="${bill.tvq}">TVQ</td>
+					<td th:text="${bill.sub_total}">Sub-total</td>
 					<td th:text="${bill.tps}">TPS</td>
-						<td th:text="${bill.total}">Total</td>
-<!-- 					<td><a th:href="@{'/editcustomer/' + ${customer.idCustomer}}">Edit</a> -->
-<!-- 					  &nbsp;&nbsp;&nbsp; -->
-<!-- 					    <a th:href="@{'/deletecustomer/' + ${customer.idCustomer}}">Delete</a> -->
-<!-- 					</td> -->
+				   	<td th:text="${bill.tvq}">TVQ</td>
+					<td th:text="${bill.total}">Total</td>
 				</tr>
 			</tbody>
 		</table>
-<!-- 		<ul class="nav nav-pills"> -->
-<!-- 		  <li class="nav-item" th:each="i : ${#numbers.sequence(0,listbill.totalPages-1)}nav nav-pills"> -->
-<!-- 		  <a th:text="${i}" class="nav-link" ></a> -->
-<!-- 		</ul> -->
+		<p><a href="/" th:href="@{/}" class="pull-right">Back to home page</a></p>
+
 	</div>
+	<div class="row">
+				<div th:if="${listbill.totalPages != 1}"
+					class="form-group col-md-11 pagination-centered">
+					<ul class="pagination">
+						<li th:class="${listbill.number == 0} ? disabled"><a
+							class="pageLink"
+							th:href="@{/bill(pageSize=${selectedPageSize}, page=1)}">«</a></li>
+						<li th:class="${listbill.number == 0} ? disabled"><a
+							class="pageLink"
+							th:href="@{/bill(pageSize=${selectedPageSize}, page=${listbill.number})}">←</a>
+						</li>
+						<li
+							th:class="${listbill.number == (page - 1)} ? 'active pointer-disabled'"
+							th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+							<a class="pageLink"
+							th:href="@{/bill(pageSize=${selectedPageSize}, page=${page})}"
+							th:text="${page}"></a>
+						</li>
+						<li
+							th:class="${listbill.number + 1 == listbill.totalPages} ? disabled">
+							<a class="pageLink"
+							th:href="@{/bill(pageSize=${selectedPageSize}, page=${listbill.number + 2})}">&rarr;</a>
+						</li>
+						<li
+							th:class="${listbill.number + 1 == listbill.totalPages} ? disabled">
+							<a class="pageLink"
+							th:href="@{/bill(pageSize=${selectedPageSize}, page=${listbill.totalPages})}">»</a>
+						</li>
+					</ul>
+				</div>
+		
+		</div>
+		<script>
+		$(document).ready(function() {
+			   $("#bill").DataTable({
+				   "bPaginate":   false
+
+			   });
+			});
+
+</script>
 </div>
 </body>
 </html>

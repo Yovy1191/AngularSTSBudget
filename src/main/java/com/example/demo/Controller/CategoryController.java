@@ -26,6 +26,8 @@ import com.example.demo.model.Pager;
 import com.example.demo.service.ICategoryService;
 
 
+
+
 @Controller
 public class CategoryController {
 
@@ -38,11 +40,8 @@ public class CategoryController {
 
 	@Autowired
 	private ICategoryService serviceCategory;
-
-//	@InitBinder
-//	public void initBinder(WebDataBinder binder) {
-//		binder.registerCategoryEditor(String.class, new StringTrimmerEditor(true));
-//	}
+	
+	
 
 	public String finalString = null;
 
@@ -100,5 +99,6 @@ public class CategoryController {
 		serviceCategory.delete(idCategory);
 		return "redirect:/category";
 	}
+	
 
 }

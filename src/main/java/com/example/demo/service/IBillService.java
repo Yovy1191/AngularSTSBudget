@@ -2,7 +2,8 @@ package com.example.demo.service;
 
 import java.util.List;
 
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import com.example.demo.model.Bill;
 
@@ -10,8 +11,8 @@ import com.example.demo.model.Bill;
 
 public interface IBillService {
 	
-	public List<Bill> listAll(PageRequest pageRequest);
-	List<Bill> findAll();
+	public Page<Bill> listAll(Pageable pageable);
+	public  List<Bill> findAll();
 	Bill save(Bill bill); 
 	public Bill findOne(Long id);
 	public void delete(Long id);

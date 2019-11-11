@@ -10,7 +10,7 @@
 	<div class="container-fluid">
 		<h1>Category</h1>
 		<a th:href="@{/addCategory}" class="pull-right" >Create  New Category</a>
-		<table class="table table-bordered">
+		<table  class="table responsive table-striped table-bordered table-sm" id="sort">
 			<thead>
 				<tr>
 					<th scope="col">Category ID</th>
@@ -23,7 +23,7 @@
 			 <td colspan="2"> No Category Available </td>
       			  </tr>
 				<tr th:each="category: ${listcategory}">
-					<td th:text="${category.idCategory}">Category Id</td>
+					<td  data-table-header="Id" th:text="${category.idCategory}">Category Id</td>
 					<td th:text="${category.categoryName}">Category Name</td>
 					<td><p>  <a th:href="@{'/editcategory/' + ${category.idCategory}}" class="btn btn-info btn-sm">
          					 <span class="glyphicon glyphicon-pencil"></span> Edit 
@@ -41,16 +41,9 @@
 			
 		
 		</table>
-	<p><a href="/" th:href="@{/}">Back to home page</a></p>
+	<p><a href="/" th:href="@{/}" class="pull-right">Back to home page</a></p>
 	</div>
 	<div class="row">
-				<div class="form-group col-md-1">
-					<select class="form-control pagination" id="pageSizeSelect">
-						<option th:each="pageSize : ${pageSizes}" th:text="${pageSize}"
-							th:value="${pageSize}"
-							th:selected="${pageSize} == ${selectedPageSize}"></option>
-					</select>
-				</div>
 				<div th:if="${listcategory.totalPages != 1}"
 					class="form-group col-md-11 pagination-centered">
 					<ul class="pagination">
@@ -82,7 +75,15 @@
 				</div>
 		
 		</div>
+		<script>
+		$(document).ready(function() {
+			   $("#sort").DataTable({
+				   "bPaginate":   false
+
+			   });
+			});
+
+</script>
 </div>
-</body>
-	
+</body>	
 </html>

@@ -17,6 +17,7 @@ public class CategoryServiceImpl implements ICategoryService {
 
 	@Autowired
 	private CategoryRepository repositoryCategory;
+	
 
 	@Override
 	public List<Category> listAll() {
@@ -43,5 +44,7 @@ public class CategoryServiceImpl implements ICategoryService {
 	public Page<Category> findAll(Pageable pageable) {
 		return repositoryCategory.findAll(pageable);
 	}
+
+
 
 }
