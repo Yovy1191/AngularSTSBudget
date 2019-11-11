@@ -3,6 +3,8 @@ package com.example.demo.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Property;
@@ -36,6 +38,11 @@ public class PropertyImpl implements IPropertyService {
 	@Override
 	public Property save(Property property) {
 		return 	repositoryProperty.save(property);
+	}
+
+	@Override
+	public Page<Property> findAll(Pageable pageable) {
+		return repositoryProperty.findAll(pageable);
 	}
 
 

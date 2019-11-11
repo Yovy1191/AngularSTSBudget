@@ -10,7 +10,7 @@
 	<div class="container-fluid">
 		<h1>Property</h1>
 		<a th:href="@{/addproperty}" class="pull-right" >Create  New Property</a>
-		<table class="table table-bordered">
+		<table class="table responsive table-striped table-bordered table-sm" id="sort">
 			<thead>
 				<tr>
 					<th scope="col">Property ID</th>
@@ -44,8 +44,49 @@
 			
 		
 		</table>
-	<p><a href="/" th:href="@{/}">Back to home page</a></p>
+	<p><a href="/" th:href="@{/}" class="pull-right">Back to home page</a></p>
 	</div>
+	<div class="row">
+				<div th:if="${listproperty.totalPages != 1}"
+					class="form-group col-md-11 pagination-centered">
+					<ul class="pagination">
+						<li th:class="${listproperty.number == 0} ? disabled"><a
+							class="pageLink"
+							th:href="@{/property(pageSize=${selectedPageSize}, page=1)}">«</a></li>
+						<li th:class="${listproperty.number == 0} ? disabled"><a
+							class="pageLink"
+							th:href="@{/property(pageSize=${selectedPageSize}, page=${listproperty.number})}">←</a>
+						</li>
+						<li
+							th:class="${listproperty.number == (page - 1)} ? 'active pointer-disabled'"
+							th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+							<a class="pageLink"
+							th:href="@{/property(pageSize=${selectedPageSize}, page=${page})}"
+							th:text="${page}"></a>
+						</li>
+						<li
+							th:class="${listproperty.number + 1 == listproperty.totalPages} ? disabled">
+							<a class="pageLink"
+							th:href="@{/property(pageSize=${selectedPageSize}, page=${listproperty.number + 2})}">&rarr;</a>
+						</li>
+						<li
+							th:class="${listproperty.number + 1 == listproperty.totalPages} ? disabled">
+							<a class="pageLink"
+							th:href="@{/property(pageSize=${selectedPageSize}, page=${listproperty.totalPages})}">»</a>
+						</li>
+					</ul>
+				</div>
+		
+		</div>
+	<script>
+		$(document).ready(function() {
+			   $("#sort").DataTable({
+				   "bPaginate":   false
+
+			   });
+			});
+
+</script>
 </div>
 </body>
 	

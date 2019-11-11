@@ -10,7 +10,7 @@
 	<div class="container-fluid">
 		<h1>Customer</h1>
 		<a th:href="@{/addCustomer}" class="pull-right" >Create  New Customer</a>
-		<table class="table table-bordered">
+		<table class="table responsive table-striped table-bordered table-sm" id="sort">
 			<thead>
 				<tr>
 					<th scope="col">Customer ID</th>
@@ -43,7 +43,7 @@
 			
 		
 		</table>
-	<p><a href="/" th:href="@{/}">Back to home page</a></p>
+	<p><a href="/" th:href="@{/}" class="pull-right">Back to home page</a></p>
 	</div>
 	<div class="row">
 				<div class="form-group col-md-1">
@@ -84,6 +84,15 @@
 				</div>
 		
 		</div>
+		<script>
+		$(document).ready(function() {
+			   $("#sort").DataTable({
+				   "bPaginate":   false
+
+			   });
+			});
+
+</script>
 </div>
 </body>
 	
