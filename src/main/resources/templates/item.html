@@ -10,13 +10,15 @@
 	<div  align="center">
 		<h1>Item</h1>
 		<a th:href="@{/additem}"  class="pull-right">Create  New Item</a>
-		<table class="table table-bordered table-hover">
+		<table class="table responsive table-striped table-bordered table-sm" id="sort">
 			<thead>
 				<tr>
+					<th scope="col">Invoice Id</th>
+					<th scope="col">Item Id</th>
 					<th scope="col">Descripton</th>
 					<th scope="col">qte</th>
 					<th scope="col">price</th>
-					<th scope="col">subtotal</th>
+					<th scope="col">Total</th>
 					<th scope="col">service</th>
 					<th scope="col">Supplier</th>
 					<th scope="col">Action</th>
@@ -24,22 +26,67 @@
 			</thead>
 			<tbody>
 			<tr th:each="item: ${listitems}">
-					<td th:text="${item.description}"  class="form-control">Name</td>
-				 	<td th:text="${item.qte}"  class="form-control">qte</td>
- 					<td th:text="${item.price}"  class="form-control">price</td>
-					<td th:text="${item.total}"  class="form-control">subtotal</td>
-					<td th:text="${item.services.nameService}"  class="form-control">Service</td>
-					<td th:text="${item.supplier.nameSupplier}"  class="form-control">Supplier</td>
-<!-- 					<td><a th:href="@{'/edititem/' + ${item.idItem}}">Edit</a> -->
-<!-- 					  &nbsp;&nbsp;&nbsp; -->
-<!-- 					    <a th:href="@{'/deleteitem/' + ${item.idCustomer}}">Delete</a> -->
-<!-- 					</td> -->
+					<td th:text="${item.idItem.InvoiceId}"  >Invoice Id</td>
+					<td th:text="${item.idItem.ItemId}"  >Invoice Id</td>
+					<td th:text="${item.description}"  >Name</td>
+				 	<td th:text="${item.qte}" >qte</td>
+ 					<td th:text="${item.price}" >price</td>
+					<td th:text="${item.total}" >total</td>
+					<td th:text="${item.services.nameService}" >Service</td>
+					<td th:text="${item.supplier.nameSupplier}">Supplier</td>
+					<td><a th:href="@{'/edititem/' + ${item.idItem.InvoiceId} + '/edititem/' + ${item.idItem.ItemId}}"  class="btn btn-info btn-sm">
+					<span class="glyphicon glyphicon-pencil"></span>Edit</a>
+ 					  &nbsp;&nbsp;&nbsp;
+ 					    <a th:href="@{'/deleteitem/' + ${item.idItem.InvoiceId} + '/deleteitem/' + ${item.idItem.ItemId}}" class="btn btn-info btn-sm">
+ 					    <span class="glyphicon glyphicon-trash"></span>Delete</a>
+ 					</td>
 				</tr>
 				
 			</tbody>
 		</table>
 	<p><a href="/" th:href="@{/}">Back to home page</a></p>
 	</div>
+	<div class="row">
+				<div th:if="${listitems.totalPages != 1}"
+					class="form-group col-md-11 pagination-centered">
+					<ul class="pagination">
+						<li th:class="${listitems.number == 0} ? disabled"><a
+							class="pageLink"
+							th:href="@{/item(pageSize=${selectedPageSize}, page=1)}">«</a></li>
+						<li th:class="${listitems.number == 0} ? disabled"><a
+							class="pageLink"
+							th:href="@{/item(pageSize=${selectedPageSize}, page=${listitems.number})}">←</a>
+						</li>
+						<li
+							th:class="${listitems.number == (page - 1)} ? 'active pointer-disabled'"
+							th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+							<a class="pageLink"
+							th:href="@{/item(pageSize=${selectedPageSize}, page=${page})}"
+							th:text="${page}"></a>
+						</li>
+						<li
+							th:class="${listitems.number + 1 == listitems.totalPages} ? disabled">
+							<a class="pageLink"
+							th:href="@{/item(pageSize=${selectedPageSize}, page=${listitems.number + 2})}">&rarr;</a>
+						</li>
+						<li
+							th:class="${listitems.number + 1 == listitems.totalPages} ? disabled">
+							<a class="pageLink"
+							th:href="@{/item(pageSize=${selectedPageSize}, page=${listitems.totalPages})}">»</a>
+						</li>
+					</ul>
+				</div>
+		
+		</div>
+	<script>
+		$(document).ready(function() {
+			   $("#sort").DataTable({
+				   "bPaginate":   false
+
+			   });
+			});
+
+</script>
 </div>
 </body>
 </html>

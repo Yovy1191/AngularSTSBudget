@@ -31,7 +31,7 @@ public class Item  {
 	
 	@OneToOne
 	@JoinColumn(name = "serviceidService")
-	public ServicesOffered services;
+	public ServicesO services;
 	
 	@OneToOne
 	@JoinColumn(name = "supplieridSupplier")
@@ -52,12 +52,12 @@ public class Item  {
 	}
 
 
-	public ServicesOffered getServices() {
+	public ServicesO getServices() {
 		return services;
 	}
 
 
-	public void setServices(ServicesOffered services) {
+	public void setServices(ServicesO services) {
 		this.services = services;
 	}
 

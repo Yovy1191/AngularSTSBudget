@@ -3,8 +3,8 @@
 	xmlns:th="http://www.thymeleaf.org"
 	layout:decorate="~{fragments/layout}">
 <head>
- <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet"/>
-    <link th:href="@{/css/pag.css}" rel="stylesheet"/>
+<!--  <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet"/> -->
+<!--     <link th:href="@{/css/pag.css}" rel="stylesheet"/> -->
 <title>Supplier</title>
 </head>
 <body>
@@ -16,7 +16,7 @@
 
 			<a th:href="@{/addsupplier}" class="pull-right">Create New
 				Supplier</a>
-			<table class="table table-bordered">
+			<table class="table responsive table-striped table-bordered table-sm" id="sort">
 				<thead>
 					<tr>
 						<th scope="col">Supplier ID</th>
@@ -42,16 +42,8 @@
 					</tr>
 				</tbody>
 			</table>
-
+<p><a href="/" th:href="@{/}" class="pull-right">Back to home page</a></p>
 	</div>
-			<div class="row">
-				<div class="form-group col-md-1">
-					<select class="form-control pagination" id="pageSizeSelect">
-						<option th:each="pageSize : ${pageSizes}" th:text="${pageSize}"
-							th:value="${pageSize}"
-							th:selected="${pageSize} == ${selectedPageSize}"></option>
-					</select>
-				</div>
 				<div th:if="${listsupplier.totalPages != 1}"
 					class="form-group col-md-11 pagination-centered">
 					<ul class="pagination">
@@ -84,9 +76,17 @@
 		
 		</div>
 	</div>
-<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
-<script th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
-<script th:src="@{/js/pag.js}"></script>
+<!-- <!-- <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script> --> -->
+<!-- <script th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script> -->
+<!-- <script th:src="@{/js/pag.js}"></script> -->
+<script>
+		$(document).ready(function() {
+			   $("#sort").DataTable({
+				   "bPaginate":   false
 
+			   });
+			});
+
+</script>
 </body>
 </html>

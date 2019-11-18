@@ -27,7 +27,7 @@ import com.example.demo.model.ItemWrapper;
 import com.example.demo.model.ItemsCreationWrapper;
 import com.example.demo.model.Overview;
 import com.example.demo.model.Property;
-import com.example.demo.model.ServicesOffered;
+import com.example.demo.model.ServicesO;
 import com.example.demo.model.Supplier;
 import com.example.demo.model.TypeIncome;
 import com.example.demo.model.TypeProperty;
@@ -143,10 +143,10 @@ public class IndexController  implements WebMvcConfigurer {
 		return "addsupplier";
 	}
 	
-	@RequestMapping("/addservicesoffered")
+	@GetMapping("/addservicesoffered")
 	public String ShowNewServicesForm(Model model) {
-		ServicesOffered services = new ServicesOffered();
-		model.addAttribute("service", services);
+		ServicesO servicesoffered = new ServicesO();
+		model.addAttribute("servicesoffered", servicesoffered);
 		return "addservicesoffered";
 	}
 	
@@ -217,8 +217,8 @@ public class IndexController  implements WebMvcConfigurer {
 	
 	@RequestMapping("/addtypeproperty")
 	public String ShowNewTypePropertyForm(Model model) {
-		TypeProperty propertyType = new TypeProperty();
-		model.addAttribute("propertyType", propertyType);
+		TypeProperty typeproperty = new TypeProperty();
+		model.addAttribute("typeproperty", typeproperty);
 		return "addtypeproperty";
 	}
 	

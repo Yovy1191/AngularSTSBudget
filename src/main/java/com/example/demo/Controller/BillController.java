@@ -21,14 +21,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.model.Bill;
-import com.example.demo.model.Category;
 import com.example.demo.model.Customer;
 import com.example.demo.model.Item;
 import com.example.demo.model.ItemId;
 import com.example.demo.model.ItemWrapper;
 import com.example.demo.model.ItemsCreationWrapper;
 import com.example.demo.model.Pager;
-import com.example.demo.model.ServicesOffered;
+import com.example.demo.model.ServicesO;
 import com.example.demo.model.Supplier;
 import com.example.demo.model.TypesOfExpenses;
 import com.example.demo.service.IBillService;
@@ -93,7 +92,7 @@ public class BillController {
 	public String SaveBill(@ModelAttribute ItemsCreationWrapper form, Model model,  ItemWrapper itemw,  HttpServletRequest request) {
 		Bill bill = new Bill();
 		Customer customer = new Customer();
-		ServicesOffered service = new ServicesOffered();
+		ServicesO service = new ServicesO();
 		TypesOfExpenses expenses =  new TypesOfExpenses();
 		List<Item> items = new ArrayList<Item>();
 		Supplier supplier = new Supplier();
@@ -171,7 +170,7 @@ public class BillController {
 		itemYovanna.setQte((Double.parseDouble("1")));
 		itemYovanna.setPrice(sub_total);
 		itemYovanna.setTotal(sub_total);
-		ServicesOffered service = new ServicesOffered();
+		ServicesO service = new ServicesO();
 		service = serviceOffered.findOne((Long.parseLong("15")));
 		itemYovanna.setServices(service);
 		Supplier supplier = new Supplier();
@@ -213,7 +212,7 @@ public class BillController {
 		itemAlejo.setQte((Double.parseDouble("1")));
 		itemAlejo.setPrice(sub_total);
 		itemAlejo.setTotal(sub_total);
-		ServicesOffered service = new ServicesOffered();
+		ServicesO service = new ServicesO();
 		service = serviceOffered.findOne((Long.parseLong("15")));
 		itemAlejo.setServices(service);
 		Supplier supplier = new Supplier();
@@ -255,7 +254,7 @@ public class BillController {
 		itemCeli.setQte((Double.parseDouble("1")));
 		itemCeli.setPrice(sub_total);
 		itemCeli.setTotal(sub_total);
-		ServicesOffered service = new ServicesOffered();
+		ServicesO service = new ServicesO();
 		service = serviceOffered.findOne((Long.parseLong("15")));
 		itemCeli.setServices(service);
 		Supplier supplier = new Supplier();
@@ -298,7 +297,7 @@ public class BillController {
 		itemCar.setQte((Double.parseDouble("1")));
 		itemCar.setPrice(sub_total);
 		itemCar.setTotal(sub_total);
-		ServicesOffered service = new ServicesOffered();
+		ServicesO service = new ServicesO();
 		service = serviceOffered.findOne((Long.parseLong("15")));
 		itemCar.setServices(service);
 		Supplier supplier = new Supplier();
@@ -341,7 +340,7 @@ public class BillController {
 		itemCar.setQte((Double.parseDouble("1")));
 		itemCar.setPrice(sub_total);
 		itemCar.setTotal(sub_total);
-		ServicesOffered service = new ServicesOffered();
+		ServicesO service = new ServicesO();
 		service = serviceOffered.findOne((Long.parseLong("15")));
 		itemCar.setServices(service);
 		Supplier supplier = new Supplier();
@@ -383,7 +382,7 @@ public class BillController {
 		itemCar.setQte((Double.parseDouble("1")));
 		itemCar.setPrice(sub_total);
 		itemCar.setTotal(sub_total);
-		ServicesOffered service = new ServicesOffered();
+		ServicesO service = new ServicesO();
 		service = serviceOffered.findOne((Long.parseLong("15")));
 		itemCar.setServices(service);
 		Supplier supplier = new Supplier();

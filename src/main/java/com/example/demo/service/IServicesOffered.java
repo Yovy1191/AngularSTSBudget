@@ -5,16 +5,16 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import com.example.demo.model.ServicesOffered;
+import com.example.demo.model.ServicesO;
 
 
 
 public interface IServicesOffered {
 	
-	Page<ServicesOffered> listAll(Pageable pageable);
-	List<ServicesOffered> listAll();
-	public void save(ServicesOffered servicesoffered); 
-	public ServicesOffered findOne(Long id);
-	public void delete(Long id);
+	Page<ServicesO> listAll(Pageable pageable);
+	List<ServicesO> listAll();
+	public void save(ServicesO servicesoffered); 
+	public ServicesO findOne(long id);
+	public void delete(long id);
 
 }

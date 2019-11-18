@@ -54,7 +54,7 @@ public class CustomerController {
 		return "customer";
 	}
 
-	// @PostMapping(value = "/addCustomer", method = RequestMethod.POST)
+
 
 	@GetMapping("/customer")
 	 public ModelAndView ShowSupplierPage(@RequestParam("pageSize") Optional<Integer> pageSize,

@@ -22,8 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.model.Pager;
-
-import com.example.demo.model.ServicesOffered;
+import com.example.demo.model.ServicesO;
 import com.example.demo.service.IServicesOffered;
 
 
@@ -38,8 +37,7 @@ public class ServicesOfferedController {
 	 private static final int INITIAL_PAGE_SIZE = 5;
 	 private static final int[] PAGE_SIZES = { 5, 10};
 	
-	
-	
+		
 	@Autowired
 	private IServicesOffered serviceOffered;
 
@@ -50,7 +48,7 @@ public class ServicesOfferedController {
 	        ModelAndView modelAndView = new ModelAndView("servicesoffered");
 	        int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
 	        int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
-	        Page<ServicesOffered> listservices = serviceOffered.listAll(PageRequest.of(evalPage, evalPageSize));
+	        Page<ServicesO> listservices = serviceOffered.listAll(PageRequest.of(evalPage, evalPageSize));
 	        Pager pager = new Pager(listservices.getTotalPages(),listservices.getNumber(),BUTTONS_TO_SHOW);
 	        modelAndView.addObject("listservices",listservices);
 	        modelAndView.addObject("selectedPageSize", evalPageSize);
@@ -61,17 +59,15 @@ public class ServicesOfferedController {
 	
 	
 	@PostMapping(value = "/addservicesoffered")
-	public String SaveServices(@ModelAttribute @Valid ServicesOffered service,BindingResult bindingResult, Model model) {
-		System.out.println("test1 ");
-	//	model.addAttribute("service", service);
-		if (bindingResult.hasErrors()) {
+	public String SaveServices(@ModelAttribute @Valid ServicesO servicesoffered, BindingResult bindingResult, Model model) {
+	if (bindingResult.hasErrors()) {
 			System.out.println("test2 ");
 			logger.info("Validation errors while submitting form.");
 			return "addservicesoffered";
 		}
-		
-		serviceOffered.save(service);
-		logger.info("Form submitted successfully.");
+		model.addAttribute("servicesoffered", servicesoffered);
+		serviceOffered.save(servicesoffered);
+		logger.info("Form submitted successfully");
 		return "redirect:/servicesoffered";
 	}
 	
@@ -82,10 +78,10 @@ public class ServicesOfferedController {
 	}
 
 	@RequestMapping(value = "editservice", method = RequestMethod.POST)
-	public String saveEditSupplier(Model model, ServicesOffered service, @RequestParam("nameService") String nameService) {
+	public String saveEditSupplier(Model model, ServicesO service, @RequestParam("nameService") String nameService) {
 		service.setNameService(nameService);
 		serviceOffered.save(service);
-		return "redirect:/editservice/" + service.getIdService();
+		return "redirect:/editservice/" + service.getIdservice();
 	}
 
 	@RequestMapping(value = "/deleteservice/{idService}")

@@ -8,7 +8,7 @@ public class ItemWrapper {
 	public Double qte;
 	public Double price;		
 	public Double total;		
-	public ServicesOffered services;
+	public ServicesO services;
 	public Supplier supplier;
 	
 	
@@ -22,12 +22,12 @@ public class ItemWrapper {
 	}
 
 
-	public ServicesOffered getServices() {
+	public ServicesO getServices() {
 		return services;
 	}
 
 
-	public void setServices(ServicesOffered services) {
+	public void setServices(ServicesO services) {
 		this.services = services;
 	}
 

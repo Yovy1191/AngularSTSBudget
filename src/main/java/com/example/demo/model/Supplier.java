@@ -16,7 +16,7 @@ public class Supplier  {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idsupplier")
-	private Long idsupplier;
+	private long idsupplier;
 	
 	@NotNull
 	@Size(min=2, max=100, message="First name must be between 2 and 100 characters")
@@ -31,7 +31,7 @@ public class Supplier  {
 		return idsupplier;
 	}
 
-	public void setIdsupplier(Long idsupplier) {
+	public void setIdsupplier(long idsupplier) {
 		this.idsupplier = idsupplier;
 	}
 

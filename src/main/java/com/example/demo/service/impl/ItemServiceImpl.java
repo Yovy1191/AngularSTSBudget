@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Item;
 import com.example.demo.model.ItemId;
-import com.example.demo.model.ServicesOffered;
+import com.example.demo.model.ServicesO;
 import com.example.demo.model.Supplier;
 import com.example.demo.repository.ItemRepository;
 import com.example.demo.service.IItemService;
@@ -26,7 +28,7 @@ public class ItemServiceImpl implements IItemService {
 
 	}
 
-	public Item save(Long InvoiceId, Long ItemId, String description, Double qte, Double price, Double total, ServicesOffered service, Supplier supplier ) {
+	public Item save(Long InvoiceId, Long ItemId, String description, Double qte, Double price, Double total, ServicesO service, Supplier supplier ) {
 		Item item = new Item();
 		item.setIdItem(new ItemId(InvoiceId,ItemId));
 		item.setDescription(description);
@@ -48,6 +50,13 @@ public class ItemServiceImpl implements IItemService {
 	public Optional<Item>  getBypk(ItemId itemId) {
 		return repositoryItem.findById(itemId);
 	}
+
+	@Override
+	public Page<Item> findAll(Pageable pageable) {
+		return repositoryItem.findAll(pageable);
+	}
+
+	
 
 	
 
