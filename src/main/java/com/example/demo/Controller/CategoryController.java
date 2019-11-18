@@ -93,7 +93,7 @@ public class CategoryController {
 		return "redirect:/editcategory/" + category.getIdCategory();
 	}
 
-	@RequestMapping(value = "/deletecategory/{idCustomer}")
+	@RequestMapping(value = "/deletecategory/{idCategory}")
 	public String deletecategory(Model model, @PathVariable Long idCategory) {
 		model.addAttribute("category", serviceCategory.findOne(idCategory));
 		serviceCategory.delete(idCategory);

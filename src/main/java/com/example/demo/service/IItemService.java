@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import com.example.demo.model.Description;
 import com.example.demo.model.Item;
 import com.example.demo.model.ItemId;
 import com.example.demo.model.ServicesO;
@@ -17,7 +18,7 @@ public interface IItemService {
 	Page<Item> findAll(Pageable pageable);
 	public List<Item> listAll();
 	public void delete(ItemId itemId);
-	Item save(Long InvoiceId, Long ItemId, String description, Double qte, Double price, Double subtotal,
+	Item save(Long InvoiceId, Long ItemId, Description description, Double qte, Double price, Double subtotal,
 			ServicesO service, Supplier supplier);
 	public Object getBypk(ItemId idItem);
 	

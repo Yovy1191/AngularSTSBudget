@@ -21,6 +21,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import com.example.demo.model.Bill;
 import com.example.demo.model.Category;
 import com.example.demo.model.Customer;
+import com.example.demo.model.Description;
 import com.example.demo.model.Income;
 import com.example.demo.model.Item;
 import com.example.demo.model.ItemWrapper;
@@ -36,6 +37,7 @@ import com.example.demo.repository.PeriodicityRepository;
 import com.example.demo.service.IBillService;
 import com.example.demo.service.ICategoryService;
 import com.example.demo.service.ICustomerService;
+import com.example.demo.service.IDescriptionService;
 import com.example.demo.service.IIncomeService;
 import com.example.demo.service.IPropertyTypeService;
 import com.example.demo.service.IServicesOffered;
@@ -83,6 +85,10 @@ public class IndexController  implements WebMvcConfigurer {
 	
 	@Autowired
 	private ICategoryService serviceCategory;
+	
+	@Autowired
+	private IDescriptionService serviceDescription;
+	
 	
 
 	static LocalDate localDate = LocalDate.now();
@@ -172,6 +178,7 @@ public class IndexController  implements WebMvcConfigurer {
 	//    model.addAttribute("inextId", inextId.toString());
 		model.addAttribute("listserv", serviceOffered.listAll());
 		model.addAttribute("listsupplier", serviceSupplier.findAll());
+		model.addAttribute("listdescription", serviceDescription.listAll());
 		model.addAttribute("bill", bill);
 		model.addAttribute("items", items);
 		model.addAttribute("item", item);
@@ -234,6 +241,13 @@ public class IndexController  implements WebMvcConfigurer {
 		Overview overview = new Overview();
 		model.addAttribute("overview", overview);
 		return "addOverview";
+	}
+	
+	@RequestMapping("/addDescription")
+	public String ShowNewDescriptionForm(Model model) {
+		Description description = new Description();
+		model.addAttribute("description", description);
+		return "addDescription";
 	}
 	
 	

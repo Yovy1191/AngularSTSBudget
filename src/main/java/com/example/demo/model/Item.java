@@ -15,8 +15,9 @@ public class Item  {
 	@EmbeddedId
 	private ItemId idItem;
 	
-	@Column(name="description")
-	private String description;
+	@OneToOne
+	@JoinColumn(name = "descriptionId")
+	private Description description;
 	
 	@Column(name = "qte")
 	private Double qte;
@@ -42,12 +43,12 @@ public class Item  {
     public Bill bill;
 	
 
-	public String getDescription() {
+	public Description getDescription() {
 		return description;
 	}
 
 
-	public void setDescription(String description) {
+	public void setDescription(Description description) {
 		this.description = description;
 	}
 

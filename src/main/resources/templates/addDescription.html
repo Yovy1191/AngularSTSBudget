@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
+<head>
+<title>Create new Description</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag">
+ <h1>Description Item Invoice</h1>
+  <form class="form-horizontal" action="#" th:action="@{/addDescription}"  th:object="${description}"  method="post">
+     <input type="hidden" th:field="*{descriptionId}" /> 
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="descriptionName">Last Name</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="descriptionName"  th:field="*{descriptionName}"  placeholder="Enter Description" name="descriptionName">
+        <div th:if="${#fields.hasErrors('descriptionName')}"  th:errors="*{descriptionName}"  class="alert alert-danger" role="alert">
+  			<p th:class="'error'" class="alert-link" ></p>
+			</div>
+        </div>
+    </div>
+   
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-default">Submit</button>
+      </div>
+    </div>
+  </form>
+  
+  <p><a href="/" th:href="@{/}">Back to home page</a></p> 
+</div>
+</body>
+</html>

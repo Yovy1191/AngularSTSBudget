@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
+<head>
+<title>List Description</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag">
+	<div class="container-fluid">
+		<h1>Description</h1>
+		<a th:href="@{/addDescription}" class="pull-right" >Create  New Description</a>
+		<table  class="table responsive table-striped table-bordered table-sm" id="sort">
+			<thead>
+				<tr>
+					<th scope="col">Description ID</th>
+					<th scope="col">Description Name</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+			<tr th:if="${listdescription.empty}">
+			 <td colspan="2"> No Description Available </td>
+      			  </tr>
+				<tr th:each="description: ${listdescription}">
+					<td  data-table-header="Id" th:text="${description.descriptionId}">Description Id</td>
+					<td th:text="${description.descriptionName}">Description Name</td>
+					<td><p>  <a th:href="@{'/editdescription/' + ${description.descriptionId}}" class="btn btn-info btn-sm">
+         					 <span class="glyphicon glyphicon-pencil"></span> Edit 
+        					</a> 
+							&nbsp;&nbsp;&nbsp;
+							 <a th:href="@{'/deletedescription/' + ${description.descriptionId}}"
+									class="btn btn-info btn-sm"> <span
+									class="glyphicon glyphicon-trash"></span> Delete
+								</a>
+						</p>
+					</td>
+				
+				</tr>
+			</tbody>
+			
+		
+		</table>
+	<p><a href="/" th:href="@{/}" class="pull-right">Back to home page</a></p>
+	</div>
+	<div class="row">
+				<div th:if="${listdescription.totalPages != 1}"
+					class="form-group col-md-11 pagination-centered">
+					<ul class="pagination">
+						<li th:class="${listdescription.number == 0} ? disabled"><a
+							class="pageLink"
+							th:href="@{/description(pageSize=${selectedPageSize}, page=1)}">«</a></li>
+						<li th:class="${listdescription.number == 0} ? disabled"><a
+							class="pageLink"
+							th:href="@{/description(pageSize=${selectedPageSize}, page=${listdescription.number})}">←</a>
+						</li>
+						<li
+							th:class="${listdescription.number == (page - 1)} ? 'active pointer-disabled'"
+							th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+							<a class="pageLink"
+							th:href="@{/description(pageSize=${selectedPageSize}, page=${page})}"
+							th:text="${page}"></a>
+						</li>
+						<li
+							th:class="${listdescription.number + 1 == listdescription.totalPages} ? disabled">
+							<a class="pageLink"
+							th:href="@{/description(pageSize=${selectedPageSize}, page=${listdescription.number + 2})}">&rarr;</a>
+						</li>
+						<li
+							th:class="${listdescription.number + 1 == listdescription.totalPages} ? disabled">
+							<a class="pageLink"
+							th:href="@{/description(pageSize=${selectedPageSize}, page=${listdescription.totalPages})}">»</a>
+						</li>
+					</ul>
+				</div>
+		
+		</div>
+		<script>
+		$(document).ready(function() {
+			   $("#sort").DataTable({
+				   "bPaginate":   false
+
+			   });
+			});
+
+</script>
+</div>
+</body>	
+</html>

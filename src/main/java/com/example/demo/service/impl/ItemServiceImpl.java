@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.model.Description;
 import com.example.demo.model.Item;
 import com.example.demo.model.ItemId;
 import com.example.demo.model.ServicesO;
@@ -28,7 +29,7 @@ public class ItemServiceImpl implements IItemService {
 
 	}
 
-	public Item save(Long InvoiceId, Long ItemId, String description, Double qte, Double price, Double total, ServicesO service, Supplier supplier ) {
+	public Item save(Long InvoiceId, Long ItemId, Description description, Double qte, Double price, Double total, ServicesO service, Supplier supplier ) {
 		Item item = new Item();
 		item.setIdItem(new ItemId(InvoiceId,ItemId));
 		item.setDescription(description);

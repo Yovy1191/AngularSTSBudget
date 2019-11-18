@@ -6,8 +6,6 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -36,7 +34,7 @@ public class IncomeController {
 	 private static final int INITIAL_PAGE_SIZE = 5;
 	 private static final int[] PAGE_SIZES = { 5, 10};
 	 
-	private static final Logger logger = LoggerFactory.getLogger(IncomeController.class);
+
 	 
 	@Autowired
 	private IIncomeService serviceIncome;

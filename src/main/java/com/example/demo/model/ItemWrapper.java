@@ -4,7 +4,7 @@ public class ItemWrapper {
 	
 	public Long InvoiceId;
 	public Long ItemId ;
-	public String description;
+	public Description description;
 	public Double qte;
 	public Double price;		
 	public Double total;		
@@ -62,12 +62,13 @@ public class ItemWrapper {
 	}
 
 
-	public String getDescription() {
+	
+	public Description getDescription() {
 		return description;
 	}
 
 
-	public void setDescription(String description) {
+	public void setDescription(Description description) {
 		this.description = description;
 	}
 

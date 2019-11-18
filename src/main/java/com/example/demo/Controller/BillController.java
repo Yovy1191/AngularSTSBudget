@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.model.Bill;
 import com.example.demo.model.Customer;
+import com.example.demo.model.Description;
 import com.example.demo.model.Item;
 import com.example.demo.model.ItemId;
 import com.example.demo.model.ItemWrapper;
@@ -32,6 +33,7 @@ import com.example.demo.model.Supplier;
 import com.example.demo.model.TypesOfExpenses;
 import com.example.demo.service.IBillService;
 import com.example.demo.service.ICustomerService;
+import com.example.demo.service.IDescriptionService;
 import com.example.demo.service.IItemService;
 import com.example.demo.service.IServicesOffered;
 import com.example.demo.service.ISupplierService;
@@ -61,6 +63,11 @@ public class BillController {
 
 	@Autowired
 	private IItemService serviceItem;
+	
+
+	@Autowired
+	private IDescriptionService serviceDescription;
+	
 	
 	@Autowired
 	private ITypeOfExpensesService serviceTypeOfExpenses;
@@ -96,6 +103,7 @@ public class BillController {
 		TypesOfExpenses expenses =  new TypesOfExpenses();
 		List<Item> items = new ArrayList<Item>();
 		Supplier supplier = new Supplier();
+		Description description = new Description();
 		String date = request.getParameter("date");
 		bill.setDate(date);
 		String customerid = request.getParameter("idCustomer");
@@ -108,12 +116,15 @@ public class BillController {
 		service = serviceOffered.findOne(Long.parseLong(serviceid)); 
 		String supplierid = request.getParameter("idSupplier");
 		supplier = serviceSupplier.findOne(Long.parseLong(supplierid));
+		String descriptionId = request.getParameter("descriptionId");
+		description = serviceDescription.findOne(Long.parseLong(descriptionId));
 		Long inextId =  serviceBill.getNextSeriesInvoiceId() ;
 		String itemid = request.getParameter("ItemId");
 		itemw.setItemId(Long.parseLong(itemid));
 		itemw.setInvoiceId(inextId);
 		itemw.setSupplier(supplier);
 		itemw.setServices(service);
+		itemw.setDescription(description);
 		Item itemsave = serviceItem.save(itemw.getInvoiceId(), itemw.getItemId(), itemw.getDescription(),
 				itemw.getQte(), itemw.getPrice(), itemw.getTotal(), itemw.getServices(), itemw.getSupplier());
 		items.add(itemsave);
@@ -162,11 +173,13 @@ public class BillController {
 		billPretYovanna.setTotal(sub_total);
 		TypesOfExpenses typeEx = new TypesOfExpenses();
 		typeEx = serviceTypeOfExpenses.findOne((Long.parseLong("7")));
+		Description description = new Description();
+		description = serviceDescription.findOne(Long.parseLong("4"));
 		billPretYovanna.setTypeexpenses(typeEx);
 		Item itemYovanna = new Item();
 		ItemId idItem = new ItemId(billPretYovanna.getInvoiceId(), (Long.parseLong("1")));
 		itemYovanna.setIdItem(idItem);
-		itemYovanna.setDescription("CELI");
+		itemYovanna.setDescription(description);
 		itemYovanna.setQte((Double.parseDouble("1")));
 		itemYovanna.setPrice(sub_total);
 		itemYovanna.setTotal(sub_total);
@@ -176,7 +189,7 @@ public class BillController {
 		Supplier supplier = new Supplier();
 		supplier = serviceSupplier.findOne((Long.parseLong("2")));
 		itemYovanna.setSupplier(supplier); 
-		serviceItem.save(id, (Long.parseLong("1")), "PRET YB", (Double.parseDouble("1")), sub_total, sub_total, service, supplier);
+		serviceItem.save(id, (Long.parseLong("1")), description, (Double.parseDouble("1")), sub_total, sub_total, service, supplier);
 		List<Item> items =  new ArrayList<Item>() ;
 		items.add(itemYovanna);
 		billPretYovanna.setItems(items);
@@ -207,8 +220,10 @@ public class BillController {
 		billPretAlejo.setTypeexpenses(typeEx);
 		Item itemAlejo = new Item();
 		ItemId idItem = new ItemId(billPretAlejo.getInvoiceId(), (Long.parseLong("1")));
+		Description description = new Description();
+		description = serviceDescription.findOne(Long.parseLong("5"));
 		itemAlejo.setIdItem(idItem);
-		itemAlejo.setDescription("CELI");
+		itemAlejo.setDescription(description);
 		itemAlejo.setQte((Double.parseDouble("1")));
 		itemAlejo.setPrice(sub_total);
 		itemAlejo.setTotal(sub_total);
@@ -218,7 +233,7 @@ public class BillController {
 		Supplier supplier = new Supplier();
 		supplier = serviceSupplier.findOne((Long.parseLong("2")));
 		itemAlejo.setSupplier(supplier); 
-		serviceItem.save(id, (Long.parseLong("1")), "PRET ALEJO", (Double.parseDouble("1")), sub_total, sub_total, service, supplier);
+		serviceItem.save(id, (Long.parseLong("1")), description, (Double.parseDouble("1")), sub_total, sub_total, service, supplier);
 		List<Item> items =  new ArrayList<Item>() ;
 		items.add(itemAlejo);
 		billPretAlejo.setItems(items);
@@ -246,11 +261,13 @@ public class BillController {
 		billCeli.setTotal(sub_total);
 		TypesOfExpenses typeEx = new TypesOfExpenses();
 		typeEx = serviceTypeOfExpenses.findOne((Long.parseLong("78")));
+		Description description = new Description();
+		description = serviceDescription.findOne(Long.parseLong("3"));
 		billCeli.setTypeexpenses(typeEx);
 		Item itemCeli = new Item();
 		ItemId idItem = new ItemId(billCeli.getInvoiceId(), (Long.parseLong("1")));
 		itemCeli.setIdItem(idItem);
-		itemCeli.setDescription("CELI");
+		itemCeli.setDescription(description);
 		itemCeli.setQte((Double.parseDouble("1")));
 		itemCeli.setPrice(sub_total);
 		itemCeli.setTotal(sub_total);
@@ -260,7 +277,7 @@ public class BillController {
 		Supplier supplier = new Supplier();
 		supplier = serviceSupplier.findOne((Long.parseLong("2")));
 		itemCeli.setSupplier(supplier); 
-		serviceItem.save(id, (Long.parseLong("1")), "CONTRIBUTION CELI", (Double.parseDouble("1")), sub_total, sub_total, service, supplier);
+		serviceItem.save(id, (Long.parseLong("1")), description, (Double.parseDouble("1")), sub_total, sub_total, service, supplier);
 		List<Item> items =  new ArrayList<Item>() ;
 		items.add(itemCeli);
 		billCeli.setItems(items);
@@ -289,11 +306,13 @@ public class BillController {
 		billCar.setTotal(sub_total);
 		TypesOfExpenses typeEx = new TypesOfExpenses();
 		typeEx = serviceTypeOfExpenses.findOne((Long.parseLong("17")));
+		Description description = new Description();
+		description = serviceDescription.findOne(Long.parseLong("6"));
 		billCar.setTypeexpenses(typeEx);
 		Item itemCar = new Item();
 		ItemId idItem = new ItemId(serviceBill.getNextSeriesInvoiceId(), (Long.parseLong("1")));
 		itemCar.setIdItem(idItem);
-		itemCar.setDescription("TOYOTA CREDIT");
+		itemCar.setDescription(description);
 		itemCar.setQte((Double.parseDouble("1")));
 		itemCar.setPrice(sub_total);
 		itemCar.setTotal(sub_total);
@@ -303,7 +322,7 @@ public class BillController {
 		Supplier supplier = new Supplier();
 		supplier = serviceSupplier.findOne((Long.parseLong("2")));
 		itemCar.setSupplier(supplier);
-		serviceItem.save(id, (Long.parseLong("1")), "LOYER AUTOMOBILE TOYOTA CREDIT", (Double.parseDouble("1")), sub_total, sub_total, service, supplier);
+		serviceItem.save(id, (Long.parseLong("1")), description, (Double.parseDouble("1")), sub_total, sub_total, service, supplier);
 		List<Item> items =  new ArrayList<Item>() ;
 		items.add(itemCar);
 		billCar.setItems(items);
@@ -322,6 +341,8 @@ public class BillController {
         billCar.setDate(strDate);
         Customer customer = new Customer();
         customer = serviceCustomer.findOne((Long.parseLong("15")));
+        Description description = new Description();
+		description = serviceDescription.findOne(Long.parseLong("7"));
         billCar.setCustomer(customer);
         Double sub_total = 720.00;
 		billCar.setSub_total(sub_total);
@@ -336,7 +357,7 @@ public class BillController {
 		Item itemCar = new Item();
 		ItemId idItem = new ItemId(serviceBill.getNextSeriesInvoiceId(), (Long.parseLong("1")));
 		itemCar.setIdItem(idItem);
-		itemCar.setDescription("lES IMMEUBLES - APP 101");
+		itemCar.setDescription(description);
 		itemCar.setQte((Double.parseDouble("1")));
 		itemCar.setPrice(sub_total);
 		itemCar.setTotal(sub_total);
@@ -346,7 +367,7 @@ public class BillController {
 		Supplier supplier = new Supplier();
 		supplier = serviceSupplier.findOne((Long.parseLong("2")));
 		itemCar.setSupplier(supplier);
-		serviceItem.save(id, (Long.parseLong("1")), "lES IMMEUBLES - APP 101", (Double.parseDouble("1")), sub_total, sub_total, service, supplier);
+		serviceItem.save(id, (Long.parseLong("1")), description, (Double.parseDouble("1")), sub_total, sub_total, service, supplier);
 		List<Item> items =  new ArrayList<Item>() ;
 		items.add(itemCar);
 		billCar.setItems(items);
@@ -374,11 +395,13 @@ public class BillController {
 		billCar.setTotal(sub_total);
 		TypesOfExpenses typeEx = new TypesOfExpenses();
 		typeEx = serviceTypeOfExpenses.findOne((Long.parseLong("1")));
+		Description description = new Description();
+		description = serviceDescription.findOne(Long.parseLong("8"));
 		billCar.setTypeexpenses(typeEx);
 		Item itemCar = new Item();
 		ItemId idItem = new ItemId(serviceBill.getNextSeriesInvoiceId(), (Long.parseLong("1")));
 		itemCar.setIdItem(idItem);
-		itemCar.setDescription("NEXTFLIX");
+		itemCar.setDescription(description);
 		itemCar.setQte((Double.parseDouble("1")));
 		itemCar.setPrice(sub_total);
 		itemCar.setTotal(sub_total);
@@ -388,7 +411,7 @@ public class BillController {
 		Supplier supplier = new Supplier();
 		supplier = serviceSupplier.findOne((Long.parseLong("2")));
 		itemCar.setSupplier(supplier);
-		serviceItem.save(id, (Long.parseLong("1")), "NEXTFLIX", (Double.parseDouble("1")), sub_total, sub_total, service, supplier);
+		serviceItem.save(id, (Long.parseLong("1")), description, (Double.parseDouble("1")), sub_total, sub_total, service, supplier);
 		List<Item> items =  new ArrayList<Item>() ;
 		items.add(itemCar);
 		billCar.setItems(items);
