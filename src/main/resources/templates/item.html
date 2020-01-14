@@ -28,7 +28,7 @@
 			<tr th:each="item: ${listitems}">
 					<td th:text="${item.idItem.InvoiceId}"  >Invoice Id</td>
 					<td th:text="${item.idItem.ItemId}"  >Invoice Id</td>
-					<td th:text="${item.description}"  >Name</td>
+					<td th:text="${item.description.descriptionName}"  >Name</td>
 				 	<td th:text="${item.qte}" >qte</td>
  					<td th:text="${item.price}" >price</td>
 					<td th:text="${item.total}" >total</td>

@@ -19,7 +19,7 @@ public class Description {
 	public long descriptionId;
 	
 	@NotNull
-	@Size(min=2, max=40, message="First name must be between 2 and 40 characters")
+	@Size(min=2, max=150, message="First name must be between 2 and 150 characters")
 	@JoinColumn(name = "descriptionName")
 	private String descriptionName;
 

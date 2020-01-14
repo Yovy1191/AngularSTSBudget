@@ -6,6 +6,7 @@ public class ItemWrapper {
 	public Long ItemId ;
 	public Description description;
 	public Double qte;
+	public Double subtotal;
 	public Double price;		
 	public Double total;		
 	public ServicesO services;
@@ -90,6 +91,36 @@ public class ItemWrapper {
 
 	public void setPrice(Double price) {
 		this.price = price;
+	}
+
+
+	public Double getSubtotal() {
+		return subtotal;
+	}
+
+
+	public void setSubtotal(Double subtotal) {
+		this.subtotal = subtotal;
+	}
+
+
+	public ItemWrapper(Long invoiceId, Long itemId, Description description, Double qte, Double subtotal, Double price,
+			Double total, ServicesO services, Supplier supplier) {
+		super();
+		InvoiceId = invoiceId;
+		ItemId = itemId;
+		this.description = description;
+		this.qte = qte;
+		this.subtotal = subtotal;
+		this.price = price;
+		this.total = total;
+		this.services = services;
+		this.supplier = supplier;
+	}
+
+
+	public ItemWrapper() {
+		
 	}
 
 

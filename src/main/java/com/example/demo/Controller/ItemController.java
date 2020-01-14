@@ -85,7 +85,7 @@ public class ItemController {
 	    item.setSupplier(supplier);
         item.setServices(service);
         Item itemsave = serviceItem.save(item.getInvoiceId(),item.getItemId(), item.getDescription(),
-        								  item.getQte(), item.getPrice(),item.getTotal(), item.getServices(), item.getSupplier());
+        								  item.getQte(), item.getPrice(), item.getSubtotal(), item.getTotal(), item.getServices(), item.getSupplier());
 		return "item" + itemsave.getIdItem() + "item"   ;
 	}
 	

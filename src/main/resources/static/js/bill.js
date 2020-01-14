@@ -56,21 +56,38 @@ function calc()
 function calcTax()
 {    
 	
+	 
 	$('#tab_logic tbody tr').each(function(i, element) {
 		var html = $(this).html();
 		if(html!='')
 		{
 			var subtotal = 0 ;
+			var x = document.getElementById("taxesIncluded").checked;
 			$('.total').each(function() {
 				subtotal += parseInt($(this).val());
 		    });
-			$('#tvq').val((subtotal*9.975/100).toFixed(2));
-			$('#tps').val((subtotal*5/100).toFixed(2));
-			calc_total();
+			console.log(x);
+			if (!x)  {
+						 $('#tvq').val((subtotal*9.975/100).toFixed(2));
+						 $('#tps').val((subtotal*5/100).toFixed(2));
+					     
+					    }
+					 else
+					 {
+				    $('#tvq').val((subtotal*0/100).toFixed(2));
+					$('#tps').val((subtotal*0/100).toFixed(2));
+					 }
+		calc_total();
 		}
     });
 }
 
+function calcTpsTpq()
+{    
+	
+		
+ 
+}
 
 
 function calc_total()

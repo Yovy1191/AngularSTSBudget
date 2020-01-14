@@ -34,7 +34,6 @@ public class IncomeController {
 	 private static final int INITIAL_PAGE_SIZE = 5;
 	 private static final int[] PAGE_SIZES = { 5, 10};
 	 
-
 	 
 	@Autowired
 	private IIncomeService serviceIncome;

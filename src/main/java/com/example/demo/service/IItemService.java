@@ -18,7 +18,7 @@ public interface IItemService {
 	Page<Item> findAll(Pageable pageable);
 	public List<Item> listAll();
 	public void delete(ItemId itemId);
-	Item save(Long InvoiceId, Long ItemId, Description description, Double qte, Double price, Double subtotal,
+	Item save(Long InvoiceId, Long ItemId, Description description, Double qte, Double price,  Double subtotal, Double total,
 			ServicesO service, Supplier supplier);
 	public Object getBypk(ItemId idItem);
 	

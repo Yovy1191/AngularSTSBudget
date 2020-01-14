@@ -1,9 +1,13 @@
 package com.example.demo.model;
 
+import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,8 +20,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "BILL")
-public class Bill  {
+public class Bill implements Serializable {
 	
+	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@SequenceGenerator(name = "invoiceId", sequenceName = "invoiceId", allocationSize = 1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "invoiceId")
@@ -26,6 +33,9 @@ public class Bill  {
 	
 	@JoinColumn(name = "date")
 	private String date;
+	
+	@JoinColumn(name = "descriptionName")
+	private String descriptionName;
 	
 	@OneToOne
 	@JoinColumn(name = "idCustomer")
@@ -41,6 +51,9 @@ public class Bill  {
 	@JoinColumn(name = "total")
 	private Double total;
 	
+	@JoinColumn(name = "taxesIncluded")
+	private boolean taxesIncluded = false;
+	
 	@JoinColumn(name = "tps")
 	private Double tps;
 	
@@ -48,13 +61,14 @@ public class Bill  {
 	private Double tvq;
 		
 
-	@OneToMany(mappedBy="bill")
+	@OneToMany(mappedBy = "bill",fetch = FetchType.EAGER)
 	public List<Item> items;
 	
 	public List<Item> getItems() {
 		return items;
 	}
 
+	
 	public List<Item> setItems(List<Item> items) {
 		return this.items = items;
 	}
@@ -119,27 +133,47 @@ public class Bill  {
 		return typeexpenses;
 	}
 
+	public String getDescriptionName() {
+		return descriptionName;
+	}
+
+	public void setDescriptionName(String descriptionName) {
+		this.descriptionName = descriptionName;
+	}
+
 	public void setTypeexpenses(TypesOfExpenses typeexpenses) {
 		this.typeexpenses = typeexpenses;
 	}
-	
-	public Bill() {
-	}
 
-	public Bill(Long invoiceId, String date, Customer customer, TypesOfExpenses typeexpenses, Double sub_total,
-			Double total, Double tps, Double tvq, List<Item> items) {
+	public Bill(Long invoiceId, String date, String descriptionName, Customer customer, TypesOfExpenses typeexpenses, Double sub_total,
+			Double total, boolean taxesIncluded, Double tps, Double tvq, List<Item> items) {
 		super();
 		this.invoiceId = invoiceId;
 		this.date = date;
+		this.descriptionName = descriptionName;
 		this.customer = customer;
 		this.typeexpenses = typeexpenses;
 		this.sub_total = sub_total;
 		this.total = total;
+		this.taxesIncluded = taxesIncluded;
 		this.tps = tps;
 		this.tvq = tvq;
 		this.items = items;
 	}
 
+	public boolean isTaxesIncluded() {
+		return taxesIncluded;
+	}
+
+	public void setTaxesIncluded(boolean taxesIncluded) {
+		this.taxesIncluded = taxesIncluded;
+	}
+
+	public Bill() {
+		
+	}
+	
+	
  
 
 	

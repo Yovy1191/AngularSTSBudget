@@ -1,4 +1,6 @@
 package com.example.demo.model;
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -10,7 +12,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "ITEM")
-public class Item  {
+public class Item implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6658559180289123527L;
+
 
 	@EmbeddedId
 	private ItemId idItem;
@@ -24,6 +32,18 @@ public class Item  {
 	
 	@JoinColumn(name = "price")
 	private Double price;
+
+	@JoinColumn(name = "subtotal")
+	private Double subtotal;
+
+	public Double getSubtotal() {
+		return subtotal;
+	}
+
+
+	public void setSubtotal(Double subtotal) {
+		this.subtotal = subtotal;
+	}
 
 
 	@JoinColumn(name = "total")
@@ -42,7 +62,8 @@ public class Item  {
 	@ManyToOne
     public Bill bill;
 	
-
+	@OneToOne
+	@JoinColumn(name = "descriptionId")
 	public Description getDescription() {
 		return description;
 	}
@@ -127,6 +148,21 @@ public class Item  {
 
 	public void setTotal(Double total) {
 		this.total = total;
+	}
+
+
+	public Item(ItemId idItem, Description description, Double qte, Double price, Double subtotal, Double total,
+			ServicesO services, Supplier supplier, Bill bill) {
+		this.idItem.setInvoiceId(idItem.getInvoiceId());
+		this.idItem.setItemId(idItem.getItemId());
+		this.description = description;
+		this.qte = qte;
+		this.price = price;
+		this.subtotal = subtotal;
+		this.total = total;
+		this.services = services;
+		this.supplier = supplier;
+		this.bill = bill;
 	}
 
 

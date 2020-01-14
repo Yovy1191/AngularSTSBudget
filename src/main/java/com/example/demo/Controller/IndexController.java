@@ -168,6 +168,7 @@ public class IndexController  implements WebMvcConfigurer {
 	@RequestMapping("/addbill2")
 	public String ShowNewBillForm( Model model) {
 		ItemsCreationWrapper wrapper = new ItemsCreationWrapper();
+		 boolean myBooleanVariable = false;
 		List<Item> items =   new ArrayList<Item>();
 	//	Long inextId =  serviceBill.getNextSeriesInvoiceId();
 		Bill bill = new Bill();
@@ -186,6 +187,7 @@ public class IndexController  implements WebMvcConfigurer {
 		model.addAttribute("listItemws", listItemws);
 		model.addAttribute("listcustomer", service.listAll());
 		model.addAttribute("listypeOfExpenses", serviceTypeOfExpenses.listAll());
+		model.addAttribute("taxesIncluded",  myBooleanVariable);
 		model.addAttribute("wrapper", wrapper);		
 		return "addbill2";
 	}

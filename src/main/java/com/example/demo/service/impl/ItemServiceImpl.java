@@ -29,12 +29,13 @@ public class ItemServiceImpl implements IItemService {
 
 	}
 
-	public Item save(Long InvoiceId, Long ItemId, Description description, Double qte, Double price, Double total, ServicesO service, Supplier supplier ) {
+	public Item save(Long InvoiceId, Long ItemId, Description description, Double qte, Double price, Double subtotal, Double total, ServicesO service, Supplier supplier ) {
 		Item item = new Item();
 		item.setIdItem(new ItemId(InvoiceId,ItemId));
 		item.setDescription(description);
         item.setQte(qte);
         item.setPrice(price);
+        item.setSubtotal(subtotal);
         item.setTotal(total);
         item.setServices(service);
         item.setSupplier(supplier);

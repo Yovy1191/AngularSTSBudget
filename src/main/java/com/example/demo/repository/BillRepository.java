@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.model.Bill;
+import com.example.demo.model.Item;
+import com.example.demo.model.ItemWrapper;
 
 
 
@@ -20,8 +22,16 @@ public interface BillRepository extends JpaRepository<Bill, Long> {
 	@Query(value = "SELECT * FROM budget.invoiceid", nativeQuery =    true)
 	public Long getNextSeriesInvoiceId();
 	
+	
 	@Query(value = "SELECT * FROM budget.bill where MONTH(date) = ?1", nativeQuery =    true)
-	public List<Bill> getExpensesMonthly(Long monthly);
+	public List<Bill> getBillMonthly(Long monthly);
+	
+//	@Query(value = "SELECT * FROM budget.bill where MONTH(date) = ?1", nativeQuery =    true)
+//	public List<Bill> getExpensesMonthly(Long monthly);
+	
+//	@Query(value = "SELECT * FROM budget.item" , nativeQuery =    true)
+	@Query(value = "SELECT CAST(i.InvoiceId AS UNSIGNED ) as InvoiceId, CAST(i.ItemId AS UNSIGNED) as ItemId, i.qte, i.price, i.serviceidService, i.supplieridSupplier, i.total, i.descriptionId from budget.item i" , nativeQuery =    true)
+	public List<ItemWrapper> getItemMonthly();
 	
 	@Query(value = "SELECT * FROM budget.bill b WHERE MONTH(b.date)  BETWEEN  month(NOW()- INTERVAL 1 MONTH)  AND  MONTH(NOW())", nativeQuery =    true)
 	public List<Bill> getExpensesBiannual();
