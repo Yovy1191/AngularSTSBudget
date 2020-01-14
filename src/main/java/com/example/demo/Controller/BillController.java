@@ -147,6 +147,7 @@ public class BillController {
 		itemw.setDescription(description);
 		itemw.setQte(Double.parseDouble(request.getParameter("qte")));
 		itemw.setPrice(Double.parseDouble(price));
+		itemw.setSubtotal(Double.parseDouble(request.getParameter("total")));
 		itemw.setTotal(bill.getTotal());
 		Item itemsave = serviceItem.save(itemw.getInvoiceId(), itemw.getItemId(), itemw.getDescription(),
 				itemw.getQte(), itemw.getPrice(), itemw.getSubtotal(), itemw.getTotal(), itemw.getServices(), itemw.getSupplier());
