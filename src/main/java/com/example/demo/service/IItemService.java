@@ -18,9 +18,10 @@ public interface IItemService {
 	Page<Item> findAll(Pageable pageable);
 	public List<Item> listAll();
 	public void delete(ItemId itemId);
-	Item save(Long InvoiceId, Long ItemId, Description description, Double qte, Double price,  Double subtotal, Double total,
-			ServicesO service, Supplier supplier);
+	Item save(Long InvoiceId, Long ItemId, String date, Double qte, Double price,  Double subtotal, ServicesO service, Supplier supplier, Double total,
+			  Description description);
+	Item saveEdit(Item item); 
 	public Object getBypk(ItemId idItem);
-	
+	List<Item> findAllByOrderByDateAsc();
 
 }

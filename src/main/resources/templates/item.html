@@ -15,9 +15,11 @@
 				<tr>
 					<th scope="col">Invoice Id</th>
 					<th scope="col">Item Id</th>
+					<th scope="col">date</th>
 					<th scope="col">Descripton</th>
 					<th scope="col">qte</th>
 					<th scope="col">price</th>
+					<th scope="col">Subtotal</th>
 					<th scope="col">Total</th>
 					<th scope="col">service</th>
 					<th scope="col">Supplier</th>
@@ -28,9 +30,11 @@
 			<tr th:each="item: ${listitems}">
 					<td th:text="${item.idItem.InvoiceId}"  >Invoice Id</td>
 					<td th:text="${item.idItem.ItemId}"  >Invoice Id</td>
+					<td th:text="${item.date}" >date</td>
 					<td th:text="${item.description.descriptionName}"  >Name</td>
 				 	<td th:text="${item.qte}" >qte</td>
  					<td th:text="${item.price}" >price</td>
+ 					<td th:text="${item.subtotal}" >subtotal</td>
 					<td th:text="${item.total}" >total</td>
 					<td th:text="${item.services.nameService}" >Service</td>
 					<td th:text="${item.supplier.nameSupplier}">Supplier</td>

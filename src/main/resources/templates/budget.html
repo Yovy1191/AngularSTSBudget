@@ -48,6 +48,7 @@
 					<thead>
 						<tr>
 							<th scope="col">Date</th>
+							<th scope="col">Category</th>
 							<th scope="col">Description</th>
 							<th scope="col">Customer</th>
 							<th scope="col">Sub-total</th>
@@ -60,6 +61,7 @@
 					<tbody>
 						<tr th:each="bill: ${expensesList}">
 							<td th:text="${bill.date}">Date</td>
+							<td th:text="${bill.typeexpenses.category.categoryName}">Date</td>
 							<td th:text="${bill.items[0].description.descriptionName}">Description</td>
 							<td th:text="${bill.customer.firstName}">Date</td>
 							<td th:text="${bill.sub_total}">Subtotal</td>

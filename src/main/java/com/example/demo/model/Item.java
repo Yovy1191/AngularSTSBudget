@@ -23,9 +23,13 @@ public class Item implements Serializable {
 	@EmbeddedId
 	private ItemId idItem;
 	
+	@JoinColumn(name = "date")
+	private String date;
+	
 	@OneToOne
 	@JoinColumn(name = "descriptionId")
 	private Description description;
+	
 	
 	@Column(name = "qte")
 	private Double qte;
@@ -125,11 +129,6 @@ public class Item implements Serializable {
 	}
 
 	
-	
-	public Item() {
-
-
-	}
 
 
 	public Supplier getSupplier() {
@@ -149,20 +148,34 @@ public class Item implements Serializable {
 	public void setTotal(Double total) {
 		this.total = total;
 	}
+	
+	public String getDate() {
+		return date;
+	}
 
 
-	public Item(ItemId idItem, Description description, Double qte, Double price, Double subtotal, Double total,
-			ServicesO services, Supplier supplier, Bill bill) {
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+
+
+	public Item(ItemId idItem, String date, Double qte, Double price, Double subtotal, ServicesO services, Supplier supplier, Double total,
+			 Description description) {
 		this.idItem.setInvoiceId(idItem.getInvoiceId());
 		this.idItem.setItemId(idItem.getItemId());
-		this.description = description;
+		this.setDate(date);
 		this.qte = qte;
 		this.price = price;
 		this.subtotal = subtotal;
-		this.total = total;
 		this.services = services;
 		this.supplier = supplier;
-		this.bill = bill;
+		this.total = total;
+		this.description = description;
+	}
+
+	public Item() {
+
 	}
 
 

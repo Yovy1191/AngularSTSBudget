@@ -18,15 +18,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.model.Description;
 import com.example.demo.model.Item;
 import com.example.demo.model.ItemId;
 import com.example.demo.model.ItemWrapper;
 import com.example.demo.model.Pager;
 import com.example.demo.model.ServicesO;
 import com.example.demo.model.Supplier;
+import com.example.demo.service.IDescriptionService;
 import com.example.demo.service.IItemService;
 import com.example.demo.service.IServicesOffered;
 import com.example.demo.service.ISupplierService;
+
 
 @Controller
 public class ItemController {
@@ -45,10 +48,13 @@ public class ItemController {
 	@Autowired
 	private ISupplierService serviceSupplier;
 	
+	@Autowired
+	private IDescriptionService serviceDescription;
+	
 		
 	@RequestMapping("/item")
 	private String ListItems(Model model) {
-		model.addAttribute("listitems", serviceItem.listAll());
+		model.addAttribute("listitems", serviceItem.findAllByOrderByDateAsc());
 		return "item";
 	}
 	
@@ -84,8 +90,8 @@ public class ItemController {
 		Supplier supplier = serviceSupplier.findOne(Long.parseLong(supplierid));
 	    item.setSupplier(supplier);
         item.setServices(service);
-        Item itemsave = serviceItem.save(item.getInvoiceId(),item.getItemId(), item.getDescription(),
-        								  item.getQte(), item.getPrice(), item.getSubtotal(), item.getTotal(), item.getServices(), item.getSupplier());
+        Item itemsave = serviceItem.save(item.getInvoiceId(),item.getItemId(), item.getDate(),  item.getQte(), item.getPrice(), item.getSubtotal(),item.getServices(), item.getSupplier(),
+        								  item.getTotal(), item.getDescription());
 		return "item" + itemsave.getIdItem() + "item"   ;
 	}
 	
@@ -96,15 +102,18 @@ public class ItemController {
 		return "edititem";
 	}
 
-//	@RequestMapping(value = "edititem", method = RequestMethod.POST)
-//	public String saveEditItem(Model model, Customer customer, @RequestParam("firstName") String firstName,
-//			@RequestParam("lastName") String lastName) {
-//		customer.setFirstName(firstName);
-//		customer.setLastName(lastName);
-//		serviceCustomer.save(customer);
-//		return "redirect:/editcustomer/" + customer.getIdCustomer();
-//	}
-//
+	@RequestMapping(value = "edititem", method = RequestMethod.POST)
+	public String saveEditItem(Model model, Item item, Description description, HttpServletRequest request) {
+		String descriptionId = request.getParameter("descriptionId");
+		description = serviceDescription.findOne(Long.parseLong(descriptionId));
+		item.setDescription(description);
+		String qte = request.getParameter("qte");
+		item.setDescription(description);
+		item.setQte(Double.parseDouble(qte));
+		serviceItem.saveEdit(item);
+		return "redirect:/item ";
+	}
+
 //	@RequestMapping(value = "/deletecustomer/{idCustomer}")
 //	public String deleteCustomer(Model model, @PathVariable Long idCustomer) {
 //		model.addAttribute("customer", serviceCustomer.findOne(idCustomer));

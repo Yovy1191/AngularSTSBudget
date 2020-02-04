@@ -25,7 +25,13 @@
 
 				<tr>
 					<td>description</td>
-					<td><input type="text" th:field="*{item.description}"  class="form-control"></td>
+					<td><select name="descriptionId"  class="form-control" >
+															<option value=""> -- </option>
+															<option th:each="s : ${listdescription}"
+																th:value="${s.descriptionId}" th:utext="${s.descriptionName}"
+																th:selected="${descriptionId == 's.descriptionId'}" />
+																
+					</select></td>
 				</tr>
 				<tr>
 					<td>Qty</td>
@@ -33,11 +39,11 @@
 				</tr>
 				<tr>
 					<td>Price</td>
-					<td><input type="text" th:field="*{item.price}"  class="form-control"></td>
+					<td><input th:style="${'color: red;'}" type="text" th:field="*{item.price}"  readonly class="form-control"></td>
 				</tr>
 				<tr>
 					<td>Sub-total</td>
-					<td><input type="text" th:field="*{item.total}"  class="form-control"></td>
+					<td><input th:style="${'color: red;'}" type="text" th:field="*{item.total}"  readonly class="form-control"></td>
 				</tr>
 			
 				<tr>

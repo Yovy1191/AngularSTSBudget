@@ -4,6 +4,9 @@ public class ItemWrapper {
 	
 	public Long InvoiceId;
 	public Long ItemId ;
+	public String date;
+	
+
 	public Description description;
 	public Double qte;
 	public Double subtotal;
@@ -102,22 +105,39 @@ public class ItemWrapper {
 	public void setSubtotal(Double subtotal) {
 		this.subtotal = subtotal;
 	}
-
-
-	public ItemWrapper(Long invoiceId, Long itemId, Description description, Double qte, Double subtotal, Double price,
-			Double total, ServicesO services, Supplier supplier) {
-		super();
-		InvoiceId = invoiceId;
-		ItemId = itemId;
-		this.description = description;
-		this.qte = qte;
-		this.subtotal = subtotal;
-		this.price = price;
-		this.total = total;
-		this.services = services;
-		this.supplier = supplier;
+	public String getDate() {
+		return date;
 	}
 
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+
+
+
+	public ItemWrapper(Long invoiceId, Long itemId, String date,  Double qte,  Double price, Double subtotal,
+			ServicesO services, Supplier supplier, Double total,  Description description) {
+		InvoiceId = invoiceId;
+		ItemId = itemId;
+		this.date =date;
+		this.qte = qte;
+		this.price = price;
+		this.subtotal = subtotal;
+		this.services = services;
+		this.supplier = supplier;
+		this.total = total;
+		this.description = description;
+	}
+
+	public ItemWrapper(Description description, Double qte) {
+		this.description = description;
+		this.qte = qte;
+		
+	}
+
+	
 
 	public ItemWrapper() {
 		

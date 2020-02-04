@@ -3,9 +3,7 @@ package com.example.demo.model;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -34,9 +32,7 @@ public class Bill implements Serializable {
 	@JoinColumn(name = "date")
 	private String date;
 	
-	@JoinColumn(name = "descriptionName")
-	private String descriptionName;
-	
+		
 	@OneToOne
 	@JoinColumn(name = "idCustomer")
 	private Customer customer;
@@ -133,24 +129,24 @@ public class Bill implements Serializable {
 		return typeexpenses;
 	}
 
-	public String getDescriptionName() {
-		return descriptionName;
-	}
-
-	public void setDescriptionName(String descriptionName) {
-		this.descriptionName = descriptionName;
-	}
-
+	
 	public void setTypeexpenses(TypesOfExpenses typeexpenses) {
 		this.typeexpenses = typeexpenses;
 	}
 
-	public Bill(Long invoiceId, String date, String descriptionName, Customer customer, TypesOfExpenses typeexpenses, Double sub_total,
+	public boolean isTaxesIncluded() {
+		return taxesIncluded;
+	}
+
+	public void setTaxesIncluded(boolean taxesIncluded) {
+		this.taxesIncluded = taxesIncluded;
+	}
+	
+	public Bill(Long invoiceId, String date, Customer customer, TypesOfExpenses typeexpenses, Double sub_total,
 			Double total, boolean taxesIncluded, Double tps, Double tvq, List<Item> items) {
 		super();
 		this.invoiceId = invoiceId;
 		this.date = date;
-		this.descriptionName = descriptionName;
 		this.customer = customer;
 		this.typeexpenses = typeexpenses;
 		this.sub_total = sub_total;
@@ -161,13 +157,7 @@ public class Bill implements Serializable {
 		this.items = items;
 	}
 
-	public boolean isTaxesIncluded() {
-		return taxesIncluded;
-	}
-
-	public void setTaxesIncluded(boolean taxesIncluded) {
-		this.taxesIncluded = taxesIncluded;
-	}
+	
 
 	public Bill() {
 		

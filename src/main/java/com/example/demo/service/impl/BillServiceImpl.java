@@ -52,38 +52,10 @@ public class BillServiceImpl implements IBillService {
 	@Override
 	public List<Bill> getExpensesMonthly(Long monthly) {
 		List<Bill> billMonthy = repositoryBill.getBillMonthly(monthly);
-		List<Item> items =  serviceItem.listAll();
-		ItemWrapper itemw = new ItemWrapper();
-		
-		
-		for (Bill b:billMonthy) 
-        { 
-            for (Item i:items) 
-            { 
-               if (b.invoiceId.equals(i.getIdItem().getInvoiceId()))	
-               		{ 
-            	    List<Item> itemCopy = new ArrayList<Item>();
-              		itemw.setItemId(i.getIdItem().getItemId());
-              		itemw.setInvoiceId(i.getIdItem().getInvoiceId());
-               		itemw.setSupplier(i.supplier);
-               		itemw.setServices(i.services);
-               		itemw.setDescription(i.getDescription());
-               		itemw.setPrice(i.getPrice());
-               		itemw.setTotal(i.getTotal());
-               		Item itemsave = serviceItem.save(itemw.getInvoiceId(), itemw.getItemId(), itemw.getDescription(),
-        				itemw.getQte(), itemw.getPrice(), itemw.getSubtotal(), itemw.getTotal(), itemw.getServices(), itemw.getSupplier());
-               		itemCopy.add(itemsave);
-               	    b.setItems(itemCopy); 
-               		} 
-           
-               
-           	} 
-        
-         
-        } 
-		
+		TotalExpenses(billMonthy); 
 	return billMonthy;
 	}
+
 
 	@Override
 	public Double TotalInvoiceBudget(List<Bill> invoiceTotal) {
@@ -100,12 +72,19 @@ public class BillServiceImpl implements IBillService {
 
 	@Override
 	public List<Bill> getExpensesBiannual() {
-		return repositoryBill.getExpensesBiannual();
+		{
+			List<Bill> billbudget = repositoryBill.getExpensesBiannual();
+			TotalExpenses(billbudget); 
+		return billbudget;
+		}
+	
 	}
 
 	@Override
 	public List<Bill> getExpensesQuartely() {
-		return repositoryBill.getExpensesQuartely();
+		List<Bill> billbudget = repositoryBill.getExpensesQuartely();
+		TotalExpenses(billbudget); 
+		return billbudget;
 	}
 
 	@Override
@@ -113,6 +92,40 @@ public class BillServiceImpl implements IBillService {
 		return repositoryBill.findAll(pageable);
 	}
 	
+	private List<Bill> TotalExpenses(List<Bill> billbudget) {
+		List<Item> items =  serviceItem.listAll();
+		ItemWrapper itemw = new ItemWrapper();
+				
+		
+		for (Bill b:billbudget) 
+		{ 
+		    for (Item i:items) 
+		    { 
+		       if (b.invoiceId.equals(i.getIdItem().getInvoiceId()))	
+		       		{ 
+		    	    List<Item> itemCopy = new ArrayList<Item>();
+		      		itemw.setItemId(i.getIdItem().getItemId());
+		      		itemw.setQte(i.getQte());
+		      		itemw.setInvoiceId(i.getIdItem().getInvoiceId());
+		      		itemw.setDate(i.getDate());
+		       		itemw.setSupplier(i.supplier);
+		       		itemw.setServices(i.services);
+		       		itemw.setDescription(i.getDescription());
+		       		itemw.setPrice(i.getPrice());
+		       		itemw.setTotal(i.getTotal());
+		       		Item itemsave = serviceItem.save(itemw.getInvoiceId(),  itemw.getItemId(), itemw.getDate(), itemw.getQte(), itemw.getPrice(), itemw.getSubtotal(), 
+						 itemw.getServices(), itemw.getSupplier(),itemw.getTotal(), itemw.getDescription());
+		       		itemCopy.add(itemsave);
+		       	    b.setItems(itemCopy); 
+		       		} 
+		   
+		       
+		   	} 
+		
+		 
+		}
+		return billbudget;
+	}
 
 
 }
