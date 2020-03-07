@@ -44,9 +44,12 @@ import com.example.demo.service.IServicesOffered;
 import com.example.demo.service.ISupplierService;
 import com.example.demo.service.ITypeIncomeService;
 import com.example.demo.service.ITypeOfExpensesService;
+import  org.springframework.web.bind.annotation.CrossOrigin; 
 
 
 @Controller
+@CrossOrigin (origins = "http: // localhost: 4200" )  
+@RequestMapping (value = "/ api" )  
 public class IndexController  implements WebMvcConfigurer {
 	
 	

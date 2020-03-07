@@ -1,0 +1,41 @@
+
+<div  align="center">
+  <h1>Income</h1>
+  <a th:href="@{/addincome}"  class="pull-right">Create  New Income</a>
+  <table class="table responsive table-striped table-bordered table-sm" id="sort">
+    <thead>
+      <tr>
+        <th  scope="col">Income ID</th>
+        <th  scope="col">Date</th>
+        <th  scope="col">Value</th>
+        <th  scope="col">Type Income</th>
+        <th  scope="col">Customer</th>
+        <th  scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="income: ${listIncome}">
+        <td th:text="${income.idIncome}">Income Id</td>
+        <td th:text="${income.date}">Date</td>
+        <td th:text="${income.value}">Value</td>
+        <td th:text="${income.typeIncome.nameIncome}">Type Income</td>
+        <td th:text="${income.customer.firstName}">Customer</td>
+        <td><p>  <a th:href="@{'/editincome/' + ${income.idIncome}}" class="btn btn-info btn-sm">
+                  <span class="glyphicon glyphicon-pencil"></span> Edit
+                </a>
+            &nbsp;&nbsp;&nbsp;
+             <a th:href="@{'/deleteincome/' + ${income.idIncome}}"
+                class="btn btn-info btn-sm"> <span
+                class="glyphicon glyphicon-trash"></span> Delete
+              </a>
+          </p>
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+<p><a href="/" th:href="@{/}" class="pull-right">Back to home page</a></p>
+</div>
+<a routerLink="/income" class="btn btn-danger btn-lg">
+  Go Back to Home
+</a>

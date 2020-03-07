@@ -9,6 +9,7 @@ import com.example.demo.model.Bill;
 
 
 
+
 public interface IBillService {
 	
 	public Page<Bill> listAll(Pageable pageable);
@@ -21,4 +22,6 @@ public interface IBillService {
 	public Double TotalInvoiceBudget(List<Bill> invoiceTotal); 
 	public List<Bill> getExpensesBiannual();
 	public List<Bill> getExpensesQuartely();
+	
+	
 }

@@ -16,7 +16,7 @@ public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@JoinColumn(name = "idCategory")
-	public long idCategory;
+	public Long idCategory;
 	
 	@NotNull
 	@Size(min=2, max=40, message="First name must be between 2 and 40 characters")
@@ -24,7 +24,7 @@ public class Category {
 	private String categoryName;
 
 		
-	public long getIdCategory() {
+	public Long getIdCategory() {
 		return idCategory;
 	}
 

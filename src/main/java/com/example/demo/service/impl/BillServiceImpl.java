@@ -3,17 +3,17 @@ package com.example.demo.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
-
 import com.example.demo.model.Bill;
 import com.example.demo.model.Item;
 import com.example.demo.model.ItemWrapper;
 import com.example.demo.repository.BillRepository;
 import com.example.demo.service.IBillService;
 import com.example.demo.service.IItemService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 @Service
 public class BillServiceImpl implements IBillService {
@@ -25,7 +25,6 @@ public class BillServiceImpl implements IBillService {
 	private IItemService serviceItem;
 	
 
-	
 	
 	@Override
 	public Bill save(Bill bill) {
@@ -124,8 +123,19 @@ public class BillServiceImpl implements IBillService {
 		
 		 
 		}
+		
+	//	 getExpenses();
 		return billbudget;
 	}
+
+	
+	
+
+	
+
+
+
+
 
 
 }
